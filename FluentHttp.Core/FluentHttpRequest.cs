@@ -16,7 +16,7 @@ namespace FluentHttp
         }
 
         public HttpClient BaseClient { get; private set; }
-        public HttpRequestMessage BaseRequest { get; set; }
+        public HttpRequestMessage BaseRequest { get; private set; }
         public CancellationToken CancellationToken { get; private set; }
 
         public event EventHandler<RequestEventArgs> OnRequest;
