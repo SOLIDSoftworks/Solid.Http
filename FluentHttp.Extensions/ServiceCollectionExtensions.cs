@@ -21,7 +21,7 @@ namespace FluentHttp
                 if (constructorArgs != null)
                     args.AddRange(constructorArgs);
 
-                // TODO: performace check this!
+                // TODO: performance check this!
                 var factory = Activator.CreateInstance(typeof(TFactory), args.ToArray()) as TFactory;
 
                 if (options != null && options.OnClientCreated != null)
