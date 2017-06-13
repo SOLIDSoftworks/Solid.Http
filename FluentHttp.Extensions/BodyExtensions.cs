@@ -48,7 +48,6 @@ namespace FluentHttp
 
             var multipart = request.BaseRequest.Content as MultipartContent;
             multipart.Add(content);
-            request.BaseRequest.Content = multipart;
             return request;
         }
 
