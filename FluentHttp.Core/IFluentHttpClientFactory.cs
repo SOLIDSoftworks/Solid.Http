@@ -9,6 +9,6 @@ namespace FluentHttp
         FluentHttpClient Create();
         FluentHttpClient Create(string connectionStringName);
 
-        event EventHandler<FluentHttpClientCreatedEventArgs> ClientCreated;
+        event EventHandler<FluentHttpClientCreatedEventArgs> OnClientCreated;
     }
 }

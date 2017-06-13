@@ -25,11 +25,11 @@ namespace FluentHttp
                 var factory = Activator.CreateInstance(typeof(TFactory), args.ToArray()) as TFactory;
 
                 if (options != null && options.OnClientCreated != null)
-                    factory.ClientCreated += (s, a) => options.OnClientCreated(s, a);
+                    factory.OnClientCreated += (s, a) => options.OnClientCreated(s, a);
                 if (options != null && options.OnRequestCreated != null)
-                    factory.ClientCreated += (s1, a1) =>
+                    factory.OnClientCreated += (s1, a1) =>
                     {
-                        a1.Client.RequestCreated += (s2, a2) =>
+                        a1.Client.OnRequestCreated += (s2, a2) =>
                         {
                             options.OnRequestCreated(s2, a2);
                         };

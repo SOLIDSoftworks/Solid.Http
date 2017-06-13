@@ -15,13 +15,13 @@ namespace FluentHttp
             _client = client;
         }
 
-        public event EventHandler<FluentHttpRequestCreatedEventArgs> RequestCreated;
+        public event EventHandler<FluentHttpRequestCreatedEventArgs> OnRequestCreated;
 
         public FluentHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
             var request = new FluentHttpRequest(_client, method, url, cancellationToken);
-            if (RequestCreated != null)
-                RequestCreated(this, new FluentHttpRequestCreatedEventArgs { Request = request });
+            if (OnRequestCreated != null)
+                OnRequestCreated(this, new FluentHttpRequestCreatedEventArgs { Request = request });
             return request;
         }
     }

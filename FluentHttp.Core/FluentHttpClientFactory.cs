@@ -33,7 +33,7 @@ namespace FluentHttp
             return CreateFluentHttpClient(_cache.Get(connectionStringName));
         }
 
-        public event EventHandler<FluentHttpClientCreatedEventArgs> ClientCreated;
+        public event EventHandler<FluentHttpClientCreatedEventArgs> OnClientCreated;
 
         protected virtual HttpClient CreateHttpClient(string connectionStringName = null)
         {
@@ -58,8 +58,8 @@ namespace FluentHttp
         private FluentHttpClient CreateFluentHttpClient(HttpClient inner)
         {
             var client = new FluentHttpClient(inner);
-            if (ClientCreated != null)
-                ClientCreated(this, new FluentHttpClientCreatedEventArgs { Client = client });
+            if (OnClientCreated != null)
+                OnClientCreated(this, new FluentHttpClientCreatedEventArgs { Client = client });
             return client;
         }
     }
