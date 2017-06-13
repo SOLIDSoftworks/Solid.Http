@@ -9,12 +9,24 @@ namespace FluentHttp
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddFluentHttp(this IServiceCollection services, IConfigurationRoot configuration = null)
+        public static IServiceCollection AddFluentHttp(this IServiceCollection services, FluentHttpOptions options = null)
         {
             services.AddSingleton<IHttpClientCache, HttpClientCache>();
             services.AddScoped<IFluentHttpClientFactory>(p =>
             {
-                return new FluentHttpClientFactory(p.GetRequiredService<IHttpClientCache>(), configuration);
+                var factory = new FluentHttpClientFactory(p.GetRequiredService<IHttpClientCache>(), options?.Configuration);
+                if (options != null && options.OnClientCreated != null)
+                    factory.ClientCreated += (s, a) => options.OnClientCreated(s, a);
+                if (options != null && options.OnRequestCreated != null)
+                    factory.ClientCreated += (s1, a1) =>
+                    {
+                        a1.Client.RequestCreated += (s2, a2) =>
+                        {
+                            options.OnRequestCreated(s2, a2);
+                        };
+                    };
+
+                return factory;
             });
             return services;
         }
