@@ -9,12 +9,21 @@ namespace FluentHttp
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddFluentHttp(this IServiceCollection services, FluentHttpOptions options = null)
+        public static IServiceCollection AddFluentHttp<TFactory>(this IServiceCollection services, IEnumerable<object> constructorArgs = null, FluentHttpOptions options = null)
+            where TFactory : FluentHttpClientFactory
         {
-            services.AddSingleton<IHttpClientCache, HttpClientCache>();
+            services.AddSingleton<IHttpClientCache, HttpClientCache>();            
             services.AddScoped<IFluentHttpClientFactory>(p =>
             {
-                var factory = new FluentHttpClientFactory(p.GetRequiredService<IHttpClientCache>(), options?.Configuration);
+                var args = new List<object>();
+                args.Add(p.GetRequiredService<IHttpClientCache>());
+                args.Add(options?.Configuration);
+                if (constructorArgs != null)
+                    args.AddRange(constructorArgs);
+
+                // TODO: performace check this!
+                var factory = Activator.CreateInstance(typeof(TFactory), args.ToArray()) as TFactory;
+
                 if (options != null && options.OnClientCreated != null)
                     factory.ClientCreated += (s, a) => options.OnClientCreated(s, a);
                 if (options != null && options.OnRequestCreated != null)
@@ -29,6 +38,11 @@ namespace FluentHttp
                 return factory;
             });
             return services;
+        }
+
+        public static IServiceCollection AddFluentHttp(this IServiceCollection services, FluentHttpOptions options = null)
+        {
+            return services.AddFluentHttp<FluentHttpClientFactory>(options: options);
         }
     }
 }
