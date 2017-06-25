@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26507.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Tests", "FluentHttp.Tests\FluentHttp.Tests.csproj", "{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Core", "FluentHttp.Core\FluentHttp.Core.csproj", "{EA8AC099-C30D-48A9-B683-D8E84A900E31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHttp.Core", "FluentHttp.Core\FluentHttp.Core.csproj", "{EA8AC099-C30D-48A9-B683-D8E84A900E31}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHttp.Extensions", "FluentHttp.Extensions\FluentHttp.Extensions.csproj", "{A73171E5-E80A-4E67-8783-83390073C2B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Extensions", "FluentHttp.Extensions\FluentHttp.Extensions.csproj", "{A73171E5-E80A-4E67-8783-83390073C2B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57E9B515-DCDD-490B-937E-5A898D95A9A7}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,16 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Tests", "FluentHttp.Tests\FluentHttp.Tests.csproj", "{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA8AC099-C30D-48A9-B683-D8E84A900E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EA8AC099-C30D-48A9-B683-D8E84A900E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA8AC099-C30D-48A9-B683-D8E84A900E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}|Default" NuGet.AddPackagesDialog.IncludePrerelease="True">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FluentHttp.Core/FluentHttpRequest.cs">
+    <Files>
+      <File FileName="FluentHttp.Tests/FluentHttpClientTests.cs" Line="35" Column="1" />
+      <File FileName="FluentHttp.Core/FluentHttpClient.cs" Line="22" Column="1" />
+      <File FileName="FluentHttp.Core/FluentHttpRequest.cs" Line="11" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="FluentHttp" expanded="True">
+            <Node name="FluentHttp.Tests" expanded="True">
+              <Node name="FluentHttp" expanded="True">
+                <Node name="Tests" expanded="True">
+                  <Node name="FluentHttpClientFactoryTests" expanded="True" />
+                  <Node name="FluentHttpClientTests" expanded="True">
+                    <Node name="ShouldCreateFluentRequest" selected="True" />
+                  </Node>
+                  <Node name="FluentHttpRequestTests" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/github/FluentHttp/FluentHttp.Tests/FluentHttpClientTests.cs" relfile="FluentHttp.Tests/FluentHttpClientTests.cs" line="22" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FluentHttp.Tests PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+  <DisabledProjects>
+    <String>FluentHttp.Tests/FluentHttp.Tests.csproj</String>
+  </DisabledProjects>
+</Properties>
