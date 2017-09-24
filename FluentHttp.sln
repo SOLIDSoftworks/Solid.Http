@@ -14,7 +14,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Tests", "FluentHttp.Tests\FluentHttp.Tests.csproj", "{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Tests", "FluentHttp.Tests\FluentHttp.Tests.csproj", "{9C10733B-4490-4E48-B210-E94BD48028B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{FC326D18-661F-4A13-8428-828A0E57C31A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Extensions.Json", "Extensions\FluentHttp.Extensions.Json\FluentHttp.Extensions.Json.csproj", "{32452D5C-CE51-4A1C-9086-1F3D27892747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Extensions.Multipart", "Extensions\FluentHttp.Extensions.Json\FluentHttp.Extensions.Multipart\FluentHttp.Extensions.Multipart.csproj", "{6B512325-0688-4E8D-BD8A-D68894888442}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Extensions.Testing", "Extensions\FluentHttp.Extensions.Json\FluentHttp.Extensions.Testing\FluentHttp.Extensions.Testing.csproj", "{47A643EC-4971-4365-85EE-333639A28ACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsumer", "TestConsumer\TestConsumer.csproj", "{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,12 +40,33 @@ Global
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2984E1B7-1E2D-44F6-B84C-8E1020B2DDE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C10733B-4490-4E48-B210-E94BD48028B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C10733B-4490-4E48-B210-E94BD48028B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C10733B-4490-4E48-B210-E94BD48028B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C10733B-4490-4E48-B210-E94BD48028B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32452D5C-CE51-4A1C-9086-1F3D27892747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32452D5C-CE51-4A1C-9086-1F3D27892747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32452D5C-CE51-4A1C-9086-1F3D27892747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32452D5C-CE51-4A1C-9086-1F3D27892747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B512325-0688-4E8D-BD8A-D68894888442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B512325-0688-4E8D-BD8A-D68894888442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B512325-0688-4E8D-BD8A-D68894888442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B512325-0688-4E8D-BD8A-D68894888442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A643EC-4971-4365-85EE-333639A28ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A643EC-4971-4365-85EE-333639A28ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A643EC-4971-4365-85EE-333639A28ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A643EC-4971-4365-85EE-333639A28ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{32452D5C-CE51-4A1C-9086-1F3D27892747} = {FC326D18-661F-4A13-8428-828A0E57C31A}
+		{6B512325-0688-4E8D-BD8A-D68894888442} = {FC326D18-661F-4A13-8428-828A0E57C31A}
+		{47A643EC-4971-4365-85EE-333639A28ACC} = {FC326D18-661F-4A13-8428-828A0E57C31A}
 	EndGlobalSection
 EndGlobal

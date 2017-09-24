@@ -8,14 +8,15 @@ namespace FluentHttp
 {
     public class FluentHttpRequest
     {
-        internal FluentHttpRequest(HttpClient client, HttpMethod method, Uri url, CancellationToken cancellationToken)
+        internal FluentHttpRequest(FluentHttpClient client, HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
-            BaseClient = client;
+            Client = client;
             BaseRequest = new HttpRequestMessage(method, url);
             CancellationToken = cancellationToken;
         }
 
-        public HttpClient BaseClient { get; private set; }
+        internal FluentHttpClient Client { get; private set; }
+
         public HttpRequestMessage BaseRequest { get; private set; }
         public CancellationToken CancellationToken { get; private set; }
 
@@ -28,7 +29,7 @@ namespace FluentHttp
             {
                 if (OnRequest != null)
                     OnRequest(this, new RequestEventArgs { Request = BaseRequest });
-                var response = await BaseClient.SendAsync(BaseRequest, CancellationToken);
+                var response = await Client.InnerClient.SendAsync(BaseRequest, CancellationToken);
                 if (OnResponse != null)
                     OnResponse(this, new ResponseEventArgs { Response = response });
                 return response;

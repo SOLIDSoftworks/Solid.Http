@@ -12,7 +12,7 @@ namespace FluentHttp.Tests
 {
     public class FluentHttpClientFactoryTests
     {
-        private Mock<IConfigurationRoot> _configurationMock;
+        private Mock<IConfiguration> _configurationMock;
         private Mock<IHttpClientCache> _cacheMock;
 
         private readonly string _baseUrl = "https://test.uri";
@@ -21,7 +21,7 @@ namespace FluentHttp.Tests
         {
             var sectionMock = new Mock<IConfigurationSection>();
             sectionMock.Setup(s => s["test"]).Returns(_baseUrl);
-            _configurationMock = new Mock<IConfigurationRoot>();
+            _configurationMock = new Mock<IConfiguration>();
             _configurationMock.Setup(c => c.GetSection("ConnectionStrings")).Returns(() => sectionMock.Object);
             _cacheMock = new Mock<IHttpClientCache>();
         }
@@ -29,7 +29,7 @@ namespace FluentHttp.Tests
         [Fact]
         public void ShouldCreateAbsoluteUrlClient()
         {
-            var factory = new FluentHttpClientFactory(_cacheMock.Object, _configurationMock.Object);
+            var factory = new FluentHttpClientFactory(_cacheMock.Object, null, _configurationMock.Object);
             var client = factory.Create();
 
             _cacheMock.Verify(c => c.Exists(FluentHttpClientFactory.ABSOLUTE_CLIENT_KEY), Times.Once());
@@ -44,7 +44,7 @@ namespace FluentHttp.Tests
         {
             _cacheMock.Setup(c => c.Exists(FluentHttpClientFactory.ABSOLUTE_CLIENT_KEY)).Returns(true);
 
-            var factory = new FluentHttpClientFactory(_cacheMock.Object, _configurationMock.Object);
+            var factory = new FluentHttpClientFactory(_cacheMock.Object, null, _configurationMock.Object);
             var client = factory.Create();
 
             _cacheMock.Verify(c => c.Exists(FluentHttpClientFactory.ABSOLUTE_CLIENT_KEY), Times.Once());
@@ -58,7 +58,7 @@ namespace FluentHttp.Tests
         public void ShouldThrowExceptionIfNoConfiguration()
         {
             var key = "test";
-            var factory = new FluentHttpClientFactory(_cacheMock.Object);
+            var factory = new FluentHttpClientFactory(_cacheMock.Object, null);
 
 			//var message =
 				//"FluentHttpClientFactory was created with a null configuration." + Environment.NewLine +
@@ -71,7 +71,7 @@ namespace FluentHttp.Tests
         public void ShouldCreateConnectionStringClient()
         {
             var key = "test";
-            var factory = new FluentHttpClientFactory(_cacheMock.Object, _configurationMock.Object);
+            var factory = new FluentHttpClientFactory(_cacheMock.Object, null, _configurationMock.Object);
             var client = factory.Create(key);
 
             _cacheMock.Verify(c => c.Exists(key), Times.Once());
@@ -87,7 +87,7 @@ namespace FluentHttp.Tests
             var key = "test";
             _cacheMock.Setup(c => c.Exists(key)).Returns(true);
 
-            var factory = new FluentHttpClientFactory(_cacheMock.Object, _configurationMock.Object);
+            var factory = new FluentHttpClientFactory(_cacheMock.Object, null, _configurationMock.Object);
             var client = factory.Create(key);
 
             _cacheMock.Verify(c => c.Exists(key), Times.Once());

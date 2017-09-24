@@ -1,8 +1,8 @@
 # FluentHttp
 
-FluentHttp is a library to simplify http calls in C#. It's designed to be async fully extendable.
+FluentHttp is a library to simplify http calls in C#. It's designed to be async and fully extendable.
 
-## Simple use
+## Basic use
 
     public class SomeClass
     {

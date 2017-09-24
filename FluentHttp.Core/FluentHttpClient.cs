@@ -8,18 +8,20 @@ namespace FluentHttp
 {
     public class FluentHttpClient
     {
-        private HttpClient _client;
-
-        public FluentHttpClient(HttpClient client)
+        public FluentHttpClient(HttpClient client, ISerializerProvider serializers)
         {
-            _client = client;
+            InnerClient = client;
+            Serializers = serializers;
         }
+
+		internal HttpClient InnerClient { get; private set; }
+        internal ISerializerProvider Serializers { get; private set; }
 
         public event EventHandler<FluentHttpRequestCreatedEventArgs> OnRequestCreated;
 
         public FluentHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
-            var request = new FluentHttpRequest(_client, method, url, cancellationToken);
+            var request = new FluentHttpRequest(this, method, url, cancellationToken);
             if (OnRequestCreated != null)
                 OnRequestCreated(this, new FluentHttpRequestCreatedEventArgs { Request = request });
             return request;
