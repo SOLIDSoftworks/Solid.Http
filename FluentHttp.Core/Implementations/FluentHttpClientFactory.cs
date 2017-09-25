@@ -34,9 +34,8 @@ namespace FluentHttp
             {
                 var message =
                     "FluentHttpClientFactory was created with a null configuration." + Environment.NewLine +
-                    "If you are creating FluentHttpClientFactory manually, please provide an IConfigurationRoot in the constructor of FluentHttpClientFactory." + Environment.NewLine +
-                    // TODO: fix this line in the error message
-                    "If you are calling services.UseFluentHttp(), then change that call to services.UseFluentHttp(configuration) where configuration is the application configuration.";
+                    "If you are creating FluentHttpClientFactory manually, please provide an IConfiguration in the constructor of FluentHttpClientFactory." + Environment.NewLine +
+                    "If you are calling services.AddFluentHttp(), then make sure that your IConfiguration resides in the service container.";
                 throw new InvalidOperationException(message);
             }
 
