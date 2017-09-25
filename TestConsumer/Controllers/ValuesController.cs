@@ -32,7 +32,7 @@ namespace TestConsumer.Controllers
                     Body = string.Empty
                 });
 
-            return Ok();
+            return Ok(posts);
         }
     }
 }
