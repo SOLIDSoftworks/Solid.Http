@@ -11,7 +11,7 @@ namespace FluentHttp
         #region GET
         public static FluentHttpRequest GetAsync(this FluentHttpClient client, string url)
         {
-            return client.GetAsync(new Uri(url));
+            return client.GetAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
         public static FluentHttpRequest GetAsync(this FluentHttpClient client, Uri url)
@@ -21,7 +21,7 @@ namespace FluentHttp
 
         public static FluentHttpRequest GetAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
         {
-            return client.GetAsync(new Uri(url), cancellationToken);
+            return client.GetAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
 
         public static FluentHttpRequest GetAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
@@ -33,7 +33,7 @@ namespace FluentHttp
         #region POST
         public static FluentHttpRequest PostAsync(this FluentHttpClient client, string url)
         {
-            return client.PostAsync(new Uri(url));
+            return client.PostAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
         public static FluentHttpRequest PostAsync(this FluentHttpClient client, Uri url)
@@ -43,7 +43,7 @@ namespace FluentHttp
 
         public static FluentHttpRequest PostAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
         {
-            return client.PostAsync(new Uri(url), cancellationToken);
+            return client.PostAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
 
         public static FluentHttpRequest PostAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
@@ -55,7 +55,7 @@ namespace FluentHttp
         #region PUT
         public static FluentHttpRequest PutAsync(this FluentHttpClient client, string url)
         {
-            return client.PutAsync(new Uri(url));
+            return client.PutAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
         public static FluentHttpRequest PutAsync(this FluentHttpClient client, Uri url)
@@ -65,7 +65,7 @@ namespace FluentHttp
 
         public static FluentHttpRequest PutAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
         {
-            return client.PutAsync(new Uri(url), cancellationToken);
+            return client.PutAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
 
         public static FluentHttpRequest PutAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
@@ -77,7 +77,7 @@ namespace FluentHttp
         #region PATCH
         public static FluentHttpRequest PatchAsync(this FluentHttpClient client, string url)
         {
-            return client.PatchAsync(new Uri(url));
+            return client.PatchAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
         public static FluentHttpRequest PatchAsync(this FluentHttpClient client, Uri url)
@@ -87,7 +87,7 @@ namespace FluentHttp
 
         public static FluentHttpRequest PatchAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
         {
-            return client.PatchAsync(new Uri(url), cancellationToken);
+            return client.PatchAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
 
         public static FluentHttpRequest PatchAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
@@ -100,7 +100,7 @@ namespace FluentHttp
         #region DELETE
         public static FluentHttpRequest DeleteAsync(this FluentHttpClient client, string url)
         {
-            return client.DeleteAsync(new Uri(url));
+            return client.DeleteAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
         public static FluentHttpRequest DeleteAsync(this FluentHttpClient client, Uri url)
@@ -110,7 +110,7 @@ namespace FluentHttp
 
         public static FluentHttpRequest DeleteAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
         {
-            return client.DeleteAsync(new Uri(url), cancellationToken);
+            return client.DeleteAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
 
         public static FluentHttpRequest DeleteAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)

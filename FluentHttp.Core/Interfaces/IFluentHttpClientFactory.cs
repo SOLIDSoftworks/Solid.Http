@@ -7,8 +7,8 @@ namespace FluentHttp
     public interface IFluentHttpClientFactory
     {
         FluentHttpClient Create();
-        FluentHttpClient Create(string connectionStringName);
-
-        event EventHandler<FluentHttpClientCreatedEventArgs> OnClientCreated;
+        FluentHttpClient CreateUsingConnectionString(string connectionStringName);
+        FluentHttpClient CreateWithBaseAddress(string baseAddress);
+        FluentHttpClient CreateWithBaseAddress(Uri baseAddress);
     }
 }

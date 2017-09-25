@@ -5,19 +5,22 @@ namespace FluentHttp
 {
     public static class ServiceCollectionExtensions
     {
-        public static IFluentHttpOptions AddFluentHttp<TFactory>(this IServiceCollection services)
+        public static IFluentHttpSetup AddFluentHttp<TFactory>(this IServiceCollection services)
 			where TFactory : FluentHttpClientFactory
 		{
-			services.AddSingleton<IHttpClientCache, HttpClientCache>();
+			services.AddSingleton<IHttpClientProvider, HttpClientProvider>();
             services.AddSingleton<ISerializerProvider>(SerializerProvider.Instance);
-            services.AddSingleton<IFluentHttpClientFactory, TFactory>();
+            services.AddScoped<IFluentHttpClientFactoryEventInvoker, FluentHttpClientFactoryEvents>();
+            services.AddScoped<IFluentHttpClientFactory, TFactory>();
+
             services.AddTransient<IFluentHttpOptions, FluentHttpOptions>();
+            services.AddTransient<IFluentHttpSetup, FluentHttpSetup>();
 
             var provider = services.BuildServiceProvider();
-            return provider.GetService<IFluentHttpOptions>();
+            return provider.GetService<IFluentHttpSetup>();
 		}
 
-        public static IFluentHttpOptions AddFluentHttp(this IServiceCollection services)
+        public static IFluentHttpSetup AddFluentHttp(this IServiceCollection services)
 		{
 			return services.AddFluentHttp<FluentHttpClientFactory>();
 		}
