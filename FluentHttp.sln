@@ -3,17 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26507.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Tests", "FluentHttp.Tests\FluentHttp.Tests.csproj", "{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Core", "FluentHttp.Core\FluentHttp.Core.csproj", "{EA8AC099-C30D-48A9-B683-D8E84A900E31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHttp.Core", "FluentHttp.Core\FluentHttp.Core.csproj", "{EA8AC099-C30D-48A9-B683-D8E84A900E31}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentHttp.Extensions", "FluentHttp.Extensions\FluentHttp.Extensions.csproj", "{A73171E5-E80A-4E67-8783-83390073C2B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Extensions", "FluentHttp.Extensions\FluentHttp.Extensions.csproj", "{A73171E5-E80A-4E67-8783-83390073C2B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{57E9B515-DCDD-490B-937E-5A898D95A9A7}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Tests", "FluentHttp.Tests\FluentHttp.Tests.csproj", "{9C10733B-4490-4E48-B210-E94BD48028B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{FC326D18-661F-4A13-8428-828A0E57C31A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Extensions.Json", "Extensions\FluentHttp.Extensions.Json\FluentHttp.Extensions.Json.csproj", "{32452D5C-CE51-4A1C-9086-1F3D27892747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Extensions.Multipart", "Extensions\FluentHttp.Extensions.Json\FluentHttp.Extensions.Multipart\FluentHttp.Extensions.Multipart.csproj", "{6B512325-0688-4E8D-BD8A-D68894888442}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentHttp.Extensions.Testing", "Extensions\FluentHttp.Extensions.Json\FluentHttp.Extensions.Testing\FluentHttp.Extensions.Testing.csproj", "{47A643EC-4971-4365-85EE-333639A28ACC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsumer", "TestConsumer\TestConsumer.csproj", "{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +32,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51346B0F-A2D6-4923-B747-AD1C95B8CF5E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA8AC099-C30D-48A9-B683-D8E84A900E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EA8AC099-C30D-48A9-B683-D8E84A900E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA8AC099-C30D-48A9-B683-D8E84A900E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,8 +40,33 @@ Global
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A73171E5-E80A-4E67-8783-83390073C2B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C10733B-4490-4E48-B210-E94BD48028B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C10733B-4490-4E48-B210-E94BD48028B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C10733B-4490-4E48-B210-E94BD48028B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C10733B-4490-4E48-B210-E94BD48028B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32452D5C-CE51-4A1C-9086-1F3D27892747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32452D5C-CE51-4A1C-9086-1F3D27892747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32452D5C-CE51-4A1C-9086-1F3D27892747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32452D5C-CE51-4A1C-9086-1F3D27892747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B512325-0688-4E8D-BD8A-D68894888442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B512325-0688-4E8D-BD8A-D68894888442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B512325-0688-4E8D-BD8A-D68894888442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B512325-0688-4E8D-BD8A-D68894888442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A643EC-4971-4365-85EE-333639A28ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A643EC-4971-4365-85EE-333639A28ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A643EC-4971-4365-85EE-333639A28ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A643EC-4971-4365-85EE-333639A28ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{32452D5C-CE51-4A1C-9086-1F3D27892747} = {FC326D18-661F-4A13-8428-828A0E57C31A}
+		{6B512325-0688-4E8D-BD8A-D68894888442} = {FC326D18-661F-4A13-8428-828A0E57C31A}
+		{47A643EC-4971-4365-85EE-333639A28ACC} = {FC326D18-661F-4A13-8428-828A0E57C31A}
 	EndGlobalSection
 EndGlobal

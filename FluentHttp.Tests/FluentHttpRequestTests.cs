@@ -1,32 +1,28 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FluentAssertions;
+using Xunit;
 
 namespace FluentHttp.Tests
 {
-    [TestClass]
     public class FluentHttpRequestTests
     {
         private static IHttpClientCache _cache;
         private IFluentHttpClientFactory _factory;
 
-        [ClassInitialize]
-        public static void InitializeClass(TestContext context)
+        static FluentHttpRequestTests()
         {
             _cache = new HttpClientCache();
         }
 
-        [TestInitialize]
-        public void Initialize()
+        public FluentHttpRequestTests()
         {
             _factory = new FluentHttpClientFactory(_cache, null);
         }
 
-        [TestMethod]
+        [Fact]
         public async Task ShouldGetMany()
         {
             var schema = new
@@ -43,18 +39,19 @@ namespace FluentHttp.Tests
                 .ExpectSuccess()
                 .AsJsonArray(schema);
 
-            posts.Should().NotBeNull();
-            posts.Should().HaveCount(100);
-            posts.ToList().ForEach(p =>
+            Assert.NotNull(posts);
+            Assert.Equal(100, posts.Count());
+            foreach(var post in posts)
             {
-                p.Id.Should().NotBe(0);
-                p.UserId.Should().NotBe(0);
-                p.Body.Should().NotBe(string.Empty);
-                p.Title.Should().NotBe(string.Empty);
-            });
+				Assert.NotNull(post);
+				Assert.NotEqual(0, post.Id);
+				Assert.NotEqual(0, post.UserId);
+                Assert.NotEqual(string.Empty, post.Title);
+                Assert.NotEqual(string.Empty, post.Body);
+            }
         }
 
-        [TestMethod]
+        [Fact]
         public async Task ShouldPost()
         {
             var schema = new
@@ -71,11 +68,12 @@ namespace FluentHttp.Tests
                 .ExpectSuccess()
                 .AsJson(schema);
 
-            post.Should().NotBeNull();
-            post.Id.Should().Be(101);
-            post.UserId.Should().Be(1);
-            post.Body.Should().Be("bar");
-            post.Title.Should().Be("foo");
+            Assert.NotNull(post);
+
+			Assert.Equal(101, post.Id);
+			Assert.Equal(1, post.UserId);
+			Assert.Equal("foo", post.Title);
+			Assert.Equal("bar", post.Body);
         }
     }
 }

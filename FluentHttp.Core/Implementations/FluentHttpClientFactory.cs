@@ -11,11 +11,13 @@ namespace FluentHttp
         public const string ABSOLUTE_CLIENT_KEY = "__absolute";
 
         private IHttpClientCache _cache;
-        private IConfigurationRoot _configuration;
+        private ISerializerProvider _serializers;
+        private IConfiguration _configuration;
 
-        public FluentHttpClientFactory(IHttpClientCache cache, IConfigurationRoot configuration = null)
+        public FluentHttpClientFactory(IHttpClientCache cache, ISerializerProvider serializers, IConfiguration configuration = null)
         {
             _cache = cache;
+            _serializers = serializers;
             _configuration = configuration;
         }
 
@@ -58,7 +60,7 @@ namespace FluentHttp
 
         private FluentHttpClient CreateFluentHttpClient(HttpClient inner)
         {
-            var client = new FluentHttpClient(inner);
+            var client = new FluentHttpClient(inner, _serializers);
             if (OnClientCreated != null)
                 OnClientCreated(this, new FluentHttpClientCreatedEventArgs { Client = client });
             return client;
