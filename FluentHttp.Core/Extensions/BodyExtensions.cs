@@ -46,6 +46,18 @@ namespace FluentHttp
             return request;
         }
 
+        public static FluentHttpRequest WithContent(this FluentHttpRequest request, HttpContent content)
+        {
+            if (request.BaseRequest.Content == null)
+            {
+                request.BaseRequest.Content = content;
+                return request;
+            }
+            var multipart = request.WithMultipartContent(() => new MultipartContent()).BaseRequest.Content as MultipartContent;
+            multipart.Add(content);
+            return request;
+        }
+
         private static MultipartFormDataContent GetMultipartFormDataContent(this FluentHttpRequest request)
         {
             if (request.BaseRequest.Content == null)
@@ -75,18 +87,6 @@ namespace FluentHttp
                 m.Add(c);
             }
             request.BaseRequest.Content = m;
-            return request;
-        }
-
-        public static FluentHttpRequest WithContent(this FluentHttpRequest request, HttpContent content)
-        {
-            if (request.BaseRequest.Content == null)
-            {
-                request.BaseRequest.Content = content;
-                return request;
-            }
-            var multipart = request.WithMultipartContent(() => new MultipartContent()).BaseRequest.Content as MultipartContent; 
-            multipart.Add(content);
             return request;
         }
     }
