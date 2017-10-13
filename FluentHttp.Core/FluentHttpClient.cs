@@ -11,6 +11,8 @@ namespace FluentHttp
     /// </summary>
     public class FluentHttpClient
     {
+        private IDictionary<string, object> _properties = new Dictionary<string, object>();
+
         /// <summary>
         /// Create a FluentHttpClient
         /// </summary>
@@ -25,12 +27,24 @@ namespace FluentHttp
         internal HttpClient InnerClient { get; private set; }
         internal IDeserializerProvider Deserializers { get; private set; }
 
-        private IDictionary<string, object> _properties = new Dictionary<string, object>();
+        /// <summary>
+        /// Adds a property to the client that can be used in extensions methods
+        /// </summary>
+        /// <typeparam name="T">The type of parameter</typeparam>
+        /// <param name="key">The parameter key</param>
+        /// <param name="value">The parameter value</param>
         public void AddProperty<T>(string key, T value)
         {
             // TODO: Check if key exists and throw meaningful error
             _properties.Add(key, value);
         }
+        
+        /// <summary>
+        /// Gets a property from the client
+        /// </summary>
+        /// <typeparam name="T">The type of parameter</typeparam>
+        /// <param name="key">The parameter key</param>
+        /// <returns>The parameter</returns>
         public T GetProperty<T>(string key)
         {
             if (!_properties.ContainsKey(key)) return default(T);
