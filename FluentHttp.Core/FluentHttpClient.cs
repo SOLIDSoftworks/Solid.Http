@@ -6,8 +6,16 @@ using System.Threading;
 
 namespace FluentHttp
 {
+    /// <summary>
+    /// A FluentHttpClient that is used to perform create FluentHttpRequests. This class is designed be extended using extension methods.
+    /// </summary>
     public class FluentHttpClient
     {
+        /// <summary>
+        /// Create a FluentHttpClient
+        /// </summary>
+        /// <param name="client">The inner HttpClient to be used</param>
+        /// <param name="serializers">The serializers supported by this FluentHttpClient</param>
         public FluentHttpClient(HttpClient client, ISerializerProvider serializers)
         {
             InnerClient = client;
@@ -17,10 +25,23 @@ namespace FluentHttp
 		internal HttpClient InnerClient { get; private set; }
         internal ISerializerProvider Serializers { get; private set; }
 
+        /// <summary>
+        /// The base http address of this FluentHttpClient
+        /// </summary>
         public Uri BaseAddress { get; internal set; }
 
+        /// <summary>
+        /// The event triggered when a FluentHttpRequest is created
+        /// </summary>
         public event EventHandler<FluentHttpRequestCreatedEventArgs> OnRequestCreated;
 
+        /// <summary>
+        /// Perform an http request
+        /// </summary>
+        /// <param name="method">The http method for the request</param>
+        /// <param name="url">The url to be requested</param>
+        /// <param name="cancellationToken">The cancellation token for the request</param>
+        /// <returns></returns>
         public FluentHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
             if (BaseAddress != null)
