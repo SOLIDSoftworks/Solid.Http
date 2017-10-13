@@ -25,10 +25,26 @@ namespace FluentHttp
 		internal HttpClient InnerClient { get; private set; }
         internal IDeserializerProvider Deserializers { get; private set; }
 
-        /// <summary>
-        /// The base http address of this FluentHttpClient
-        /// </summary>
-        public Uri BaseAddress { get; internal set; }
+        private IDictionary<string, object> _properties = new Dictionary<string, object>();
+        public void AddProperty<T>(string key, T value)
+        {
+            // TODO: Check if key exists and throw meaningful error
+            _properties.Add(key, value);
+        }
+        public T GetProperty<T>(string key)
+        {
+            if (!_properties.ContainsKey(key)) return default(T);
+            var value = _properties[key];
+            if (value == null) return default(T);
+
+            var requestedType = typeof(T);
+            var actualType = value.GetType();
+
+            if (!requestedType.IsAssignableFrom(actualType))
+                throw new InvalidCastException($"Cannot get property '{key}' as type '{requestedType.FullName}' because it is of type '{actualType.FullName}");
+
+            return (T)value;
+        }
 
         /// <summary>
         /// The event triggered when a FluentHttpRequest is created
@@ -44,9 +60,6 @@ namespace FluentHttp
         /// <returns></returns>
         public FluentHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
-            if (BaseAddress != null)
-                url = new Uri(BaseAddress, url);
-
             var request = new FluentHttpRequest(this, method, url, cancellationToken);
             if (OnRequestCreated != null)
                 OnRequestCreated(this, new FluentHttpRequestCreatedEventArgs { Request = request });

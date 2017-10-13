@@ -29,8 +29,18 @@ namespace FluentHttp
         public static FluentHttpClient CreateWithBaseAddress(this IFluentHttpClientFactory factory, Uri baseAddress)
         {
             var client = factory.Create();
-            client.BaseAddress = baseAddress;
+            client.AddProperty("Client::BaseAddress", baseAddress);
+            client.OnRequestCreated += OnRequestCreated;
             return client;
+        }
+
+        private static void OnRequestCreated(object sender, FluentHttpRequestCreatedEventArgs args)
+        {
+            var baseAddress = args.Request.Client.GetProperty<Uri>("Client::BaseAddress");
+            if (baseAddress == null) return;
+
+            var url = new Uri(baseAddress, args.Request.BaseRequest.RequestUri);
+            args.Request.BaseRequest.RequestUri = url;
         }
     }
 }
