@@ -73,7 +73,7 @@ When working with FluentHttp, you use IFluentHttpClientFactory to create a Fluen
 
         public Task<IActionResult> PutAsync(int id, Post body, CancellationToken cancellationToken)
         {
-            var client = _factory.Create("https://jsonplaceholder.typicode.com");
+            var client = _factory.CreateWithBaseAddress("https://jsonplaceholder.typicode.com");
             var json = JsonConvert.SerializeObject(body);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var post = await client
@@ -82,7 +82,7 @@ When working with FluentHttp, you use IFluentHttpClientFactory to create a Fluen
                 .WithNamedParameter("id", id)
                 .ExpectSuccess()
                 .As<Post>();
-                return Ok(post);
+            return Ok(post);
         }
     }
 
