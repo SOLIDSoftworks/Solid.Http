@@ -7,6 +7,9 @@ using System.Threading;
 
 namespace FluentHttp
 {
+    /// <summary>
+    /// The FluentHttpClientFactory
+    /// </summary>
     public class FluentHttpClientFactory : IFluentHttpClientFactory
     {
         private static HttpClient _client;
@@ -15,7 +18,10 @@ namespace FluentHttp
         private IFluentHttpClientFactoryEventInvoker _events;
         private IDeserializerProvider _deserializers;
         private IConfiguration _configuration;
-
+        
+        /// <summary>
+        /// The application configuration which can be used in extension methods
+        /// </summary>
         public IConfiguration Configuration
         {
             get
@@ -32,18 +38,32 @@ namespace FluentHttp
             }
         }
 
+        /// <summary>
+        /// Creates a FluentHttpClientFactory
+        /// </summary>
+        /// <param name="events">The events to be triggered when a FluentHttpClient is created</param>
+        /// <param name="deserializers">The deserializer provider for FluentHttp</param>
+        /// <param name="configuration">The application configuration</param>
         public FluentHttpClientFactory(IFluentHttpClientFactoryEventInvoker events, IDeserializerProvider deserializers, IConfiguration configuration = null)
         {
             _events = events;
             _deserializers = deserializers;
             _configuration = configuration;
         }
-
+        
+        /// <summary>
+        /// Creates a FluentHttpClient
+        /// </summary>
+        /// <returns>FluentHttpClient</returns>
         public FluentHttpClient Create()
         {
             return CreateFluentHttpClient(GetHttpClient());
         }
         
+        /// <summary>
+        /// Creates the inner HttpClient
+        /// </summary>
+        /// <returns></returns>
         protected virtual HttpClient CreateHttpClient()
         {
             return new HttpClient();
