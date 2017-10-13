@@ -16,6 +16,22 @@ namespace FluentHttp
         private ISerializerProvider _serializers;
         private IConfiguration _configuration;
 
+        public IConfiguration Configuration
+        {
+            get
+            {
+                if (_configuration == null)
+                {
+                    var message =
+                        "FluentHttpClientFactory was created with a null configuration." + Environment.NewLine +
+                        "If you are initializing a FluentHttpClientFactory manually, please provide an IConfiguration in the constructor of FluentHttpClientFactory." + Environment.NewLine +
+                        "If you are initializing using services.AddFluentHttp(), then make sure that your IConfiguration resides in the service container.";
+                    throw new InvalidOperationException(message);
+                }
+                return _configuration;
+            }
+        }
+
         public FluentHttpClientFactory(IFluentHttpClientFactoryEventInvoker events, ISerializerProvider serializers, IConfiguration configuration = null)
         {
             _events = events;
@@ -26,33 +42,6 @@ namespace FluentHttp
         public FluentHttpClient Create()
         {
             return CreateFluentHttpClient(GetHttpClient());
-        }
-
-        public FluentHttpClient CreateUsingConnectionString(string connectionStringName)
-        {
-            if (_configuration == null)
-            {
-                var message =
-                    "FluentHttpClientFactory was created with a null configuration." + Environment.NewLine +
-                    "If you are initializing a FluentHttpClientFactory manually, please provide an IConfiguration in the constructor of FluentHttpClientFactory." + Environment.NewLine +
-                    "If you are initializing using services.AddFluentHttp(), then make sure that your IConfiguration resides in the service container.";
-                throw new InvalidOperationException(message);
-            }
-
-            var baseAddress = _configuration.GetConnectionString(connectionStringName);
-            return CreateWithBaseAddress(baseAddress);
-        }
-
-        public FluentHttpClient CreateWithBaseAddress(string baseAddress)
-        {
-            return CreateWithBaseAddress(new Uri(baseAddress));
-        }
-
-        public FluentHttpClient CreateWithBaseAddress(Uri baseAddress)
-        {
-            var client = Create();
-            client.BaseAddress = baseAddress;
-            return client;
         }
         
         protected virtual HttpClient CreateHttpClient()
