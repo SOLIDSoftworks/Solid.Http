@@ -1,4 +1,5 @@
-# FluentHttp
+# FluentHttp 
+[![solidsoftworks MyGet Build Status](https://www.myget.org/BuildSource/Badge/solidsoftworks?identifier=9c23f206-db05-4589-b13d-982fc2d3df3b)](https://www.myget.org/)
 
 FluentHttp is a library to simplify http calls in C#. It's designed to be async and fully extendable.
 
