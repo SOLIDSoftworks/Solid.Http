@@ -15,8 +15,8 @@ namespace FluentHttp
         /// <param name="services">The service collection</param>
         /// <returns>IFluentHttpSetup</returns>
         public static IFluentHttpSetup AddFluentHttp<TFactory>(this IServiceCollection services)
-			where TFactory : FluentHttpClientFactory
-		{
+            where TFactory : FluentHttpClientFactory
+        {
             services.AddSingleton<IDeserializerProvider>(DeserializerProvider.Instance);
             services.AddScoped<IFluentHttpClientFactoryEventInvoker, FluentHttpClientFactoryEvents>();
             services.AddScoped<IFluentHttpClientFactory, TFactory>();
@@ -26,7 +26,7 @@ namespace FluentHttp
 
             var provider = services.BuildServiceProvider();
             return provider.GetService<IFluentHttpSetup>();
-		}
+        }
 
         /// <summary>
         /// Add FluentHttp to the service collection using the default implementation of FluentHttpClientFactory
@@ -34,8 +34,8 @@ namespace FluentHttp
         /// <param name="services">The service collection</param>
         /// <returns>IFluentHttpSetup</returns>
         public static IFluentHttpSetup AddFluentHttp(this IServiceCollection services)
-		{
-			return services.AddFluentHttp<FluentHttpClientFactory>();
-		}
+        {
+            return services.AddFluentHttp<FluentHttpClientFactory>();
+        }
     }
 }

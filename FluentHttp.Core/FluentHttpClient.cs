@@ -22,7 +22,7 @@ namespace FluentHttp
             Deserializers = deserializers;
         }
 
-		internal HttpClient InnerClient { get; private set; }
+        internal HttpClient InnerClient { get; private set; }
         internal IDeserializerProvider Deserializers { get; private set; }
 
         private IDictionary<string, object> _properties = new Dictionary<string, object>();

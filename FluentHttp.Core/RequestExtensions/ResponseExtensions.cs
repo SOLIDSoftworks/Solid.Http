@@ -19,11 +19,11 @@ namespace FluentHttp
         /// <param name="request">The FluentHttpRequest</param>
         /// <param name="deserialize">The deserialization method</param>
         /// <returns>Task of type T</returns>
-		public static async Task<T> As<T>(this FluentHttpRequest request, Func<HttpContent, Task<T>> deserialize)
-		{
+        public static async Task<T> As<T>(this FluentHttpRequest request, Func<HttpContent, Task<T>> deserialize)
+        {
             var content = await request.GetContentAsync();
             if (content == null) return default(T); // should we maybe throw an exception if there is no content?
-			return await deserialize(content);
+            return await deserialize(content);
         }
 
         /// <summary>
@@ -68,17 +68,17 @@ namespace FluentHttp
         /// <param name="request">The FluentHttpRequest</param>
         /// <returns>Task of type T</returns>
         public static async Task<T> As<T>(this FluentHttpRequest request)
-		{
-			var content = await request.GetContentAsync();
-			if (content == null) return default(T); // should we maybe throw an exception if there is no content?
+        {
+            var content = await request.GetContentAsync();
+            if (content == null) return default(T); // should we maybe throw an exception if there is no content?
 
             var mime = content?.Headers?.ContentType?.MediaType;
 
-			var deserialize = request.Client.Deserializers.GetDeserializer<T>(mime);
+            var deserialize = request.Client.Deserializers.GetDeserializer<T>(mime);
             if (deserialize == null)
                 throw new InvalidOperationException($"Cannot deserialize {mime} response as {typeof(T).FullName}");
-			return await deserialize(content);
-		}
+            return await deserialize(content);
+        }
 
         /// <summary>
         /// Returns the response content as text
@@ -86,7 +86,7 @@ namespace FluentHttp
         /// <param name="request">The FluentHttpRequest</param>
         /// <returns>Task of type string</returns>
         public static async Task<string> AsText(this FluentHttpRequest request)
-		{
+        {
             return await request.As(async content => await content.ReadAsStringAsync());
         }
 
