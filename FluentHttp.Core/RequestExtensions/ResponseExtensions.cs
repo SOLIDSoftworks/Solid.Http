@@ -126,7 +126,6 @@ namespace FluentHttp
             };
             return request;
         }
-
         
         /// <summary>
         /// Map an async handler to a specific http status code
@@ -137,14 +136,21 @@ namespace FluentHttp
         /// <returns>FluentHttpRequest</returns>
         public static FluentHttpRequest On(this FluentHttpRequest request, HttpStatusCode code, Func<HttpResponseMessage, Task> handler)
         {
-            request.OnResponse += async (sender, args) =>
+            request.OnResponse += (sender, args) =>
             {
+                var done = false;
                 if (args.Response.StatusCode == code)
-                    await handler(args.Response);
+                    handler(args.Response).ContinueWith(t =>
+                    {
+                        done = true;
+                    });
+                else
+                    done = true;
+
+                System.Threading.SpinWait.SpinUntil(() => done);
             };
             return request;
-        }
-        
+        }        
 
         private static async Task<string> GenerateNonSuccessMessage(HttpResponseMessage response)
         {

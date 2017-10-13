@@ -5,6 +5,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentHttp;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Diagnostics;
 
 namespace TestConsumer.Controllers
 {
@@ -24,6 +26,11 @@ namespace TestConsumer.Controllers
             var client = _factory.CreateUsingConnectionString("JsonPlaceholder");
             var posts = await client
                 .GetAsync("posts", cancellationToken)
+                .On(HttpStatusCode.OK, async (response) =>
+                {
+                    var r = await client.GetAsync("posts");
+                    Debug.WriteLine(r.StatusCode);
+                })
                 .AsMany(new
                 {
                     UserId = 0,
