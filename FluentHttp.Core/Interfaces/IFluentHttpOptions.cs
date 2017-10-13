@@ -14,6 +14,6 @@ namespace FluentHttp
         /// <summary>
         /// The events to be triggered when a FluentHttpClient is created
         /// </summary>
-        IFluentHttpClientFactoryEvents FactoryEvents { get; }
+        IFluentHttpEvents Events { get; }
     }
 }

@@ -15,7 +15,7 @@ namespace FluentHttp
         private static HttpClient _client;
         private static int _initialized = 0;
 
-        private IFluentHttpClientFactoryEventInvoker _events;
+        private IFluentHttpEventInvoker _events;
         private IDeserializerProvider _deserializers;
         private IConfiguration _configuration;
         
@@ -44,7 +44,7 @@ namespace FluentHttp
         /// <param name="events">The events to be triggered when a FluentHttpClient is created</param>
         /// <param name="deserializers">The deserializer provider for FluentHttp</param>
         /// <param name="configuration">The application configuration</param>
-        public FluentHttpClientFactory(IFluentHttpClientFactoryEventInvoker events, IDeserializerProvider deserializers, IConfiguration configuration = null)
+        public FluentHttpClientFactory(IFluentHttpEventInvoker events, IDeserializerProvider deserializers, IConfiguration configuration = null)
         {
             _events = events;
             _deserializers = deserializers;
@@ -86,8 +86,8 @@ namespace FluentHttp
 
         private FluentHttpClient CreateFluentHttpClient(HttpClient inner)
         {
-            var client = new FluentHttpClient(inner, _deserializers);
-            _events.InvokeClientCreated(this, client);
+            var client = new FluentHttpClient(inner, _deserializers, _events);
+            _events.InvokeOnClientCreated(this, client);
             return client;
         }
     }

@@ -4,8 +4,8 @@ namespace FluentHttp
     internal class FluentHttpOptions : IFluentHttpOptions
     {
         private IDeserializerProvider _deserializers;
-        private IFluentHttpClientFactoryEventInvoker _events;
-        public FluentHttpOptions(IDeserializerProvider deserializers, IFluentHttpClientFactoryEventInvoker events)
+        private IFluentHttpEventInvoker _events;
+        public FluentHttpOptions(IDeserializerProvider deserializers, IFluentHttpEventInvoker events)
         {
             _deserializers = deserializers;
             _events = events;
@@ -13,6 +13,6 @@ namespace FluentHttp
 
         public IDeserializerProvider Deserializers => _deserializers;
 
-        public IFluentHttpClientFactoryEvents FactoryEvents => _events;
+        public IFluentHttpEvents Events => _events;
     }
 }

@@ -48,9 +48,13 @@ namespace FluentHttp
         {
             Func<FluentHttpRequest, Task<HttpResponseMessage>> waiter = (async r =>
             {
+                Client.Events.InvokeOnRequest(this, BaseRequest);
                 if (OnRequest != null)
                     OnRequest(this, new RequestEventArgs { Request = BaseRequest });
+
                 var response = await Client.InnerClient.SendAsync(BaseRequest, CancellationToken);
+
+                Client.Events.InvokeOnResponse(this, response);
                 if (OnResponse != null)
                     OnResponse(this, new ResponseEventArgs { Response = response });
                 return response;

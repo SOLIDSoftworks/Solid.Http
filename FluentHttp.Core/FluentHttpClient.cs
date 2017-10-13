@@ -18,12 +18,14 @@ namespace FluentHttp
         /// </summary>
         /// <param name="client">The inner HttpClient to be used</param>
         /// <param name="serializers">The deserializers supported by this FluentHttpClient</param>
-        public FluentHttpClient(HttpClient client, IDeserializerProvider deserializers)
+        public FluentHttpClient(HttpClient client, IDeserializerProvider deserializers, IFluentHttpEventInvoker events)
         {
+            Events = events;
             InnerClient = client;
             Deserializers = deserializers;
         }
 
+        internal IFluentHttpEventInvoker Events { get; private set; }
         internal HttpClient InnerClient { get; private set; }
         internal IDeserializerProvider Deserializers { get; private set; }
 
@@ -75,6 +77,7 @@ namespace FluentHttp
         public FluentHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
             var request = new FluentHttpRequest(this, method, url, cancellationToken);
+            Events.InvokeOnRequestCreated(this, request);
             if (OnRequestCreated != null)
                 OnRequestCreated(this, new FluentHttpRequestCreatedEventArgs { Request = request });
             return request;
