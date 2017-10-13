@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace FluentHttp
 {
     /// <summary>
-    /// The ISerializedProvider interface
+    /// The IDeserializerProvider interface
     /// </summary>
     public interface IDeserializerProvider
     {
@@ -18,11 +18,11 @@ namespace FluentHttp
         Func<HttpContent, Task<T>> GetDeserializer<T>(string mimeType);
 
         /// <summary>
-        /// Adds a serializer
+        /// Adds a deserializer
         /// </summary>
-        /// <param name="serializer">The serializer to add</param>
-        /// <param name="mimeType">The mime type that this serializer knows how to deserialize</param>
-        /// <param name="more">More mime types that this serializer knows how to deserialize</param>
-        void AddDeserializer(IResponseDeserializer serializer, string mimeType, params string[] more);
+        /// <param name="factory">The deserializer factory to add</param>
+        /// <param name="mimeType">The mime type that this deserializer knows how to deserialize</param>
+        /// <param name="more">More mime types that this deserializer knows how to deserialize</param>
+        void AddDeserializerFactory(IResponseDeserializerFactory factory, string mimeType, params string[] more);
     }
 }

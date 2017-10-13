@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace FluentHttp
 {
-    internal class JsonResponseDeserializer : IResponseDeserializer
+    internal class JsonResponseDeserializerFactory : IResponseDeserializerFactory
     {
         private JsonSerializerSettings _settings;
 
-        public JsonResponseDeserializer(JsonSerializerSettings settings)
+        public JsonResponseDeserializerFactory(JsonSerializerSettings settings)
         {
             _settings = settings;
         }

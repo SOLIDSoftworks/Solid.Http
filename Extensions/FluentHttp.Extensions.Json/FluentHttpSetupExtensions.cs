@@ -12,8 +12,8 @@ namespace FluentHttp
             DefaultSerializerSettingsProvider.SetDefaultSerializerSettings(settings);
             return setup.Configure(options =>
             {
-                var deserializer = new JsonResponseDeserializer(settings);
-                options.Deserializers.AddDeserializer(deserializer, "application/json", "text/json", "text/javascript");
+                var deserializer = new JsonResponseDeserializerFactory(settings);
+                options.Deserializers.AddDeserializerFactory(deserializer, "application/json", "text/json", "text/javascript");
             });
         }
         public static IFluentHttpSetup AddJson(this IFluentHttpSetup setup)

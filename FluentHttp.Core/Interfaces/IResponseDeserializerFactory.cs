@@ -7,7 +7,7 @@ namespace FluentHttp
     /// <summary>
     /// The IFluentHttpSerializer interface
     /// </summary>
-    public interface IResponseDeserializer
+    public interface IResponseDeserializerFactory
     {
         /// <summary>
         /// Creates a deserializer

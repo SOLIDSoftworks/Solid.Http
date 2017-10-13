@@ -17,7 +17,7 @@ namespace FluentHttp
         public static IFluentHttpSetup AddFluentHttp<TFactory>(this IServiceCollection services)
 			where TFactory : FluentHttpClientFactory
 		{
-            services.AddSingleton<IDeserializerProvider>(SerializerProvider.Instance);
+            services.AddSingleton<IDeserializerProvider>(DeserializerProvider.Instance);
             services.AddScoped<IFluentHttpClientFactoryEventInvoker, FluentHttpClientFactoryEvents>();
             services.AddScoped<IFluentHttpClientFactory, TFactory>();
 

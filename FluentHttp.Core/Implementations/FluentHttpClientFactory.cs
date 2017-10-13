@@ -13,7 +13,7 @@ namespace FluentHttp
         private static int _initialized = 0;
 
         private IFluentHttpClientFactoryEventInvoker _events;
-        private IDeserializerProvider _serializers;
+        private IDeserializerProvider _deserializers;
         private IConfiguration _configuration;
 
         public IConfiguration Configuration
@@ -32,10 +32,10 @@ namespace FluentHttp
             }
         }
 
-        public FluentHttpClientFactory(IFluentHttpClientFactoryEventInvoker events, IDeserializerProvider serializers, IConfiguration configuration = null)
+        public FluentHttpClientFactory(IFluentHttpClientFactoryEventInvoker events, IDeserializerProvider deserializers, IConfiguration configuration = null)
         {
             _events = events;
-            _serializers = serializers;
+            _deserializers = deserializers;
             _configuration = configuration;
         }
 

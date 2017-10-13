@@ -38,10 +38,10 @@ namespace FluentHttp
 
             var mime = content?.Headers?.ContentType?.MediaType;
 
-			var serializer = request.Client.Serializers.GetSerializer<T>(mime);
-            if (serializer == null)
+			var deserialize = request.Client.Deserializers.GetDeserializer<T>(mime);
+            if (deserialize == null)
                 throw new InvalidOperationException($"Cannot deserialize {mime} response as {typeof(T).FullName}");
-			return await serializer(content);
+			return await deserialize(content);
 		}
 
         public static async Task<string> AsText(this FluentHttpRequest request)
