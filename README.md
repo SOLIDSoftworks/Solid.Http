@@ -23,12 +23,9 @@ FluentHttp is designed to work with the Startup class and IServiceCollection.
                 .AddFluentHttp()
                 .Configure(options =>
                 {
-                    options.FactoryEvents.OnClientCreated += (sender, args) =>
+                    options.Events.OnRequestCreated += (sender, args) =>
                     {
-                        args.Client.OnRequestCreated += (s, a) =>
-                        {
-                            a.Request.WithHeader("x-default-header", "default");
-                        };
+                        args.Request.WithHeader("x-default-header", "default");
                     };
                 });
         }
