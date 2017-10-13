@@ -4,6 +4,9 @@ using System.Net.Http;
 
 namespace FluentHttp
 {
+    /// <summary>
+    /// BodyExtensions
+    /// </summary>
     public static class BodyExtensions
     {
         public static FluentHttpRequest WithFormBoundary(this FluentHttpRequest request, string boundary)

@@ -7,8 +7,18 @@ using System.Threading.Tasks;
 
 namespace FluentHttp
 {
+    /// <summary>
+    /// ResponseExtensions
+    /// </summary>
     public static class ResponseExtensions
     {
+        /// <summary>
+        /// Deserializes the response content using a specified deserializer
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize to</typeparam>
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="deserialize">The deserialization method</param>
+        /// <returns>Task of type T</returns>
 		public static async Task<T> As<T>(this FluentHttpRequest request, Func<HttpContent, Task<T>> deserialize)
 		{
             var content = await request.GetContentAsync();
@@ -16,21 +26,47 @@ namespace FluentHttp
 			return await deserialize(content);
         }
 
+        /// <summary>
+        /// Deserializes the response content as the specified anonymous type
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize to</typeparam>
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="anonymous">An anonumous type to infer T</param>
+        /// <returns>Task of type T</returns>
         public static async Task<T> As<T>(this FluentHttpRequest request, T anonymous)
         {
             return await request.As<T>();
         }
 
+        /// <summary>
+        /// Deserializes the response content as an array of the specified anonymous type
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize to</typeparam>
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="anonymous"></param>
+        /// <returns>Task of type IEnumerable&lt;T&gt;</returns>
         public static async Task<IEnumerable<T>> AsMany<T>(this FluentHttpRequest request, T anonymous)
         {
             return await request.As<IEnumerable<T>>();
         }
 
+        /// <summary>
+        /// Deserializes the response content as an array of type T
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize to</typeparam>
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <returns>Task of type IEnumerable&lt;T&gt;</returns>
         public static async Task<IEnumerable<T>> AsMany<T>(this FluentHttpRequest request)
         {
             return await request.As<IEnumerable<T>>();
         }
 
+        /// <summary>
+        /// Deserializes the response content
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize to</typeparam>
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <returns>Task of type T</returns>
         public static async Task<T> As<T>(this FluentHttpRequest request)
 		{
 			var content = await request.GetContentAsync();
@@ -44,11 +80,22 @@ namespace FluentHttp
 			return await deserialize(content);
 		}
 
+        /// <summary>
+        /// Returns the response content as text
+        /// </summary>
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <returns>Task of type string</returns>
         public static async Task<string> AsText(this FluentHttpRequest request)
 		{
             return await request.As(async content => await content.ReadAsStringAsync());
         }
 
+        /// <summary>
+        /// Expect a success status code
+        /// <para>If a non-success status code is received, an InvalidOperationException is thrown</para>
+        /// </summary>        
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <returns>FluentHttpRequest</returns>
         public static FluentHttpRequest ExpectSuccess(this FluentHttpRequest request)
         {
             request.OnResponse += async (sender, args) =>
@@ -63,6 +110,13 @@ namespace FluentHttp
             return request;
         }
 
+        /// <summary>
+        /// Map a handler to a specific http status code
+        /// </summary>
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="code">The http status code</param>
+        /// <param name="handler">The handler</param>
+        /// <returns>FluentHttpRequest</returns>
         public static FluentHttpRequest On(this FluentHttpRequest request, HttpStatusCode code, Action<HttpResponseMessage> handler)
         {
             request.OnResponse += (sender, args) =>
@@ -73,6 +127,14 @@ namespace FluentHttp
             return request;
         }
 
+        
+        /// <summary>
+        /// Map an async handler to a specific http status code
+        /// </summary>
+        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="code">The http status code</param>
+        /// <param name="handler">The async handler</param>
+        /// <returns>FluentHttpRequest</returns>
         public static FluentHttpRequest On(this FluentHttpRequest request, HttpStatusCode code, Func<HttpResponseMessage, Task> handler)
         {
             request.OnResponse += async (sender, args) =>
@@ -82,6 +144,7 @@ namespace FluentHttp
             };
             return request;
         }
+        
 
         private static async Task<string> GenerateNonSuccessMessage(HttpResponseMessage response)
         {

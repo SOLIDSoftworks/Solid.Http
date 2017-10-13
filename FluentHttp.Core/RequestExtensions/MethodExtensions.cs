@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace FluentHttp
 {
+    /// <summary>
+    /// MethodExtensions
+    /// </summary>
     public static class MethodExtensions
     {
         #region GET
