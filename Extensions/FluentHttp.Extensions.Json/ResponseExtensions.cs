@@ -10,8 +10,8 @@ namespace FluentHttp
     {
         public static async Task<T> As<T>(this FluentHttpRequest request, JsonSerializerSettings settings)
         {
-            var serializer = new FluentHttpJsonSerializer(settings);
-            var deserialize = serializer.CreateDeserializer<T>();
+            var deserializer = new JsonResponseDeserializer(settings);
+            var deserialize = deserializer.CreateDeserializer<T>();
             return await request.As<T>(deserialize);
         }
         public static Task<T> As<T>(this FluentHttpRequest request, T anonymous, JsonSerializerSettings settings)

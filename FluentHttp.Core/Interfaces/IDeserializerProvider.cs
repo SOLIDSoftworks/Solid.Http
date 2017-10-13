@@ -7,7 +7,7 @@ namespace FluentHttp
     /// <summary>
     /// The ISerializedProvider interface
     /// </summary>
-    public interface ISerializerProvider
+    public interface IDeserializerProvider
     {
         /// <summary>
         /// Gets a deserializer
@@ -15,7 +15,7 @@ namespace FluentHttp
         /// <typeparam name="T">The type to deserialize to</typeparam>
         /// <param name="mimeType">The mimetype of the serialized content</param>
         /// <returns>The deserializer</returns>
-        Func<HttpContent, Task<T>> GetSerializer<T>(string mimeType);
+        Func<HttpContent, Task<T>> GetDeserializer<T>(string mimeType);
 
         /// <summary>
         /// Adds a serializer
@@ -23,6 +23,6 @@ namespace FluentHttp
         /// <param name="serializer">The serializer to add</param>
         /// <param name="mimeType">The mime type that this serializer knows how to deserialize</param>
         /// <param name="more">More mime types that this serializer knows how to deserialize</param>
-        void AddSerializer(IFluentHttpSerializer serializer, string mimeType, params string[] more);
+        void AddDeserializer(IResponseDeserializer serializer, string mimeType, params string[] more);
     }
 }

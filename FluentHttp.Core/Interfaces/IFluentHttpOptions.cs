@@ -7,9 +7,9 @@ namespace FluentHttp
     public interface IFluentHttpOptions
     {
         /// <summary>
-        /// The serializer provider for FluentHttp
+        /// The deserializer provider for FluentHttp
         /// </summary>
-        ISerializerProvider Serializers { get; }
+        IDeserializerProvider Deserializers { get; }
 
         /// <summary>
         /// The events to be triggered when a FluentHttpClient is created

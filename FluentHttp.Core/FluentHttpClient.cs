@@ -16,14 +16,14 @@ namespace FluentHttp
         /// </summary>
         /// <param name="client">The inner HttpClient to be used</param>
         /// <param name="serializers">The serializers supported by this FluentHttpClient</param>
-        public FluentHttpClient(HttpClient client, ISerializerProvider serializers)
+        public FluentHttpClient(HttpClient client, IDeserializerProvider serializers)
         {
             InnerClient = client;
             Serializers = serializers;
         }
 
 		internal HttpClient InnerClient { get; private set; }
-        internal ISerializerProvider Serializers { get; private set; }
+        internal IDeserializerProvider Serializers { get; private set; }
 
         /// <summary>
         /// The base http address of this FluentHttpClient
