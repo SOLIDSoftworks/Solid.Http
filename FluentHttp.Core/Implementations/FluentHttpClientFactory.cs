@@ -66,7 +66,7 @@ namespace FluentHttp
 
         private FluentHttpClient CreateFluentHttpClient(HttpClient inner)
         {
-            var client = new FluentHttpClient(inner, _serializers);
+            var client = new FluentHttpClient(inner, _deserializers);
             _events.InvokeClientCreated(this, client);
             return client;
         }
