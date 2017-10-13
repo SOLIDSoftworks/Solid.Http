@@ -5,11 +5,32 @@ FluentHttp is a library to simplify http calls in C#. It's designed to be async 
 ## Initialization
 FluentHttp is designed to work with the Startup class and IServiceCollection.
 
+### Basic initialization
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddFluentHttp();
+        }
+    }
+
+### Intermediate initialization
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services
+                .AddFluentHttp()
+                .Configure(options =>
+                {
+                    options.FactoryEvents.OnClientCreated += (sender, args) =>
+                    {
+                        args.Client.OnRequestCreated += (s, a) =>
+                        {
+                            a.Request.WithHeader("x-default-header", "default");
+                        };
+                    };
+                });
         }
     }
 
@@ -71,5 +92,8 @@ When working with FluentHttp, you use IFluentHttpClientFactory to create a Fluen
 ### Extension example
     public static class StandardHeaderExample
     {
-        public static FluentHttpRequest
+        public static FluentHttpRequest AddStandardHeader(this FluentHttpRequest request)
+        {
+            return request.WithHeader("x-standard-header", "standard");
+        }
     }
