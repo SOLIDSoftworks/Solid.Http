@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FluentHttp
 {
-    public class FluentHttpSetup : IFluentHttpSetup
+    internal class FluentHttpSetup : IFluentHttpSetup
     {
         private IFluentHttpOptions _options;
 
