@@ -4,28 +4,28 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
-    /// A FluentHttpClient that is used to perform create FluentHttpRequests. This class is designed be extended using extension methods.
+    /// A SolidHttpClient that is used to perform create SolidHttpRequests. This class is designed be extended using extension methods.
     /// </summary>
-    public class FluentHttpClient
+    public class SolidHttpClient
     {
         private IDictionary<string, object> _properties = new Dictionary<string, object>();
 
         /// <summary>
-        /// Create a FluentHttpClient
+        /// Create a SolidHttpClient
         /// </summary>
         /// <param name="client">The inner HttpClient to be used</param>
-        /// <param name="serializers">The deserializers supported by this FluentHttpClient</param>
-        public FluentHttpClient(HttpClient client, IDeserializerProvider deserializers, IFluentHttpEventInvoker events)
+        /// <param name="serializers">The deserializers supported by this SolidHttpClient</param>
+        public SolidHttpClient(HttpClient client, IDeserializerProvider deserializers, ISolidHttpEventInvoker events)
         {
             Events = events;
             InnerClient = client;
             Deserializers = deserializers;
         }
 
-        internal IFluentHttpEventInvoker Events { get; private set; }
+        internal ISolidHttpEventInvoker Events { get; private set; }
         internal HttpClient InnerClient { get; private set; }
         internal IDeserializerProvider Deserializers { get; private set; }
 
@@ -63,9 +63,9 @@ namespace FluentHttp
         }
 
         /// <summary>
-        /// The event triggered when a FluentHttpRequest is created
+        /// The event triggered when a SolidHttpRequest is created
         /// </summary>
-        public event EventHandler<FluentHttpRequestCreatedEventArgs> OnRequestCreated;
+        public event EventHandler<SolidHttpRequestCreatedEventArgs> OnRequestCreated;
 
         /// <summary>
         /// Perform an http request
@@ -74,12 +74,12 @@ namespace FluentHttp
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
         /// <returns></returns>
-        public FluentHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
+        public SolidHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
-            var request = new FluentHttpRequest(this, method, url, cancellationToken);
+            var request = new SolidHttpRequest(this, method, url, cancellationToken);
             Events.InvokeOnRequestCreated(this, request);
             if (OnRequestCreated != null)
-                OnRequestCreated(this, new FluentHttpRequestCreatedEventArgs { Request = request });
+                OnRequestCreated(this, new SolidHttpRequestCreatedEventArgs { Request = request });
             return request;
         }
     }

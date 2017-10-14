@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
     /// Extensions method for the service collection
@@ -9,33 +9,33 @@ namespace FluentHttp
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Add FluentHttp to the service collection
+        /// Add SolidHttp to the service collection
         /// </summary>
-        /// <typeparam name="TFactory">The custom FluentHttpClientFactory type</typeparam>
+        /// <typeparam name="TFactory">The custom SolidHttpClientFactory type</typeparam>
         /// <param name="services">The service collection</param>
-        /// <returns>IFluentHttpSetup</returns>
-        public static IFluentHttpSetup AddFluentHttp<TFactory>(this IServiceCollection services)
-            where TFactory : FluentHttpClientFactory
+        /// <returns>ISolidHttpSetup</returns>
+        public static ISolidHttpSetup AddSolidHttp<TFactory>(this IServiceCollection services)
+            where TFactory : SolidHttpClientFactory
         {
             services.AddSingleton<IDeserializerProvider>(DeserializerProvider.Instance);
-            services.AddSingleton<IFluentHttpEventInvoker, FluentHttpEvents>();
-            services.AddScoped<IFluentHttpClientFactory, TFactory>();
+            services.AddSingleton<ISolidHttpEventInvoker, SolidHttpEvents>();
+            services.AddScoped<ISolidHttpClientFactory, TFactory>();
 
-            services.AddTransient<IFluentHttpOptions, FluentHttpOptions>();
-            services.AddTransient<IFluentHttpSetup, FluentHttpSetup>();
+            services.AddTransient<ISolidHttpOptions, SolidHttpOptions>();
+            services.AddTransient<ISolidHttpSetup, SolidHttpSetup>();
 
             var provider = services.BuildServiceProvider();
-            return provider.GetService<IFluentHttpSetup>();
+            return provider.GetService<ISolidHttpSetup>();
         }
 
         /// <summary>
-        /// Add FluentHttp to the service collection using the default implementation of FluentHttpClientFactory
+        /// Add SolidHttp to the service collection using the default implementation of SolidHttpClientFactory
         /// </summary>
         /// <param name="services">The service collection</param>
-        /// <returns>IFluentHttpSetup</returns>
-        public static IFluentHttpSetup AddFluentHttp(this IServiceCollection services)
+        /// <returns>ISolidHttpSetup</returns>
+        public static ISolidHttpSetup AddSolidHttp(this IServiceCollection services)
         {
-            return services.AddFluentHttp<FluentHttpClientFactory>();
+            return services.AddSolidHttp<SolidHttpClientFactory>();
         }
     }
 }

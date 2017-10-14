@@ -4,21 +4,21 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
-    /// A FluentHttpRequest that is used to perform http requests. This class is designed be extended using extension methods.
+    /// A SolidHttpRequest that is used to perform http requests. This class is designed be extended using extension methods.
     /// </summary>
-    public class FluentHttpRequest
+    public class SolidHttpRequest
     {
-        internal FluentHttpRequest(FluentHttpClient client, HttpMethod method, Uri url, CancellationToken cancellationToken)
+        internal SolidHttpRequest(SolidHttpClient client, HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
             Client = client;
             BaseRequest = new HttpRequestMessage(method, url);
             CancellationToken = cancellationToken;
         }
 
-        internal FluentHttpClient Client { get; private set; }
+        internal SolidHttpClient Client { get; private set; }
 
         /// <summary>
         /// The base request that is sent
@@ -41,12 +41,12 @@ namespace FluentHttp
         public event EventHandler<ResponseEventArgs> OnResponse;
         
         /// <summary>
-        /// The awaiter that enables a FluentHttpRequest to be awaited
+        /// The awaiter that enables a SolidHttpRequest to be awaited
         /// </summary>
         /// <returns>A TaskAwaiter for an HttpResponseMessage</returns>
         public TaskAwaiter<HttpResponseMessage> GetAwaiter()
         {
-            Func<FluentHttpRequest, Task<HttpResponseMessage>> waiter = (async r =>
+            Func<SolidHttpRequest, Task<HttpResponseMessage>> waiter = (async r =>
             {
                 Client.Events.InvokeOnRequest(this, BaseRequest);
                 if (OnRequest != null)

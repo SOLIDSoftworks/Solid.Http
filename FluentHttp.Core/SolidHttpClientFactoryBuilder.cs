@@ -4,40 +4,40 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FluentHttp
+namespace SolidHttp
 {
-    public class FluentHttpClientFactoryBuilder
+    public class SolidHttpClientFactoryBuilder
     {
         private ServiceCollection _collection;
-        private IFluentHttpSetup _setup;
+        private ISolidHttpSetup _setup;
         
-        public FluentHttpClientFactoryBuilder()
+        public SolidHttpClientFactoryBuilder()
         {
             _collection = new ServiceCollection();
-            _setup = _collection.AddFluentHttp();
+            _setup = _collection.AddSolidHttp();
         }
 
-        public FluentHttpClientFactoryBuilder AddConfiguration(IConfiguration configuration)
+        public SolidHttpClientFactoryBuilder AddConfiguration(IConfiguration configuration)
         {
             _collection.AddSingleton<IConfiguration>(configuration);
             return this;
         }
 
-        public FluentHttpClientFactoryBuilder Setup(Action<IFluentHttpSetup> add)
+        public SolidHttpClientFactoryBuilder Setup(Action<ISolidHttpSetup> add)
         {
             add(_setup);
             return this;
         }
 
-        //public FluentHttpClientFactoryBuilder Configure(Action<IFluentHttpOptions> configure)
+        //public SolidHttpClientFactoryBuilder Configure(Action<ISolidHttpOptions> configure)
         //{
         //    return AddSetup(s => s.Configure(configure));
         //}
 
-        public IFluentHttpClientFactory Build()
+        public ISolidHttpClientFactory Build()
         {
             var provider = _collection.BuildServiceProvider();
-            return provider.GetService<IFluentHttpClientFactory>();
+            return provider.GetService<ISolidHttpClientFactory>();
         }
     }
 }

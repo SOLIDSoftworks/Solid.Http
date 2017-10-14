@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
     /// MethodExtensions
@@ -15,10 +15,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a GET request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest GetAsync(this FluentHttpClient client, string url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest GetAsync(this SolidHttpClient client, string url)
         {
             return client.GetAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
@@ -26,10 +26,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a GET request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest GetAsync(this FluentHttpClient client, Uri url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest GetAsync(this SolidHttpClient client, Uri url)
         {
             return client.GetAsync(url, CancellationToken.None);
         }
@@ -37,11 +37,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a GET request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest GetAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest GetAsync(this SolidHttpClient client, string url, CancellationToken cancellationToken)
         {
             return client.GetAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
@@ -49,11 +49,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a GET request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest GetAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest GetAsync(this SolidHttpClient client, Uri url, CancellationToken cancellationToken)
         {
             return client.PerformRequestAsync(HttpMethod.Get, url, cancellationToken);
         }
@@ -63,10 +63,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a POST request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PostAsync(this FluentHttpClient client, string url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PostAsync(this SolidHttpClient client, string url)
         {
             return client.PostAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
@@ -74,10 +74,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a POST request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PostAsync(this FluentHttpClient client, Uri url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PostAsync(this SolidHttpClient client, Uri url)
         {
             return client.PostAsync(url, CancellationToken.None);
         }
@@ -85,11 +85,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a POST request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PostAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PostAsync(this SolidHttpClient client, string url, CancellationToken cancellationToken)
         {
             return client.PostAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
@@ -97,11 +97,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a POST request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PostAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PostAsync(this SolidHttpClient client, Uri url, CancellationToken cancellationToken)
         {
             return client.PerformRequestAsync(HttpMethod.Post, url, cancellationToken);
         }
@@ -111,10 +111,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a PUT request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PutAsync(this FluentHttpClient client, string url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PutAsync(this SolidHttpClient client, string url)
         {
             return client.PutAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
@@ -122,10 +122,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a PUT request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PutAsync(this FluentHttpClient client, Uri url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PutAsync(this SolidHttpClient client, Uri url)
         {
             return client.PutAsync(url, CancellationToken.None);
         }
@@ -133,11 +133,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a PUT request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PutAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PutAsync(this SolidHttpClient client, string url, CancellationToken cancellationToken)
         {
             return client.PutAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
@@ -145,11 +145,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a PUT request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PutAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PutAsync(this SolidHttpClient client, Uri url, CancellationToken cancellationToken)
         {
             return client.PerformRequestAsync(HttpMethod.Put, url, cancellationToken);
         }
@@ -159,10 +159,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a PATCH request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PatchAsync(this FluentHttpClient client, string url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PatchAsync(this SolidHttpClient client, string url)
         {
             return client.PatchAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
@@ -170,10 +170,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a PATCH request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PatchAsync(this FluentHttpClient client, Uri url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PatchAsync(this SolidHttpClient client, Uri url)
         {
             return client.PatchAsync(url, CancellationToken.None);
         }
@@ -181,11 +181,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a PATCH request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PatchAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PatchAsync(this SolidHttpClient client, string url, CancellationToken cancellationToken)
         {
             return client.PatchAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
@@ -193,11 +193,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a PATCH request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest PatchAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest PatchAsync(this SolidHttpClient client, Uri url, CancellationToken cancellationToken)
         {
             var patch = new HttpMethod("PATCH");
             return client.PerformRequestAsync(patch, url, cancellationToken);
@@ -208,10 +208,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a DELETE request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest DeleteAsync(this FluentHttpClient client, string url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest DeleteAsync(this SolidHttpClient client, string url)
         {
             return client.DeleteAsync(new Uri(url, UriKind.RelativeOrAbsolute));
         }
@@ -219,10 +219,10 @@ namespace FluentHttp
         /// <summary>
         /// Performs a DELETE request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest DeleteAsync(this FluentHttpClient client, Uri url)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest DeleteAsync(this SolidHttpClient client, Uri url)
         {
             return client.DeleteAsync(url, CancellationToken.None);
         }
@@ -230,11 +230,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a DELETE request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest DeleteAsync(this FluentHttpClient client, string url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest DeleteAsync(this SolidHttpClient client, string url, CancellationToken cancellationToken)
         {
             return client.DeleteAsync(new Uri(url, UriKind.RelativeOrAbsolute), cancellationToken);
         }
@@ -242,11 +242,11 @@ namespace FluentHttp
         /// <summary>
         /// Performs a DELETE request
         /// </summary>
-        /// <param name="client">The FluentHttpClient</param>
+        /// <param name="client">The SolidHttpClient</param>
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest DeleteAsync(this FluentHttpClient client, Uri url, CancellationToken cancellationToken)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest DeleteAsync(this SolidHttpClient client, Uri url, CancellationToken cancellationToken)
         {
             return client.PerformRequestAsync(HttpMethod.Delete, url, cancellationToken);
         }

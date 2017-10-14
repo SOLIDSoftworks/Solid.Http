@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
     /// The IDeserializerProvider interface

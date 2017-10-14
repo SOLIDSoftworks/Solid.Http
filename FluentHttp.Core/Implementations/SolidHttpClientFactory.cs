@@ -5,17 +5,17 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
-    /// The FluentHttpClientFactory
+    /// The SolidHttpClientFactory
     /// </summary>
-    public class FluentHttpClientFactory : IFluentHttpClientFactory
+    public class SolidHttpClientFactory : ISolidHttpClientFactory
     {
         private static HttpClient _client;
         private static int _initialized = 0;
 
-        private IFluentHttpEventInvoker _events;
+        private ISolidHttpEventInvoker _events;
         private IDeserializerProvider _deserializers;
         private IConfiguration _configuration;
         
@@ -29,9 +29,9 @@ namespace FluentHttp
                 if (_configuration == null)
                 {
                     var message =
-                        "FluentHttpClientFactory was created with a null configuration." + Environment.NewLine +
-                        "If you are initializing a FluentHttpClientFactory manually, please provide an IConfiguration in the constructor of FluentHttpClientFactory." + Environment.NewLine +
-                        "If you are initializing using services.AddFluentHttp(), then make sure that your IConfiguration resides in the service container.";
+                        "SolidHttpClientFactory was created with a null configuration." + Environment.NewLine +
+                        "If you are initializing a SolidHttpClientFactory manually, please provide an IConfiguration in the constructor of SolidHttpClientFactory." + Environment.NewLine +
+                        "If you are initializing using services.AddSolidHttp(), then make sure that your IConfiguration resides in the service container.";
                     throw new InvalidOperationException(message);
                 }
                 return _configuration;
@@ -39,12 +39,12 @@ namespace FluentHttp
         }
 
         /// <summary>
-        /// Creates a FluentHttpClientFactory
+        /// Creates a SolidHttpClientFactory
         /// </summary>
-        /// <param name="events">The events to be triggered when a FluentHttpClient is created</param>
-        /// <param name="deserializers">The deserializer provider for FluentHttp</param>
+        /// <param name="events">The events to be triggered when a SolidHttpClient is created</param>
+        /// <param name="deserializers">The deserializer provider for SolidHttp</param>
         /// <param name="configuration">The application configuration</param>
-        public FluentHttpClientFactory(IFluentHttpEventInvoker events, IDeserializerProvider deserializers, IConfiguration configuration = null)
+        public SolidHttpClientFactory(ISolidHttpEventInvoker events, IDeserializerProvider deserializers, IConfiguration configuration = null)
         {
             _events = events;
             _deserializers = deserializers;
@@ -52,12 +52,12 @@ namespace FluentHttp
         }
         
         /// <summary>
-        /// Creates a FluentHttpClient
+        /// Creates a SolidHttpClient
         /// </summary>
-        /// <returns>FluentHttpClient</returns>
-        public FluentHttpClient Create()
+        /// <returns>SolidHttpClient</returns>
+        public SolidHttpClient Create()
         {
-            return CreateFluentHttpClient(GetHttpClient());
+            return CreateSolidHttpClient(GetHttpClient());
         }
         
         /// <summary>
@@ -84,9 +84,9 @@ namespace FluentHttp
             return _client;
         }
 
-        private FluentHttpClient CreateFluentHttpClient(HttpClient inner)
+        private SolidHttpClient CreateSolidHttpClient(HttpClient inner)
         {
-            var client = new FluentHttpClient(inner, _deserializers, _events);
+            var client = new SolidHttpClient(inner, _deserializers, _events);
             _events.InvokeOnClientCreated(this, client);
             return client;
         }

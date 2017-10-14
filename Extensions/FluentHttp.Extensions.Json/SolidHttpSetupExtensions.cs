@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
     /// Extension class to add Json support
     /// </summary>
-    public static class FluentHttpSetupExtensions
+    public static class SolidHttpSetupExtensions
     {
         /// <summary>
         /// Adds json support using supplied settings
@@ -16,8 +16,8 @@ namespace FluentHttp
         /// </summary>
         /// <param name="setup">The setup</param>
         /// <param name="settings">Supplied JsonSerializerSettings</param>
-        /// <returns>IFluentHttpSetup</returns>
-        public static IFluentHttpSetup AddJson(this IFluentHttpSetup setup, JsonSerializerSettings settings)
+        /// <returns>ISolidHttpSetup</returns>
+        public static ISolidHttpSetup AddJson(this ISolidHttpSetup setup, JsonSerializerSettings settings)
         {
             DefaultSerializerSettingsProvider.SetDefaultSerializerSettings(settings);
             return setup.Configure(options =>
@@ -31,8 +31,8 @@ namespace FluentHttp
         /// Adds json support using default settings
         /// </summary>
         /// <param name="setup">The setup</param>
-        /// <returns>IFluentHttpSetup</returns>
-        public static IFluentHttpSetup AddJson(this IFluentHttpSetup setup)
+        /// <returns>ISolidHttpSetup</returns>
+        public static ISolidHttpSetup AddJson(this ISolidHttpSetup setup)
         {
             var settings = new JsonSerializerSettings();
             return setup.AddJson(settings);

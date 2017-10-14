@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
-    /// Extensions to create a FluentHttpClient with a base address
+    /// Extensions to create a SolidHttpClient with a base address
     /// </summary>
     public static class BaseAddressExtensions
     {
         /// <summary>
-        /// Creates a FluentHttpClient with a base address
+        /// Creates a SolidHttpClient with a base address
         /// </summary>
-        /// <param name="factory">The IFluentHttpClientFactory</param>
+        /// <param name="factory">The ISolidHttpClientFactory</param>
         /// <param name="baseAddress">The base address to use</param>
-        /// <returns>FluentHttpClient</returns>
-        public static FluentHttpClient CreateWithBaseAddress(this IFluentHttpClientFactory factory, string baseAddress)
+        /// <returns>SolidHttpClient</returns>
+        public static SolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, string baseAddress)
         {
             return factory.CreateWithBaseAddress(new Uri(baseAddress));
         }
 
         /// <summary>
-        /// Creates a FluentHttpClient with a base address
+        /// Creates a SolidHttpClient with a base address
         /// </summary>
-        /// <param name="factory">The IFluentHttpClientFactory</param>
+        /// <param name="factory">The ISolidHttpClientFactory</param>
         /// <param name="baseAddress">The base address to use</param>
-        /// <returns>FluentHttpClient</returns>
-        public static FluentHttpClient CreateWithBaseAddress(this IFluentHttpClientFactory factory, Uri baseAddress)
+        /// <returns>SolidHttpClient</returns>
+        public static SolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, Uri baseAddress)
         {
             var client = factory.Create();
             client.AddProperty("Client::BaseAddress", baseAddress);
@@ -34,7 +34,7 @@ namespace FluentHttp
             return client;
         }
 
-        private static void OnRequestCreated(object sender, FluentHttpRequestCreatedEventArgs args)
+        private static void OnRequestCreated(object sender, SolidHttpRequestCreatedEventArgs args)
         {
             var baseAddress = args.Request.Client.GetProperty<Uri>("Client::BaseAddress");
             if (baseAddress == null) return;

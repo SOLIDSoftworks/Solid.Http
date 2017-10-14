@@ -3,12 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
-    /// The IFluentHttpClientFactory interface
+    /// The ISolidHttpClientFactory interface
     /// </summary>
-    public interface IFluentHttpClientFactory
+    public interface ISolidHttpClientFactory
     {
         /// <summary>
         /// The application configuration which can be used in extension methods
@@ -16,9 +16,9 @@ namespace FluentHttp
         IConfiguration Configuration { get; }
 
         /// <summary>
-        /// Creates a FluentHttpClient
+        /// Creates a SolidHttpClient
         /// </summary>
-        /// <returns>FluentHttpClient</returns>
-        FluentHttpClient Create();
+        /// <returns>SolidHttpClient</returns>
+        SolidHttpClient Create();
     }
 }

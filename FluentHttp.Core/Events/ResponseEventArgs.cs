@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
     /// The event arguments used when an HttpResponseMessage is received

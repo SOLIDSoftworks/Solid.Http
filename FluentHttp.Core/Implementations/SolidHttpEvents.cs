@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace FluentHttp
+namespace SolidHttp
 {
-    internal class FluentHttpEvents : IFluentHttpEventInvoker
+    internal class SolidHttpEvents : ISolidHttpEventInvoker
     {
-        public event EventHandler<FluentHttpClientCreatedEventArgs> OnClientCreated;
-        public event EventHandler<FluentHttpRequestCreatedEventArgs> OnRequestCreated;
+        public event EventHandler<SolidHttpClientCreatedEventArgs> OnClientCreated;
+        public event EventHandler<SolidHttpRequestCreatedEventArgs> OnRequestCreated;
         public event EventHandler<RequestEventArgs> OnRequest;
         public event EventHandler<ResponseEventArgs> OnResponse;        
 
-        public void InvokeOnClientCreated(object invoker, FluentHttpClient client)
+        public void InvokeOnClientCreated(object invoker, SolidHttpClient client)
         {
             if (OnClientCreated != null)
-                OnClientCreated(invoker, new FluentHttpClientCreatedEventArgs { Client = client });
+                OnClientCreated(invoker, new SolidHttpClientCreatedEventArgs { Client = client });
         }
 
         public void InvokeOnRequest(object invoker, HttpRequestMessage request)
@@ -24,10 +24,10 @@ namespace FluentHttp
                 OnRequest(invoker, new RequestEventArgs { Request = request });
         }
 
-        public void InvokeOnRequestCreated(object invoker, FluentHttpRequest request)
+        public void InvokeOnRequestCreated(object invoker, SolidHttpRequest request)
         {
             if (OnRequestCreated != null)
-                OnRequestCreated(invoker, new FluentHttpRequestCreatedEventArgs { Request = request });
+                OnRequestCreated(invoker, new SolidHttpRequestCreatedEventArgs { Request = request });
         }
 
         public void InvokeOnResponse(object invoker, HttpResponseMessage response)

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     internal static class DefaultSerializerSettingsProvider
     {

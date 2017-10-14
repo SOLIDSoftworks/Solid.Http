@@ -2,10 +2,10 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
-    /// The IFluentHttpSerializer interface
+    /// The ISolidHttpSerializer interface
     /// </summary>
     public interface IResponseDeserializerFactory
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
     /// BodyExtensions
@@ -12,10 +12,10 @@ namespace FluentHttp
         /// <summary>
         /// Changes the boundary of the multipart form data content
         /// </summary>
-        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="request">The SolidHttpRequest</param>
         /// <param name="boundary">The boundary of the multipart form data content</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest WithFormBoundary(this FluentHttpRequest request, string boundary)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithFormBoundary(this SolidHttpRequest request, string boundary)
         {
             return request.WithMultipartContent(() => new MultipartFormDataContent(boundary));
         }
@@ -23,10 +23,10 @@ namespace FluentHttp
         /// <summary>
         /// Changes the sub type of the multipart content
         /// </summary>
-        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="request">The SolidHttpRequest</param>
         /// <param name="subtype">The subtype of the multipart content</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest WithSubtype(this FluentHttpRequest request, string subtype)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithSubtype(this SolidHttpRequest request, string subtype)
         {
             return request.WithMultipartContent(() => new MultipartContent(subtype));
         }
@@ -34,11 +34,11 @@ namespace FluentHttp
         /// <summary>
         /// Changes the sub type and boundary of the multipart content
         /// </summary>
-        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="request">The SolidHttpRequest</param>
         /// <param name="subtype">The subtype of the multipart content</param>
         /// <param name="boundary">The boundary of the multipart content</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest WithSubTypeAndBoundary(this FluentHttpRequest request, string subtype, string boundary)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithSubTypeAndBoundary(this SolidHttpRequest request, string subtype, string boundary)
         {
             return request.WithMultipartContent(() => new MultipartContent(subtype, boundary));
         }
@@ -46,11 +46,11 @@ namespace FluentHttp
         /// <summary>
         /// Adds form data content to the request
         /// </summary>
-        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The form name of the content</param>
         /// <param name="content">The string value of the content</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest WithFormDataContent(this FluentHttpRequest request, string name, string content)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithFormDataContent(this SolidHttpRequest request, string name, string content)
         {
             return request.WithFormDataContent(name, new StringContent(content));
         }
@@ -58,11 +58,11 @@ namespace FluentHttp
         /// <summary>
         /// Adds form data content to the request
         /// </summary>
-        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The form name of the content</param>
         /// <param name="content">The HttpContent</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest WithFormDataContent(this FluentHttpRequest request, string name, HttpContent content)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithFormDataContent(this SolidHttpRequest request, string name, HttpContent content)
         {
             var form = request.GetMultipartFormDataContent();
             form.Add(content, name);
@@ -72,12 +72,12 @@ namespace FluentHttp
         /// <summary>
         /// Adds form data file to request
         /// </summary>
-        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The form name of the file</param>
         /// <param name="content">The file StreamContent</param>
         /// <param name="fileName">The file name</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest WithFormDataFile(this FluentHttpRequest request, string name, StreamContent content, string fileName)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithFormDataFile(this SolidHttpRequest request, string name, StreamContent content, string fileName)
         {
             var form = request.GetMultipartFormDataContent();
             form.Add(content, name, fileName);
@@ -87,12 +87,12 @@ namespace FluentHttp
         /// <summary>
         /// Adds form data file to request
         /// </summary>
-        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The form name of the file</param>
         /// <param name="content">The file ByteArrayContent</param>
         /// <param name="fileName">The file name</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest WithFormDataFile(this FluentHttpRequest request, string name, ByteArrayContent content, string fileName)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithFormDataFile(this SolidHttpRequest request, string name, ByteArrayContent content, string fileName)
         {
             var form = request.GetMultipartFormDataContent();
             form.Add(content, name, fileName);
@@ -103,10 +103,10 @@ namespace FluentHttp
         /// Adds HttpContent to the request
         /// <para>If there is already HttpContent on the request, it makes the request multipart</para>
         /// </summary>
-        /// <param name="request">The FluentHttpRequest</param>
+        /// <param name="request">The SolidHttpRequest</param>
         /// <param name="content">The HttpContent</param>
-        /// <returns>FluentHttpRequest</returns>
-        public static FluentHttpRequest WithContent(this FluentHttpRequest request, HttpContent content)
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithContent(this SolidHttpRequest request, HttpContent content)
         {
             if (request.BaseRequest.Content == null)
             {
@@ -118,7 +118,7 @@ namespace FluentHttp
             return request;
         }
 
-        private static MultipartFormDataContent GetMultipartFormDataContent(this FluentHttpRequest request)
+        private static MultipartFormDataContent GetMultipartFormDataContent(this SolidHttpRequest request)
         {
             var multipart = request.BaseRequest.Content as MultipartFormDataContent;
             if (multipart == null)
@@ -127,7 +127,7 @@ namespace FluentHttp
             return multipart;
         }
 
-        private static FluentHttpRequest WithMultipartContent(this FluentHttpRequest request, Func<MultipartContent> create)
+        private static SolidHttpRequest WithMultipartContent(this SolidHttpRequest request, Func<MultipartContent> create)
         {
             var content = request.BaseRequest.Content;
             var multipart = content as MultipartContent;

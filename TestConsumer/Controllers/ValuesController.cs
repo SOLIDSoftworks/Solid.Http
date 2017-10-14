@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentHttp;
+using SolidHttp;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Diagnostics;
@@ -13,9 +13,9 @@ namespace TestConsumer.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private IFluentHttpClientFactory _factory;
+        private ISolidHttpClientFactory _factory;
 
-        public ValuesController(IFluentHttpClientFactory factory)
+        public ValuesController(ISolidHttpClientFactory factory)
         {
             _factory = factory;
         }

@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace FluentHttp
+namespace SolidHttp
 {
     /// <summary>
-    /// The IFluentHttpClientFactoryEvents interface
+    /// The ISolidHttpClientFactoryEvents interface
     /// </summary>
-    public interface IFluentHttpEvents
+    public interface ISolidHttpEvents
     {
         /// <summary>
-        /// The event triggered when a FluentHttpClient is created
+        /// The event triggered when a SolidHttpClient is created
         /// </summary>
-        event EventHandler<FluentHttpClientCreatedEventArgs> OnClientCreated;
+        event EventHandler<SolidHttpClientCreatedEventArgs> OnClientCreated;
 
         /// <summary>
-        /// The event triggered when a FluentHttpRequest is created
+        /// The event triggered when a SolidHttpRequest is created
         /// </summary>
-        event EventHandler<FluentHttpRequestCreatedEventArgs> OnRequestCreated;
+        event EventHandler<SolidHttpRequestCreatedEventArgs> OnRequestCreated;
 
         /// <summary>
         /// The event triggered before an http request is sent
@@ -32,23 +32,23 @@ namespace FluentHttp
     }
 
     /// <summary>
-    /// The IFluentHttpClientFactoryEventInvoker interface
+    /// The ISolidHttpClientFactoryEventInvoker interface
     /// </summary>
-    public interface IFluentHttpEventInvoker : IFluentHttpEvents
+    public interface ISolidHttpEventInvoker : ISolidHttpEvents
     {
         /// <summary>
         /// Invokes any and all OnClientCreated events configured
         /// </summary>
         /// <param name="invoker">The invoker of the event</param>
         /// <param name="client">The created client</param>
-        void InvokeOnClientCreated(object invoker, FluentHttpClient client);
+        void InvokeOnClientCreated(object invoker, SolidHttpClient client);
 
         /// <summary>
         /// Invokes any and all OnRequestCreated events that are globally configured
         /// </summary>
         /// <param name="invoker">The invoker of the event</param>
-        /// <param name="request">The created FluentHttpRequest</param>
-        void InvokeOnRequestCreated(object invoker, FluentHttpRequest request);
+        /// <param name="request">The created SolidHttpRequest</param>
+        void InvokeOnRequestCreated(object invoker, SolidHttpRequest request);
 
         /// <summary>
         /// Invokes any and all OnRequest events that are globally configured
