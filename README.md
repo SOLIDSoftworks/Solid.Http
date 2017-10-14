@@ -1,7 +1,7 @@
 # SolidHttp 
 [![solidsoftworks MyGet Build Status](https://www.myget.org/BuildSource/Badge/solidsoftworks?identifier=0db596bc-03ee-4289-a809-ab4d06b48760)](https://www.myget.org/)
 
-SolidHttp is a library to simplify http calls in C#. It's designed to be async and fully extendable.
+SolidHttp is a library to simplify http calls in C# for .net standard 2.0. It's designed to be async and fully extendable.
 
 ## Initialization
 SolidHttp is designed to work with the Startup class and IServiceCollection.
