@@ -1,17 +1,17 @@
-# FluentHttp 
-[![solidsoftworks MyGet Build Status](https://www.myget.org/BuildSource/Badge/solidsoftworks?identifier=9c23f206-db05-4589-b13d-982fc2d3df3b)](https://www.myget.org/)
+# SolidHttp 
+[![solidsoftworks MyGet Build Status](https://www.myget.org/BuildSource/Badge/solidsoftworks?identifier=0db596bc-03ee-4289-a809-ab4d06b48760)](https://www.myget.org/)
 
-FluentHttp is a library to simplify http calls in C#. It's designed to be async and fully extendable.
+SolidHttp is a library to simplify http calls in C#. It's designed to be async and fully extendable.
 
 ## Initialization
-FluentHttp is designed to work with the Startup class and IServiceCollection.
+SolidHttp is designed to work with the Startup class and IServiceCollection.
 
 ### Basic initialization
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddFluentHttp();
+            services.AddSolidHttp();
         }
     }
 
@@ -21,7 +21,7 @@ FluentHttp is designed to work with the Startup class and IServiceCollection.
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddFluentHttp()
+                .AddSolidHttp()
                 .Configure(options =>
                 {
                     options.Events.OnRequestCreated += (sender, args) =>
@@ -33,23 +33,23 @@ FluentHttp is designed to work with the Startup class and IServiceCollection.
     }
 
 ### Manual initialization
-    public IFluentHttpClientFactory Initialize()
+    public ISolidHttpClientFactory Initialize()
     {
-        var builder = new FluentHttpClientFactoryBuilder();
+        var builder = new SolidHttpClientFactoryBuilder();
         return builder.Build();
     }
     
 ## Use
-When working with FluentHttp, you use IFluentHttpClientFactory to create a FluentHttpClient. This FluentHttpClient then creates a FluentHttpRequest. The FluentHttpRequest itself is awaitable so any extension method that returns FluentHttpRequest can be awaited.
+When working with SolidHttp, you use ISolidHttpClientFactory to create a SolidHttpClient. This SolidHttpClient then creates a SolidHttpRequest. The SolidHttpRequest itself is awaitable so any extension method that returns SolidHttpRequest can be awaited.
 
 ### Basic example
     [Route("api/[controller]")]
     public class SomeController : Controller
     {
-        private IFluentHttpClientFactory _factory;
-        public SomeClass(IFluentHttpClientFactory factory)
+        private ISolidHttpClientFactory _factory;
+        public SomeClass(ISolidHttpClientFactory factory)
         {
-            // The FluentHttpClientFactory class would be injected here
+            // The SolidHttpClientFactory class would be injected here
             _factory = factory;
         }
 
@@ -65,10 +65,10 @@ When working with FluentHttp, you use IFluentHttpClientFactory to create a Fluen
     [Route("api/[controller]")]
     public class PostsController : Controller
     {
-        private IFluentHttpClientFactory _factory;
-        public PostsController(IFluentHttpClientFactory factory)
+        private ISolidHttpClientFactory _factory;
+        public PostsController(ISolidHttpClientFactory factory)
         {
-            // The FluentHttpClientFactory class would be injected here
+            // The SolidHttpClientFactory class would be injected here
             _factory = factory;
         }
 
@@ -90,7 +90,7 @@ When working with FluentHttp, you use IFluentHttpClientFactory to create a Fluen
 ### Extension example
     public static class StandardHeaderExample
     {
-        public static FluentHttpRequest AddStandardHeader(this FluentHttpRequest request)
+        public static SolidHttpRequest AddStandardHeader(this SolidHttpRequest request)
         {
             return request.WithHeader("x-standard-header", "standard");
         }
