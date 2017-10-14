@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Extensions\FluentHttp.Extensions.Json\FluentHttp.Extensions.Json.csproj" />
-    <ProjectReference Include="..\FluentHttp.Core\FluentHttp.Core.csproj" />
+    <ProjectReference Include="..\SolidHttp.Core\SolidHttp.Core.csproj" />
+    <ProjectReference Include="..\Extensions\SolidHttp.Extensions.Json\SolidHttp.Extensions.Json.csproj" />
   </ItemGroup>
 </Project>

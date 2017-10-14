@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>FluentHttp</RootNamespace>
+    <RootNamespace>SolidHttp</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FluentHttp.Core\FluentHttp.Core.csproj" />
+    <ProjectReference Include="..\..\SolidHttp.Core\SolidHttp.Core.csproj" />
   </ItemGroup>
-
 </Project>
