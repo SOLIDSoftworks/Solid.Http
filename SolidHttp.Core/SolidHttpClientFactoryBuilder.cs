@@ -6,24 +6,30 @@ using System.Text;
 
 namespace SolidHttp
 {
-    public class SolidHttpClientFactoryBuilder
+    public class SolidHttpClientFactoryBuilder : SolidHttpClientFactoryBuilder<SolidHttpClientFactory>
+    {
+        
+    }
+    
+    public class SolidHttpClientFactoryBuilder<T>
+        where T : SolidHttpClientFactory
     {
         private ServiceCollection _collection;
         private ISolidHttpSetup _setup;
-        
+
         public SolidHttpClientFactoryBuilder()
         {
             _collection = new ServiceCollection();
-            _setup = _collection.AddSolidHttp();
+            _setup = _collection.AddSolidHttp<T>();
         }
 
-        public SolidHttpClientFactoryBuilder AddConfiguration(IConfiguration configuration)
+        public SolidHttpClientFactoryBuilder<T> AddConfiguration(IConfiguration configuration)
         {
             _collection.AddSingleton<IConfiguration>(configuration);
             return this;
         }
 
-        public SolidHttpClientFactoryBuilder Setup(Action<ISolidHttpSetup> add)
+        public SolidHttpClientFactoryBuilder<T> Setup(Action<ISolidHttpSetup> add)
         {
             add(_setup);
             return this;
