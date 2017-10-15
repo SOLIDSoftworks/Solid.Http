@@ -69,6 +69,18 @@ namespace SolidHttp
             return new HttpClient();
         }
 
+        /// <summary>
+        /// Releases all resource used by the <see cref="T:SolidHttp.SolidHttpClientFactory"/> object.
+        /// </summary>
+        /// <remarks>Call <see cref="Dispose"/> when you are finished using the <see cref="T:SolidHttp.SolidHttpClientFactory"/>.
+        /// The <see cref="Dispose"/> method leaves the <see cref="T:SolidHttp.SolidHttpClientFactory"/> in an unusable
+        /// state. After calling <see cref="Dispose"/>, you must release all references to the
+        /// <see cref="T:SolidHttp.SolidHttpClientFactory"/> so the garbage collector can reclaim the memory that the
+        /// <see cref="T:SolidHttp.SolidHttpClientFactory"/> was occupying.</remarks>
+        public virtual void Dispose()
+        {
+        }
+
         private HttpClient GetHttpClient()
         {
             if (_client == null)

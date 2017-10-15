@@ -8,7 +8,7 @@ namespace SolidHttp
     /// <summary>
     /// The ISolidHttpClientFactory interface
     /// </summary>
-    public interface ISolidHttpClientFactory
+    public interface ISolidHttpClientFactory : IDisposable
     {
         /// <summary>
         /// The application configuration which can be used in extension methods
