@@ -59,12 +59,12 @@ namespace SolidHttp
         {
             return CreateSolidHttpClient(GetHttpClient());
         }
-        
-        /// <summary>
-        /// Creates the inner HttpClient
-        /// </summary>
-        /// <returns></returns>
-        protected virtual HttpClient CreateHttpClient()
+
+		/// <summary>
+		/// Creates the inner HttpClient
+		/// </summary>
+		/// <returns>HttpClient</returns>
+		protected virtual HttpClient CreateHttpClient()
         {
             return new HttpClient();
         }
