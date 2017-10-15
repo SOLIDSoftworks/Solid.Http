@@ -8,4 +8,4 @@ SolidHttp is a library to simplify http calls in C# for .net standard 2.0. It's 
 * [SolidHttp.Extension.Json](https://www.nuget.org/packages/SolidHttp.Extensions.Json)
 
 ## Usage
-Read how to use this library in [the wiki](wiki).
+Read how to use this library in [the wiki](https://github.com/SOLIDSoftworks/SolidHttp/wiki).
