@@ -10,15 +10,13 @@ namespace SolidHttp
     /// <summary>
     /// The SolidHttpClientFactory
     /// </summary>
-    public class SolidHttpClientFactory : ISolidHttpClientFactory
+    internal class SolidHttpClientFactory : ISolidHttpClientFactory
     {
-        private static HttpClient _client;
-        private static int _initialized = 0;
-
         private ISolidHttpEventInvoker _events;
         private IDeserializerProvider _deserializers;
         private IConfiguration _configuration;
-        
+        private IHttpClientCache _cache;
+
         /// <summary>
         /// The application configuration which can be used in extension methods
         /// </summary>
@@ -44,8 +42,9 @@ namespace SolidHttp
         /// <param name="events">The events to be triggered when a SolidHttpClient is created</param>
         /// <param name="deserializers">The deserializer provider for SolidHttp</param>
         /// <param name="configuration">The application configuration</param>
-        public SolidHttpClientFactory(ISolidHttpEventInvoker events, IDeserializerProvider deserializers, IConfiguration configuration = null)
+        public SolidHttpClientFactory(IHttpClientCache cache, ISolidHttpEventInvoker events, IDeserializerProvider deserializers, IConfiguration configuration = null)
         {
+            _cache = cache;
             _events = events;
             _deserializers = deserializers;
             _configuration = configuration;
@@ -57,16 +56,7 @@ namespace SolidHttp
         /// <returns>SolidHttpClient</returns>
         public SolidHttpClient Create()
         {
-            return CreateSolidHttpClient(GetHttpClient());
-        }
-
-		/// <summary>
-		/// Creates the inner HttpClient
-		/// </summary>
-		/// <returns>HttpClient</returns>
-		protected virtual HttpClient CreateHttpClient()
-        {
-            return new HttpClient();
+            return CreateSolidHttpClient(_cache.Get());
         }
 
         /// <summary>
@@ -79,21 +69,6 @@ namespace SolidHttp
         /// <see cref="T:SolidHttp.SolidHttpClientFactory"/> was occupying.</remarks>
         public virtual void Dispose()
         {
-        }
-
-        private HttpClient GetHttpClient()
-        {
-            if (_client == null)
-            {
-                if (Interlocked.Exchange(ref _initialized, 1) == 0)
-                {
-                    _client = CreateHttpClient();
-                }
-
-                SpinWait.SpinUntil(() => _client != null);
-            }
-
-            return _client;
         }
 
         private SolidHttpClient CreateSolidHttpClient(HttpClient inner)

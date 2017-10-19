@@ -6,13 +6,13 @@ using System.Text;
 
 namespace SolidHttp
 {
-    public class SolidHttpClientFactoryBuilder : SolidHttpClientFactoryBuilder<SolidHttpClientFactory>
+    public class SolidHttpClientFactoryBuilder : SolidHttpClientFactoryBuilder<SimpleHttpClientFactory>
     {
         
     }
     
     public class SolidHttpClientFactoryBuilder<T>
-        where T : SolidHttpClientFactory
+        where T : class, IHttpClientFactory
     {
         private ServiceCollection _collection;
         private ISolidHttpSetup _setup;
