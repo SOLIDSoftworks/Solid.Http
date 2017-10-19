@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Core", "SolidHttp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Extensions.Json", "Extensions\SolidHttp.Extensions.Json\SolidHttp.Extensions.Json.csproj", "{58A7C860-C2C1-4801-9441-86FE720EC471}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Extensions.Testing", "Extensions\SolidHttp.Extensions.Testing\SolidHttp.Extensions.Testing.csproj", "{22F02D93-F929-4B28-BDAF-2CA706793639}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +37,17 @@ Global
 		{58A7C860-C2C1-4801-9441-86FE720EC471}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58A7C860-C2C1-4801-9441-86FE720EC471}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58A7C860-C2C1-4801-9441-86FE720EC471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F02D93-F929-4B28-BDAF-2CA706793639}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F02D93-F929-4B28-BDAF-2CA706793639}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F02D93-F929-4B28-BDAF-2CA706793639}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F02D93-F929-4B28-BDAF-2CA706793639}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{58A7C860-C2C1-4801-9441-86FE720EC471} = {FC326D18-661F-4A13-8428-828A0E57C31A}
+		{22F02D93-F929-4B28-BDAF-2CA706793639} = {FC326D18-661F-4A13-8428-828A0E57C31A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F5893B74-E782-47B9-A40D-32D80F7F6BD8}
