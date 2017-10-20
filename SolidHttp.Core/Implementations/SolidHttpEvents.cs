@@ -5,12 +5,16 @@ using System.Text;
 
 namespace SolidHttp
 {
-    internal class SolidHttpEvents : ISolidHttpEventInvoker
+    internal class SolidHttpEvents : ISolidHttpEventInvoker, IDisposable
     {
         public event EventHandler<SolidHttpClientCreatedEventArgs> OnClientCreated;
         public event EventHandler<SolidHttpRequestCreatedEventArgs> OnRequestCreated;
         public event EventHandler<RequestEventArgs> OnRequest;
-        public event EventHandler<ResponseEventArgs> OnResponse;        
+        public event EventHandler<ResponseEventArgs> OnResponse;
+
+        public void Dispose()
+        {
+        }
 
         public void InvokeOnClientCreated(object invoker, SolidHttpClient client)
         {

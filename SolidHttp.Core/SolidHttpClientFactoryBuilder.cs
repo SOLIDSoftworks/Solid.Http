@@ -11,10 +11,11 @@ namespace SolidHttp
         
     }
     
-    public class SolidHttpClientFactoryBuilder<T>
+    public class SolidHttpClientFactoryBuilder<T> : IDisposable
         where T : class, IHttpClientFactory
     {
         private ServiceCollection _collection;
+        private ServiceProvider _provider;
         private ISolidHttpSetup _setup;
 
         public SolidHttpClientFactoryBuilder()
@@ -35,15 +36,16 @@ namespace SolidHttp
             return this;
         }
 
-        //public SolidHttpClientFactoryBuilder Configure(Action<ISolidHttpOptions> configure)
-        //{
-        //    return AddSetup(s => s.Configure(configure));
-        //}
-
         public ISolidHttpClientFactory Build()
         {
-            var provider = _collection.BuildServiceProvider();
-            return provider.GetService<ISolidHttpClientFactory>();
+            _provider = _collection.BuildServiceProvider();            
+            return _provider.GetService<ISolidHttpClientFactory>();
+        }
+
+        public void Dispose()
+        {
+            if (_provider != null)
+                _provider.Dispose();
         }
     }
 }

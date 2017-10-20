@@ -20,11 +20,11 @@ namespace SolidHttp
             services.AddSingleton<IDeserializerProvider>(DeserializerProvider.Instance);
             services.AddSingleton<ISolidHttpEventInvoker, SolidHttpEvents>();
             services.AddSingleton<IHttpClientCache, HttpClientCache>();
-            services.AddTransient<IHttpClientFactory, TFactory>();;
+            services.AddTransient<IHttpClientFactory, TFactory>();
             services.AddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
 
-            services.AddTransient<ISolidHttpOptions, SolidHttpOptions>();
-            services.AddTransient<ISolidHttpSetup, SolidHttpSetup>();
+            services.AddSingleton<ISolidHttpOptions, SolidHttpOptions>();
+            services.AddSingleton<ISolidHttpSetup, SolidHttpSetup>();
 
             var provider = services.BuildServiceProvider();
             return provider.GetService<ISolidHttpSetup>();

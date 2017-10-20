@@ -3,9 +3,10 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SolidHttp
+namespace SolidHttp.Extensions.Testing
 {
     internal class InMemoryLocalHttpServerClient<TStartup> : HttpClient, IDisposable
+        where TStartup : class
     {
         private IDisposable _server;
         private Uri _baseAddress;
@@ -23,6 +24,7 @@ namespace SolidHttp
         public InMemoryLocalHttpServerClient(HttpMessageHandler handler, bool disposeHandler) 
             : base(handler, disposeHandler)
         {
+            _server = StartServer();
         }
 
         public override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -35,23 +37,12 @@ namespace SolidHttp
             return base.SendAsync(request, cancellationToken);
         }
 
-        private IDisposable InitializeServer()
-        {
-            _baseAddress = CreateUrl();
-            BaseAddress = _baseAddress;
-            return StartServer(_baseAddress);
-        }
-
-        private Uri CreateUrl()
-        {
-            // port 0 should be assigned by the OS
-            return new Uri($"http://localhost:0");
-        }
-
-        private IDisposable StartServer(Uri url)
+        private IDisposable StartServer()
         {
             // there are seperate ways to do this for .Net Framework and for .Net Core
-            throw new NotImplementedException();
+            var host = new InMemoryHost<TStartup>();
+            _baseAddress = BaseAddress = host.BaseAddress;
+            return host;
         }
 
         protected override void Dispose(bool disposing)

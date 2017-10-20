@@ -27,6 +27,10 @@ namespace TestConsumer
             services.AddMvc();
             services
                 .AddSolidHttp()
+                .Configure(options => options.Events.OnClientCreated += (sender, args) =>
+                {
+                    args.Client.AddProperty("created", true);
+                })
                 .AddJson();
         }
 

@@ -18,7 +18,7 @@ namespace SolidHttp
             CancellationToken = cancellationToken;
         }
 
-        internal SolidHttpClient Client { get; private set; }
+        public SolidHttpClient Client { get; private set; }
 
         /// <summary>
         /// The base request that is sent
