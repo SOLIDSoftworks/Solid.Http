@@ -50,4 +50,5 @@ bin
 obj
 packages
 
+.vs
 *.userprefs
