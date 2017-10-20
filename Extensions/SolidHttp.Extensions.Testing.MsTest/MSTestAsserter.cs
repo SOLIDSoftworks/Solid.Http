@@ -15,89 +15,72 @@ namespace SolidHttp.Extensions.Testing.MSTest
 
         public void AreEqual<T>(T expected, T actual, string message)
         {
-            Assert.AreEqual(expected, actual, message);
+            Assert.AreEqual<T>(expected, actual, message);
         }
 
         public void AreNotEqual<T>(T notExpected, T actual, string message)
         {
-            throw new NotImplementedException();
+            Assert.AreNotEqual(notExpected, actual, message);                
         }
 
         public void AreNotEqual(object notExpected, object actual, string message)
         {
-            throw new NotImplementedException();
-        }
-
-        public void AreNotSame<T>(T notExpected, object actual, string message)
-        {
-            throw new NotImplementedException();
+            Assert.AreNotEqual(notExpected, actual, message);
         }
 
         public void AreNotSame(object notExpected, object actual, string message)
         {
-            throw new NotImplementedException();
-        }
-
-        public void AreSame<T>(T expected, object actual, string message)
-        {
-            throw new NotImplementedException();
+            Assert.AreNotSame(notExpected, actual, message);
         }
 
         public void AreSame(object expected, object actual, string message)
         {
-            throw new NotImplementedException();
+            Assert.AreSame(expected, actual, message);
         }
 
         public void Fail(string message)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Inconclusive(string message)
-        {
-            throw new NotImplementedException();
+            Assert.Fail(message);
         }
 
         public void IsFalse(bool value, string message)
         {
-            throw new NotImplementedException();
+            Assert.IsFalse(value, message);
         }
 
         public void IsInstanceOfType<TExpected>(object actual, string message)
         {
-            throw new NotImplementedException();
+            Assert.IsInstanceOfType(actual, typeof(TExpected), message);
         }
 
         public void IsInstanceOfType(Type expected, object actual, string message)
         {
-            throw new NotImplementedException();
+            Assert.IsInstanceOfType(actual, expected, message);
         }
 
         public void IsNotInstanceOfType<TNotExpected>(object actual, string message)
         {
-            throw new NotImplementedException();
+            Assert.IsNotInstanceOfType(actual, typeof(TNotExpected), message);
         }
 
         public void IsNotInstanceOfType(Type notExpected, object actual, string message)
         {
-            throw new NotImplementedException();
+            Assert.IsNotInstanceOfType(actual, notExpected, message);
         }
 
         public void IsNotNull(object value, string message)
         {
-            throw new NotImplementedException();
+            Assert.IsNotNull(value, message);
         }
 
         public void IsNull(object value, string message)
         {
-            throw new NotImplementedException();
+            Assert.IsNull(value, message);
         }
 
         public void IsTrue(bool value, string message)
         {
             Assert.IsTrue(value, message);
-
-
         }
     }
 }

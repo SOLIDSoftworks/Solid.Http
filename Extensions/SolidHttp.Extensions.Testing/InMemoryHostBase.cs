@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,12 +9,12 @@ namespace SolidHttp.Extensions.Testing
     {
         protected IDisposable Host;
 
-        public InMemoryHostBase()
+        public InMemoryHostBase(IConfiguration configuration)
         {
-            Host = InitializeHost();
+            Host = InitializeHost(configuration);
         }
 
-        protected abstract IDisposable InitializeHost();
+        protected abstract IDisposable InitializeHost(IConfiguration configuration);
         
         public Uri BaseAddress { get; protected set; }
 

@@ -14,7 +14,7 @@ namespace SolidHttp.Extensions.Testing
             Request = request;
         }
 
-        internal SolidHttpRequest Request { get; private set; }
+        public SolidHttpRequest Request { get; private set; }
 
         /// <summary>
         /// The awaiter that enables a SolidHttpTestingAssertion to be awaited

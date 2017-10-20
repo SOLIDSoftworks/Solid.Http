@@ -2,68 +2,66 @@
 using System;
 namespace SolidHttp.Extensions.Testing
 {
-    public abstract class TestServer<TStartup, TAsserter> : TestServer<TStartup>
+    public abstract class TestServer<TStartup, TAsserter> : TestServer
         where TStartup : class
         where TAsserter : class, IAsserter
     {
-        private IServiceProvider _provider;
+        private  SolidHttpClientFactoryBuilder<TestingHttpClientFactory<TStartup>> _builder;
+        private ISolidHttpClientFactory _factory;
+
         public TestServer()
             : base()
         {
-            Builder.Setup(s =>
+            _builder = new SolidHttpClientFactoryBuilder<TestingHttpClientFactory<TStartup>>();
+            _builder.Setup(s =>
             {
                 s.Configure(o => o.Events.OnClientCreated += (sender, args) =>
                 {
-                    // this could be a problem with more complex asserters. We'll cross that bridge when it comes to it.
+                    // this could be a problem with more complex asserters. We'll cross that bridge when we come to it.
                     args.Client.AddProperty(Constants.AsserterKey, Activator.CreateInstance<TAsserter>());
                 });
             });
         }
-    }
-
-    public class TestServer<TStartup> : IDisposable
-        where TStartup : class
-    {
-        protected SolidHttpClientFactoryBuilder<TestingHttpClientFactory<TStartup>> Builder;
-        private ISolidHttpClientFactory _factory;
-
-        public TestServer()
-        {
-            Builder = new SolidHttpClientFactoryBuilder<TestingHttpClientFactory<TStartup>>();
-        }
-
-        public TestServer<TStartup> AddConfiguration(IConfiguration configuration)
+        public override TestServer AddConfiguration(IConfiguration configuration)
         {
             if (configuration != null)
             {
                 _factory = null;
-                Builder.AddConfiguration(configuration);
+                _builder.AddConfiguration(configuration);
             }
             return this;
         }
 
-        public TestServer<TStartup> Setup(Action<ISolidHttpSetup> setup)
+        public override TestServer Setup(Action<ISolidHttpSetup> setup)
         {
             if (setup != null)
             {
                 _factory = null;
-                Builder.Setup(setup);
+                _builder.Setup(setup);
             }
             return this;
         }
 
-        public SolidHttpClient CreateClient()
+        public override SolidHttpClient CreateClient()
         {
             if (_factory == null)
-                _factory = Builder.Build();
+                _factory = _builder.Build();
             return _factory.Create();
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
             if (_factory != null)
                 _factory.Dispose();
-            Builder.Dispose();
+            _builder.Dispose();
         }
+    }
+
+    public abstract class TestServer : IDisposable
+    {
+        public abstract SolidHttpClient CreateClient();
+        public abstract TestServer Setup(Action<ISolidHttpSetup> setup);
+        public abstract TestServer AddConfiguration(IConfiguration configuration);
+        public abstract void Dispose();
     }
 }

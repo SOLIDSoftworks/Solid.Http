@@ -16,5 +16,16 @@ namespace SolidHttp.Extensions.Testing
             };
             return continuation.Assertion;
         }
+
+        public static SolidHttpTestingAssertion ShouldHaveResponseHeader(this SolidHttpTestingAssertionContinuation continuation, string name)
+        {
+            return continuation.Should((response, asserter) =>
+            {
+                var contains = response.Headers.Contains(name);
+                if (!contains && response.Content != null)
+                    contains = response.Content.Headers.Contains(name);
+                asserter.IsTrue(contains, $"Expected '{name}' header");
+            });            
+        }
     }
 }

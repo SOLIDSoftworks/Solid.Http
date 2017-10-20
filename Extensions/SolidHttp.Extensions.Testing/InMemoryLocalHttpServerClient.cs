@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,20 +11,12 @@ namespace SolidHttp.Extensions.Testing
     {
         private IDisposable _server;
         private Uri _baseAddress;
+        private IConfiguration _configuration;
 
-        public InMemoryLocalHttpServerClient()
-            : this(new HttpClientHandler())
+        public InMemoryLocalHttpServerClient(IConfiguration configuration)
+            : base()
         {
-        }
-
-        public InMemoryLocalHttpServerClient(HttpMessageHandler handler) 
-            : this(handler, true)
-        {
-        }
-
-        public InMemoryLocalHttpServerClient(HttpMessageHandler handler, bool disposeHandler) 
-            : base(handler, disposeHandler)
-        {
+            _configuration = configuration;
             _server = StartServer();
         }
 
@@ -40,7 +33,7 @@ namespace SolidHttp.Extensions.Testing
         private IDisposable StartServer()
         {
             // there are seperate ways to do this for .Net Framework and for .Net Core
-            var host = new InMemoryHost<TStartup>();
+            var host = new InMemoryHost<TStartup>(_configuration);
             _baseAddress = BaseAddress = host.BaseAddress;
             return host;
         }

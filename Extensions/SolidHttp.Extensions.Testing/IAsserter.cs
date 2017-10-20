@@ -12,11 +12,9 @@ namespace SolidHttp.Extensions.Testing
 
         void AreNotEqual<T>(T notExpected, T actual, string message);
         void AreNotEqual(object notExpected, object actual, string message);
-
-        void AreSame<T>(T expected, object actual, string message);
+        
         void AreSame(object expected, object actual, string message);
-
-        void AreNotSame<T>(T notExpected, object actual, string message);
+        
         void AreNotSame(object notExpected, object actual, string message);
 
         void IsInstanceOfType<TExpected>(object actual, string message);
@@ -30,8 +28,6 @@ namespace SolidHttp.Extensions.Testing
         void IsNotNull(object value, string message);
 
         void Fail(string message);
-
-        void Inconclusive(string message);
 
         void IsTrue(bool value, string message);
 
