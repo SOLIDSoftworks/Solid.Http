@@ -18,7 +18,7 @@ namespace SolidHttp
             where TFactory : class, IHttpClientFactory
         {
             services.AddSingleton<IDeserializerProvider>(DeserializerProvider.Instance);
-            services.AddSingleton<ISolidHttpEventInvoker, SolidHttpEvents>();
+            services.AddSingleton<ISolidHttpEventInvoker>(new SolidHttpEvents());
             services.AddSingleton<IHttpClientCache, HttpClientCache>();
             services.AddTransient<IHttpClientFactory, TFactory>();
             services.AddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
