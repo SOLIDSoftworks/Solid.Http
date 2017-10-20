@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SolidHttp.Extensions.Testing.Hosting;
 using System;
 using System.Net.Http;
 using System.Threading;
@@ -22,8 +23,6 @@ namespace SolidHttp.Extensions.Testing
 
         public override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            // Making sure that you can't change the base address
-            this.BaseAddress = _baseAddress;
             if (request.RequestUri.IsAbsoluteUri)
                 throw new ArgumentException("SolidHttp.Extensions.Testing is designed to be used with relative urls only.");
             

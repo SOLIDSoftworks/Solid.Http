@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Configuration;
 
-namespace SolidHttp.Extensions.Testing
+namespace SolidHttp.Extensions.Testing.Hosting
 {
     internal class InMemoryHost<TStartup> : InMemoryHostBase, IDisposable
         where TStartup : class

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp.Extensions.Testing
+namespace SolidHttp.Extensions.Testing.Hosting
 {
     public abstract class InMemoryHostBase : IDisposable
     {

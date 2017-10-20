@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SolidHttp.Extensions.Testing.Abstractions;
 using System;
 namespace SolidHttp.Extensions.Testing
 {
@@ -6,7 +7,7 @@ namespace SolidHttp.Extensions.Testing
         where TStartup : class
         where TAsserter : class, IAsserter
     {
-        private  SolidHttpClientFactoryBuilder<TestingHttpClientFactory<TStartup>> _builder;
+        private SolidHttpClientFactoryBuilder<TestingHttpClientFactory<TStartup>> _builder;
         private ISolidHttpClientFactory _factory;
 
         public TestServer()

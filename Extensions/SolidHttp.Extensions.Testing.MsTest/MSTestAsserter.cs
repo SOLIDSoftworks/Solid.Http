@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SolidHttp.Extensions.Testing.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Net;

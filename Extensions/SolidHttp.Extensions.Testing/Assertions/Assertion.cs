@@ -5,13 +5,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolidHttp.Extensions.Testing
+namespace SolidHttp.Extensions.Testing.Assertions
 {
-    public class SolidHttpTestingAssertion
+    public class Assertion
     {
-        internal SolidHttpTestingAssertion(SolidHttpRequest request)
+        internal Assertion(SolidHttpRequest request)
         {
             Request = request;
+
         }
 
         public SolidHttpRequest Request { get; private set; }
@@ -22,7 +23,7 @@ namespace SolidHttp.Extensions.Testing
         /// <returns>A TaskAwaiter</returns>
         public TaskAwaiter GetAwaiter()
         {
-            Func<SolidHttpTestingAssertion, Task> waiter = (async r =>
+            Func<Assertion, Task> waiter = (async r =>
             { 
                 await Request;
             });

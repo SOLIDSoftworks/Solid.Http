@@ -28,12 +28,22 @@ namespace TestConsumer.Tests
         }
 
         [TestMethod]
-        public async Task TestMethod1()
+        public async Task ShouldBeSuccessful()
         {
             var client = _server.CreateClient();
             await client
                 .GetAsync("api/values")
-                .ShouldRespondSuccessfully().And()
+                .ShouldRespondSuccessfully();
+        }
+
+        [TestMethod]
+        public async Task ShouldHaveContent()
+        {
+            var client = _server.CreateClient();
+            await client
+                .GetAsync("api/values")
+                .ShouldRespondWith(200).And()
+                .ShouldHaveResponseHeader("content-type").WithValueStartingWith("application/json").And()
                 .Should((response, asserter) =>
                 {
                     asserter.IsNotNull(response.Content, "Content cannot be null");
