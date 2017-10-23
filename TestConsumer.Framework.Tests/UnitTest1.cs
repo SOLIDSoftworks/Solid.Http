@@ -39,6 +39,7 @@ namespace TestConsumer.Framework.Tests
         [TestMethod]
         public async Task ShouldHaveContent()
         {
+            Assert.Fail();
             var client = _server.CreateClient();
             await client
                 .GetAsync("api/values")

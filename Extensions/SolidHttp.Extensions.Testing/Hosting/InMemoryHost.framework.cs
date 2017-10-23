@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using System.Net.Sockets;
+using System.Net;
 
 namespace SolidHttp.Extensions.Testing.Hosting
 {
@@ -17,15 +19,28 @@ namespace SolidHttp.Extensions.Testing.Hosting
 
         protected override IDisposable InitializeHost(IConfiguration configuration)
         {
+            var listenerType = typeof(Microsoft.Owin.Host.HttpListener.OwinServerFactory);
+
+            var port = GetFreeTcpPort();
             var options = new StartOptions
             {
-                Port = 0                
+                Port = port,
+                //ServerFactory = typeof(TStartup).Assembly.GetName().Name
             };
             var host = WebApp.Start<TStartup>(options);
 
-            //BaseAddress = "yeah";
+            BaseAddress = new Uri($"http://localhost:{port}");
 
             return host;
+        }
+
+        private int GetFreeTcpPort()
+        {
+            var listener = new TcpListener(IPAddress.Loopback, 0);
+            listener.Start();
+            int port = ((IPEndPoint)listener.LocalEndpoint).Port;
+            listener.Stop();
+            return port;
         }
     }
 }
