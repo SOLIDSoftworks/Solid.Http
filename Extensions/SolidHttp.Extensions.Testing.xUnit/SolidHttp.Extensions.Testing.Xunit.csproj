@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.0;net461</TargetFrameworks>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,5 +12,4 @@
   <ItemGroup>
     <ProjectReference Include="..\SolidHttp.Extensions.Testing\SolidHttp.Extensions.Testing.csproj" />
   </ItemGroup>
-
 </Project>
