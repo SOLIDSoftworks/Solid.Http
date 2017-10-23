@@ -12,19 +12,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{FC326D18-661F-4A13-8428-828A0E57C31A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsumer", "TestConsumer\TestConsumer.csproj", "{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsumer", "TestConsumer\TestConsumer.csproj", "{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolidHttp.Core", "SolidHttp.Core\SolidHttp.Core.csproj", "{BF3E6EF4-CD2D-408B-A47F-6C30FAAB981D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Core", "SolidHttp.Core\SolidHttp.Core.csproj", "{BF3E6EF4-CD2D-408B-A47F-6C30FAAB981D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolidHttp.Extensions.Json", "Extensions\SolidHttp.Extensions.Json\SolidHttp.Extensions.Json.csproj", "{58A7C860-C2C1-4801-9441-86FE720EC471}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Extensions.Json", "Extensions\SolidHttp.Extensions.Json\SolidHttp.Extensions.Json.csproj", "{58A7C860-C2C1-4801-9441-86FE720EC471}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolidHttp.Extensions.Testing", "Extensions\SolidHttp.Extensions.Testing\SolidHttp.Extensions.Testing.csproj", "{22F02D93-F929-4B28-BDAF-2CA706793639}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Extensions.Testing", "Extensions\SolidHttp.Extensions.Testing\SolidHttp.Extensions.Testing.csproj", "{22F02D93-F929-4B28-BDAF-2CA706793639}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsumer.Tests", "TestConsumer.Tests\TestConsumer.Tests.csproj", "{EB8B0129-935B-4178-A8CB-DF4C53BA1ABF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsumer.Tests", "TestConsumer.Tests\TestConsumer.Tests.csproj", "{EB8B0129-935B-4178-A8CB-DF4C53BA1ABF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolidHttp.Extensions.Testing.MSTest", "Extensions\SolidHttp.Extensions.Testing.MsTest\SolidHttp.Extensions.Testing.MSTest.csproj", "{9192CBC1-D63F-4ED6-AE1F-F087C80C0BE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Extensions.Testing.MSTest", "Extensions\SolidHttp.Extensions.Testing.MsTest\SolidHttp.Extensions.Testing.MSTest.csproj", "{9192CBC1-D63F-4ED6-AE1F-F087C80C0BE4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolidHttp.Core.Tests", "SolidHttp.Core.Tests\SolidHttp.Core.Tests.csproj", "{CA6270AF-D37A-4551-B5EE-4707DB0160D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Core.Tests", "SolidHttp.Core.Tests\SolidHttp.Core.Tests.csproj", "{CA6270AF-D37A-4551-B5EE-4707DB0160D9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Extensions.Testing.Xunit", "Extensions\SolidHttp.Extensions.Testing.xUnit\SolidHttp.Extensions.Testing.Xunit.csproj", "{B0786ABD-0049-4198-A039-1BB33910F9A2}"
 EndProject
