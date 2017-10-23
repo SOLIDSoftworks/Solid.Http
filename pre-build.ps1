@@ -32,5 +32,17 @@ function Exit-ScriptOnFailure {
     }
 }
 
-dotnet build --configuration $Configuration --no-restore
+function Clear-Assemblies {
+    $bin = Get-ChildItem $SourcesPath -Filter bin -Directory -Recurse -Name
+    $obj = Get-ChildItem $SourcesPath -Filter obj -Directory -Recurse -Name
+    foreach($dir in ($bin + $obj)) {
+        Remove-Item $dir -Force -Recurse
+    }
+}
+
+Set-Location $SourcesPath
+
+Clear-Assemblies
+
+dotnet restore
 Exit-ScriptOnFailure
