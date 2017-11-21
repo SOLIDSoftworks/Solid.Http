@@ -14,20 +14,11 @@ namespace SolidHttp
         /// <typeparam name="TFactory">The custom IHttpClientFactory type</typeparam>
         /// <param name="services">The service collection</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static ISolidHttpSetup AddSolidHttp<TFactory>(this IServiceCollection services)
+        public static ISolidHttpCoreBuilder AddSolidHttpCore<TFactory>(this IServiceCollection services)
             where TFactory : class, IHttpClientFactory
         {
-            services.AddSingleton<IDeserializerProvider>(DeserializerProvider.Instance);
-            services.AddSingleton<ISolidHttpEventInvoker>(new SolidHttpEvents());
-            services.AddSingleton<IHttpClientCache, HttpClientCache>();
-            services.AddTransient<IHttpClientFactory, TFactory>();
-            services.AddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
-
-            services.AddTransient<ISolidHttpOptions, SolidHttpOptions>();
-            services.AddTransient<ISolidHttpSetup, SolidHttpSetup>();
-
-            var provider = services.BuildServiceProvider();
-            return provider.GetService<ISolidHttpSetup>();
+            var builder = new SolidHttpCoreBuilder<TFactory>(services);
+            return builder;
         }
 
         /// <summary>
@@ -35,9 +26,9 @@ namespace SolidHttp
         /// </summary>
         /// <param name="services">The service collection</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static ISolidHttpSetup AddSolidHttp(this IServiceCollection services)
+        public static ISolidHttpCoreBuilder AddSolidHttpCore(this IServiceCollection services)
         {
-            return services.AddSolidHttp<SimpleHttpClientFactory>();
+            return services.AddSolidHttpCore<SimpleHttpClientFactory>();
         }
     }
 }

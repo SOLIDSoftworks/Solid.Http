@@ -11,6 +11,10 @@ namespace SolidHttp
     public class RequestEventArgs : EventArgs
     {
         /// <summary>
+        /// The application service provider
+        /// </summary>
+        public IServiceProvider Services { get; internal set; }
+        /// <summary>
         /// The HttpRequestMessage to be sent
         /// </summary>
         public HttpRequestMessage Request { get; internal set; }

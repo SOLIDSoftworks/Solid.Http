@@ -11,9 +11,4 @@
 <!--    <PackageReference Include="System.Net.Http" Version="4.3.2" />-->
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.0.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="RequestExtensions\" />
-    <Folder Include="Events\" />
-  </ItemGroup>
 </Project>

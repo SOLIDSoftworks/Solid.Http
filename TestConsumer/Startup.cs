@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SolidHttp.Abstractions;
 
 namespace TestConsumer
 {
@@ -26,8 +27,15 @@ namespace TestConsumer
         {
             services.AddMvc();
             services
-                .AddSolidHttp()
-                .AddJson();
+                .AddSolidHttpCore()
+                .AddJson()
+                .AddSolidHttpCoreOptions(options =>
+                {
+                    options.Events.OnRequestCreated += (sender, args) =>
+                    {
+                        var factory = args.Services.GetRequiredService<ISolidHttpClientFactory>();
+                    };
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +45,7 @@ namespace TestConsumer
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.ApplicationServices.GetRequiredService<ISolidHttpInitializer>().Initialize();
             app.UseMvc();
         }
     }

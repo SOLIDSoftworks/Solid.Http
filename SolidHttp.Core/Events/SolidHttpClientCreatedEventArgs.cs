@@ -10,6 +10,10 @@ namespace SolidHttp
     public class SolidHttpClientCreatedEventArgs : EventArgs
     {
         /// <summary>
+        /// The application service provider
+        /// </summary>
+        public IServiceProvider Services { get; internal set; }
+        /// <summary>
         /// The SolidHttpClient that was created
         /// </summary>
         public SolidHttpClient Client { get; internal set; }

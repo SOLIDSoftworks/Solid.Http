@@ -17,10 +17,10 @@ namespace SolidHttp
         /// <param name="setup">The setup</param>
         /// <param name="settings">Supplied JsonSerializerSettings</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static ISolidHttpSetup AddJson(this ISolidHttpSetup setup, JsonSerializerSettings settings)
+        public static ISolidHttpCoreBuilder AddJson(this ISolidHttpCoreBuilder setup, JsonSerializerSettings settings)
         {
             DefaultSerializerSettingsProvider.SetDefaultSerializerSettings(settings);
-            return setup.Configure(options =>
+            return setup.AddSolidHttpCoreOptions(options =>
             {
                 var deserializer = new JsonResponseDeserializerFactory(settings);
                 options.Deserializers.AddDeserializerFactory(deserializer, "application/json", "text/json", "text/javascript");
@@ -32,7 +32,7 @@ namespace SolidHttp
         /// </summary>
         /// <param name="setup">The setup</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static ISolidHttpSetup AddJson(this ISolidHttpSetup setup)
+        public static ISolidHttpCoreBuilder AddJson(this ISolidHttpCoreBuilder setup)
         {
             var settings = new JsonSerializerSettings();
             return setup.AddJson(settings);
