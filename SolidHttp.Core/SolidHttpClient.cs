@@ -20,7 +20,7 @@ namespace SolidHttp
         /// </summary>
         /// <param name="client">The inner HttpClient to be used</param>
         /// <param name="serializers">The deserializers supported by this SolidHttpClient</param>
-        public SolidHttpClient(HttpClient client, IDeserializerProvider deserializers, ISolidHttpEventInvoker events)
+        public SolidHttpClient(HttpClient client, IEnumerable<IDeserializer> deserializers, ISolidHttpEventInvoker events)
         {
             Events = events;
             InnerClient = client;
@@ -29,7 +29,7 @@ namespace SolidHttp
 
         internal ISolidHttpEventInvoker Events { get; private set; }
         internal HttpClient InnerClient { get; private set; }
-        internal IDeserializerProvider Deserializers { get; private set; }
+        internal IEnumerable<IDeserializer> Deserializers { get; private set; }
 
         /// <summary>
         /// Adds a property to the client that can be used in extensions methods

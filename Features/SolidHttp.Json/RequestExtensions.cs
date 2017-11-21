@@ -21,8 +21,8 @@ namespace SolidHttp
         /// <param name="settings">(Optional) JsonSerializerSettings to use to serialize the body object</param>
         /// <returns>SolidHttpRequest</returns>
         public static SolidHttpRequest WithJsonContent<T>(this SolidHttpRequest request, T body, JsonSerializerSettings settings = null)
-        {
-            var json = JsonConvert.SerializeObject(body, settings ?? DefaultSerializerSettingsProvider.DefaultSettings);
+        {            
+            var json = JsonConvert.SerializeObject(body, settings ?? request.GetJsonSerializerSettings());
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             return request.WithContent(content);
         }

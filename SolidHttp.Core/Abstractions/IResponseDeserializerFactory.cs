@@ -15,6 +15,5 @@ namespace SolidHttp.Abstractions
         /// <typeparam name="T">The type to deserialize to</typeparam>
         /// <returns>A deserializer which takes in HttpContent and returns a Task of type T</returns>
         Func<HttpContent, Task<T>> CreateDeserializer<T>();
-        //Func<T, string> CreateSerializer<T>();
     }
 }

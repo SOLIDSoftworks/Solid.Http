@@ -14,7 +14,7 @@ namespace SolidHttp.Factories
     internal class SolidHttpClientFactory : ISolidHttpClientFactory
     {
         private ISolidHttpEventInvoker _events;
-        private IDeserializerProvider _deserializers;
+        private IEnumerable<IDeserializer> _deserializers;
         private IConfiguration _configuration;
         private ISolidHttpInitializer _initializer;
         private IHttpClientCache _cache;
@@ -44,7 +44,7 @@ namespace SolidHttp.Factories
         /// <param name="events">The events to be triggered when a SolidHttpClient is created</param>
         /// <param name="deserializers">The deserializer provider for SolidHttp</param>
         /// <param name="configuration">The application configuration</param>
-        public SolidHttpClientFactory(IHttpClientCache cache, ISolidHttpEventInvoker events, IDeserializerProvider deserializers, ISolidHttpInitializer initializer, IConfiguration configuration = null)
+        public SolidHttpClientFactory(IHttpClientCache cache, ISolidHttpEventInvoker events, IEnumerable<IDeserializer> deserializers, ISolidHttpInitializer initializer, IConfiguration configuration = null)
         {
             _initializer = initializer;
             _cache = cache;

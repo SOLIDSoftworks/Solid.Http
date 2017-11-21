@@ -6,13 +6,9 @@ namespace SolidHttp.Abstractions
     /// </summary>
     public interface ISolidHttpOptions
     {
-        /// <summary>
-        /// The deserializer provider for SolidHttp
-        /// </summary>
-        IDeserializerProvider Deserializers { get; }
 
         /// <summary>
-        /// The events to be triggered when a SolidHttpClient is created
+        /// The global events to be triggered during SolidHttp events
         /// </summary>
         ISolidHttpEvents Events { get; }
     }

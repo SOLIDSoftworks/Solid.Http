@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SolidHttp.Abstractions;
+using SolidHttp.Json.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,18 +11,23 @@ namespace SolidHttp.Json
 {
     internal class JsonResponseDeserializerFactory : IResponseDeserializerFactory
     {
-        private JsonSerializerSettings _settings;
-
-        public JsonResponseDeserializerFactory(JsonSerializerSettings settings)
+        public JsonResponseDeserializerFactory(IJsonSerializerSettingsProvider provider)
         {
-            _settings = settings;
+            GetSettings = () => provider.GetJsonSerializerSettings();
         }
+        internal JsonResponseDeserializerFactory(JsonSerializerSettings settings)
+        {
+            GetSettings = () => settings;
+        }
+
+        private Func<JsonSerializerSettings> GetSettings { get; }
+
         public Func<HttpContent, Task<T>> CreateDeserializer<T>()
         {
             return async (content) =>
             {
                 var json = await content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<T>(json, _settings);
+                return JsonConvert.DeserializeObject<T>(json, GetSettings());
             };            
         }
     }

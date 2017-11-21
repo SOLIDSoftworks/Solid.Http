@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
@@ -74,10 +75,10 @@ namespace SolidHttp
 
             var mime = content?.Headers?.ContentType?.MediaType;
 
-            var deserialize = request.Client.Deserializers.GetDeserializer<T>(mime);
-            if (deserialize == null)
+            var deserializer = request.Client.Deserializers.FirstOrDefault(d => d.CanDeserialize(mime));
+            if (deserializer == null)
                 throw new InvalidOperationException($"Cannot deserialize {mime} response as {typeof(T).FullName}");
-            return await deserialize(content);
+            return await deserializer.DeserializeAsync<T>(content);
         }
 
         /// <summary>

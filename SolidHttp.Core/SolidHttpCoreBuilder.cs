@@ -3,7 +3,6 @@ using SolidHttp.Abstractions;
 using SolidHttp.Cache;
 using SolidHttp.Events;
 using SolidHttp.Factories;
-using SolidHttp.Providers;
 using SolidHttp.Setup;
 using System;
 using System.Collections.Generic;
@@ -43,7 +42,6 @@ namespace SolidHttp
             services.AddSingleton<ISolidHttpEventHandlerProvider>(events);
 
             services.AddSingleton<ISolidHttpInitializer, SolidHttpInitializer>();
-            services.AddSingleton<IDeserializerProvider, DeserializerProvider>();
 
             services.AddSingleton<IHttpClientCache, HttpClientCache>();
             services.AddTransient<IHttpClientFactory, TFactory>();
@@ -54,12 +52,14 @@ namespace SolidHttp
             services.AddSingleton<ISolidHttpOptions, SolidHttpOptions>();
         }
 
+        public IServiceCollection Services => _services;
+
         public ISolidHttpCoreBuilder AddSolidHttpCoreOptions(Action<ISolidHttpOptions> configure)
         {
             _services.AddSingleton(configure);
             return this;
         }
-
+        
         public ISolidHttpClientFactory Build()
         {
             if (_provider == null)
