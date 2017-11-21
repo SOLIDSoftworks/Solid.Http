@@ -9,7 +9,7 @@ namespace SolidHttp.Json
     /// <summary>
     /// Extension class to add Json support
     /// </summary>
-    public static class SolidHttpSetupExtensions
+    public static class SolidHttpBuilderExtensions
     {
         /// <summary>
         /// Adds json support using supplied settings

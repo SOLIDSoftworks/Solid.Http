@@ -81,7 +81,7 @@ namespace SolidHttp
             var request = new SolidHttpRequest(this, method, url, cancellationToken);
             Events.InvokeOnRequestCreated(this, request);
             if (OnRequestCreated != null)
-                OnRequestCreated(this, new SolidHttpRequestCreatedEventArgs { Request = request });
+                OnRequestCreated(this, Events.CreateArgs(request));
             return request;
         }
     }

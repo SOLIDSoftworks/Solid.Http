@@ -51,13 +51,13 @@ namespace SolidHttp
             {
                 Client.Events.InvokeOnRequest(this, BaseRequest);
                 if (OnRequest != null)
-                    OnRequest(this, new RequestEventArgs { Request = BaseRequest });
+                    OnRequest(this, Client.Events.CreateArgs(BaseRequest));
 
                 var response = await Client.InnerClient.SendAsync(BaseRequest, CancellationToken);
 
                 Client.Events.InvokeOnResponse(this, response);
                 if (OnResponse != null)
-                    OnResponse(this, new ResponseEventArgs { Response = response });
+                    OnResponse(this, Client.Events.CreateArgs(response));
                 return response;
             });
             return waiter(this).GetAwaiter();
