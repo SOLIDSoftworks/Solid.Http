@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Features\SolidHttp.Json\SolidHttp.Json.csproj" />
-    <ProjectReference Include="..\SolidHttp.Core\SolidHttp.Core.csproj" />
+    <ProjectReference Include="..\SolidHttp\SolidHttp.csproj" />
   </ItemGroup>
 </Project>

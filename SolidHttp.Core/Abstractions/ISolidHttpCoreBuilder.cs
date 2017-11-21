@@ -6,7 +6,7 @@ using System.Text;
 namespace SolidHttp.Abstractions
 {
     /// <summary>
-    /// The ISolidHttpSetup interface
+    /// The ISolidHttpBuilder interface
     /// </summary>
     public interface ISolidHttpCoreBuilder
     {

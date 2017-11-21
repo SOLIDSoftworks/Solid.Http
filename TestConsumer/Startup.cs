@@ -28,9 +28,8 @@ namespace TestConsumer
         {
             services.AddMvc();
             services
-                .AddSolidHttpCore()
-                .AddJson()
-                .AddSolidHttpCoreOptions(options =>
+                .AddSolidHttp()
+                .AddSolidHttpOptions(options =>
                 {
                     options.Events.OnRequestCreated += (sender, args) =>
                     {
