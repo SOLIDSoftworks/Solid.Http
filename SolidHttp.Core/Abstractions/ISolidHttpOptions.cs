@@ -1,5 +1,5 @@
 ﻿using System;
-namespace SolidHttp
+namespace SolidHttp.Abstractions
 {
     /// <summary>
     /// The ISolidHttpOptions interface

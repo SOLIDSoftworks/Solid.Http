@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace SolidHttp
+namespace SolidHttp.Events
 {
     internal class SolidHttpEvents : ISolidHttpEvents, ISolidHttpEventHandlerProvider
     {

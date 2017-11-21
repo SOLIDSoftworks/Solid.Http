@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SolidHttp.Abstractions;
+using SolidHttp.Events;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;

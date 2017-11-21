@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
+using SolidHttp.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp
+namespace SolidHttp.Json
 {
     /// <summary>
     /// Extension class to add Json support

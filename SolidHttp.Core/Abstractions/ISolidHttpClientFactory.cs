@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp
+namespace SolidHttp.Abstractions
 {
     /// <summary>
     /// The ISolidHttpClientFactory interface

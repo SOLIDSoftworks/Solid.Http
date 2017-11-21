@@ -1,9 +1,10 @@
-﻿using System;
+﻿using SolidHttp.Abstractions;
+using System;
 using System.Collections.Concurrent;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace SolidHttp
+namespace SolidHttp.Providers
 {
     /// <summary>
     /// The DeserializerProvider

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SolidHttp.Abstractions;
+using System;
 using System.Collections.Generic;
 
-namespace SolidHttp
+namespace SolidHttp.Setup
 {
     internal class SolidHttpOptions : ISolidHttpOptions
     {

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SolidHttp.Abstractions;
+using System;
 using System.Net.Http;
 
-namespace SolidHttp
+namespace SolidHttp.Factories
 {
     /// <summary>
     /// Simple http client factory.

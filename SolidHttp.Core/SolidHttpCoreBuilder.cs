@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SolidHttp.Abstractions;
+using SolidHttp.Cache;
 using SolidHttp.Events;
+using SolidHttp.Factories;
+using SolidHttp.Providers;
 using SolidHttp.Setup;
 using System;
 using System.Collections.Generic;

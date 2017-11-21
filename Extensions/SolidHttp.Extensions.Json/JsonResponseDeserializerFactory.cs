@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
+using SolidHttp.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolidHttp
+namespace SolidHttp.Json
 {
     internal class JsonResponseDeserializerFactory : IResponseDeserializerFactory
     {

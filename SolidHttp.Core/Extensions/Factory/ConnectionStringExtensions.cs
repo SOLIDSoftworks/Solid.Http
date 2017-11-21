@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using SolidHttp.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
