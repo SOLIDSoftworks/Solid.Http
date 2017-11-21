@@ -10,13 +10,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{FC326D18-661F-4A13-8428-828A0E57C31A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{FC326D18-661F-4A13-8428-828A0E57C31A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsumer", "TestConsumer\TestConsumer.csproj", "{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsumer", "TestConsumer\TestConsumer.csproj", "{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Core", "SolidHttp.Core\SolidHttp.Core.csproj", "{BF3E6EF4-CD2D-408B-A47F-6C30FAAB981D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolidHttp.Core", "SolidHttp.Core\SolidHttp.Core.csproj", "{BF3E6EF4-CD2D-408B-A47F-6C30FAAB981D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidHttp.Extensions.Json", "Extensions\SolidHttp.Extensions.Json\SolidHttp.Extensions.Json.csproj", "{58A7C860-C2C1-4801-9441-86FE720EC471}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolidHttp.Json", "Features\SolidHttp.Json\SolidHttp.Json.csproj", "{58A7C860-C2C1-4801-9441-86FE720EC471}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
