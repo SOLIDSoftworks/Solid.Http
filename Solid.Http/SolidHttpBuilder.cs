@@ -15,6 +15,11 @@ namespace Solid.Http
         {
         }
 
+        public SolidHttpBuilder(IServiceCollection services)
+            : this(services.AddSolidHttpCore<TFactory>())
+        {
+        }
+
         public SolidHttpBuilder(ISolidHttpCoreBuilder core) 
             : base(core)
         {
@@ -27,6 +32,11 @@ namespace Solid.Http
 
         public SolidHttpBuilder()
             : this(new SolidHttpCoreBuilder())
+        {
+        }
+
+        public SolidHttpBuilder(IServiceCollection services)
+            : this(services.AddSolidHttpCore())
         {
         }
 
