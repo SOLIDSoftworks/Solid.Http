@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>SolidHttp.Json</RootNamespace>
-    <AssemblyName>SolidHttp.Json</AssemblyName>
+    <RootNamespace>Solid.Http.Json</RootNamespace>
+    <AssemblyName>Solid.Http.Json</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SolidHttp.Abstractions;
-using SolidHttp.Serialization;
+using Solid.Http.Abstractions;
+using Solid.Http.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     public static class SolidHttpCoreBuilderExtensions
     {

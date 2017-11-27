@@ -1,11 +1,11 @@
-﻿using SolidHttp.Events;
+﻿using Solid.Http.Events;
 using System;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     /// <summary>
     /// A SolidHttpRequest that is used to perform http requests. This class is designed be extended using extension methods.

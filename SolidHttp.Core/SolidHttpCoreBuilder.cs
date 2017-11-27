@@ -1,14 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SolidHttp.Abstractions;
-using SolidHttp.Cache;
-using SolidHttp.Events;
-using SolidHttp.Factories;
-using SolidHttp.Setup;
+using Solid.Http.Abstractions;
+using Solid.Http.Cache;
+using Solid.Http.Events;
+using Solid.Http.Factories;
+using Solid.Http.Setup;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     public class SolidHttpCoreBuilder : SolidHttpCoreBuilder<SimpleHttpClientFactory>
     {

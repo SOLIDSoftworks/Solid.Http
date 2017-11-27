@@ -2,9 +2,9 @@
 using System.Net.Http;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
-using SolidHttp.Abstractions;
+using Solid.Http.Abstractions;
 
-namespace SolidHttp.Cache
+namespace Solid.Http.Cache
 {
     internal class HttpClientCache : IHttpClientCache
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SolidHttp.Abstractions;
-using SolidHttp.Json;
+using Solid.Http.Abstractions;
+using Solid.Http.Json;
 using System;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     public static class ServiceCollectionExtensions
     {

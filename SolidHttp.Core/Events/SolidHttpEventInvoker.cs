@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SolidHttp.Abstractions;
+using Solid.Http.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace SolidHttp.Events
+namespace Solid.Http.Events
 {
     internal class SolidHttpEventInvoker : ISolidHttpEventInvoker
     {

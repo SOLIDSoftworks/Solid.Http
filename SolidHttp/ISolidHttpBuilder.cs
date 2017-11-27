@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using SolidHttp.Abstractions;
+using Solid.Http.Abstractions;
 using System;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     public interface ISolidHttpBuilder
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace SolidHttp.Json
+namespace Solid.Http.Json
 {
     internal static class SolidHttpRequestExtensions
     {

@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace SolidHttp.Abstractions
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// The ISolidHttpSerializer interface

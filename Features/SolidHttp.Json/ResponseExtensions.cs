@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
-using SolidHttp.Json;
+using Solid.Http.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     /// <summary>
     /// Response extensions for json responses

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using SolidHttp;
+using Solid.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Diagnostics;
-using SolidHttp.Abstractions;
+using Solid.Http.Abstractions;
 
 namespace TestConsumer.Controllers
 {

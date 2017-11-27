@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp.Events
+namespace Solid.Http.Events
 {
     /// <summary>
     /// The event arguments used when a SolidHttpRequest is created

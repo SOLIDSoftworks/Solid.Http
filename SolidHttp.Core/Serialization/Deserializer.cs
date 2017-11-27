@@ -1,11 +1,11 @@
-﻿using SolidHttp.Abstractions;
+﻿using Solid.Http.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SolidHttp.Serialization
+namespace Solid.Http.Serialization
 {
     internal class Deserializer : Deserializer<IResponseDeserializerFactory>
     {

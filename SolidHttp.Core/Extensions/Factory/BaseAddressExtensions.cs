@@ -1,10 +1,10 @@
-﻿using SolidHttp.Abstractions;
-using SolidHttp.Events;
+﻿using Solid.Http.Abstractions;
+using Solid.Http.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     /// <summary>
     /// Extensions to create a SolidHttpClient with a base address

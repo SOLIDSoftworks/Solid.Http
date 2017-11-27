@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
-using SolidHttp.Json.Abstraction;
+using Solid.Http.Json.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp.Json.Providers
+namespace Solid.Http.Json.Providers
 {
     internal class JsonSerializerSettingsProvider : IJsonSerializerSettingsProvider
     {

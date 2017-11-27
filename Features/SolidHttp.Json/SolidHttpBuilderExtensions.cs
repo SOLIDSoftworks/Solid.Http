@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using SolidHttp.Abstractions;
-using SolidHttp.Json.Abstraction;
-using SolidHttp.Json.Providers;
+using Solid.Http.Abstractions;
+using Solid.Http.Json.Abstraction;
+using Solid.Http.Json.Providers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp.Json
+namespace Solid.Http.Json
 {
     /// <summary>
     /// Extension class to add Json support

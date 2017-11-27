@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Linq;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     /// <summary>
     /// HeaderExtensions

@@ -1,10 +1,10 @@
-﻿using SolidHttp.Events;
+﻿using Solid.Http.Events;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace SolidHttp.Abstractions
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// The ISolidHttpClientFactoryEvents interface

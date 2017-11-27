@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp.Abstractions
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// The ISolidHttpBuilder interface

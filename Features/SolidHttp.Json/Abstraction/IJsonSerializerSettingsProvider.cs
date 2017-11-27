@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp.Json.Abstraction
+namespace Solid.Http.Json.Abstraction
 {
     internal interface IJsonSerializerSettingsProvider
     {

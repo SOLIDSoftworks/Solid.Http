@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
-using SolidHttp.Abstractions;
+using Solid.Http.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     /// <summary>
     /// Extensions to create a SolidHttpClient using a connection string

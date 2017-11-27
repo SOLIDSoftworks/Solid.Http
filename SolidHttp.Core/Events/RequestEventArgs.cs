@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace SolidHttp.Events
+namespace Solid.Http.Events
 {
     /// <summary>
     /// The event arguments used before an HttpRequestMessage is sent

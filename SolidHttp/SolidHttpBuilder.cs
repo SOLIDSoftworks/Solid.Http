@@ -1,10 +1,10 @@
-﻿using SolidHttp.Abstractions;
+﻿using Solid.Http.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     internal class SolidHttpBuilder : ISolidHttpBuilder
     {

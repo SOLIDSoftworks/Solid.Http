@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
-using SolidHttp.Abstractions;
+using Solid.Http.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 
-namespace SolidHttp.Factories
+namespace Solid.Http.Factories
 {
     /// <summary>
     /// The SolidHttpClientFactory

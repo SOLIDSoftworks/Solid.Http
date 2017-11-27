@@ -1,12 +1,12 @@
-﻿using SolidHttp.Abstractions;
-using SolidHttp.Events;
+﻿using Solid.Http.Abstractions;
+using Solid.Http.Events;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     /// <summary>
     /// A SolidHttpClient that is used to perform create SolidHttpRequests. This class is designed be extended using extension methods.

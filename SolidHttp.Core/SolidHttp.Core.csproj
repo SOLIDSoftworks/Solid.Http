@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>SolidHttp.Core</AssemblyName>
-    <RootNamespace>SolidHttp</RootNamespace>
+    <AssemblyName>Solid.Http.Core</AssemblyName>
+    <RootNamespace>Solid.Http</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

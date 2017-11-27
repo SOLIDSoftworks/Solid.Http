@@ -1,9 +1,9 @@
-﻿using SolidHttp.Abstractions;
+﻿using Solid.Http.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SolidHttp.Setup
+namespace Solid.Http.Setup
 {
     internal class SolidHttpInitializer : ISolidHttpInitializer
     {

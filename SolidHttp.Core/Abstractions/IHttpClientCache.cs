@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace SolidHttp.Abstractions
+namespace Solid.Http.Abstractions
 {
     internal interface IHttpClientCache
     {

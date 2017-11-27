@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 
-namespace SolidHttp
+namespace Solid.Http
 {
     /// <summary>
     /// BodyExtensions
