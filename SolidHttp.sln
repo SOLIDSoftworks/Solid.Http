@@ -14,11 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{FC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestConsumer", "TestConsumer\TestConsumer.csproj", "{E25113C2-2DAD-4FA2-BDCF-34C26CD2418C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Core", "SolidHttp.Core\Solid.Http.Core.csproj", "{BF3E6EF4-CD2D-408B-A47F-6C30FAAB981D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Core", "Solid.Http.Core\Solid.Http.Core.csproj", "{BF3E6EF4-CD2D-408B-A47F-6C30FAAB981D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Json", "Features\SolidHttp.Json\Solid.Http.Json.csproj", "{58A7C860-C2C1-4801-9441-86FE720EC471}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Json", "Features\Solid.Http.Json\Solid.Http.Json.csproj", "{58A7C860-C2C1-4801-9441-86FE720EC471}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http", "SolidHttp\Solid.Http.csproj", "{701763BA-A30D-4081-9532-BAC71EBF0C9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http", "Solid.Http\Solid.Http.csproj", "{701763BA-A30D-4081-9532-BAC71EBF0C9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
