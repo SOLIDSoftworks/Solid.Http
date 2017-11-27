@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Features\SolidHttp.Json\SolidHttp.Json.csproj" />
-    <ProjectReference Include="..\SolidHttp.Core\SolidHttp.Core.csproj" />
+    <ProjectReference Include="..\Features\SolidHttp.Json\Solid.Http.Json.csproj" />
+    <ProjectReference Include="..\SolidHttp.Core\Solid.Http.Core.csproj" />
   </ItemGroup>
 
 </Project>
