@@ -22,65 +22,40 @@ namespace Solid.Http
         }
     }
 
-    public class SolidHttpCoreBuilder<TFactory> : ISolidHttpCoreBuilder, IDisposable
+    public class SolidHttpCoreBuilder<TFactory> : SolidHttpBuilderBase, ISolidHttpCoreBuilder, IDisposable
         where TFactory : class, IHttpClientFactory
     {
-        private IServiceCollection _services;
-        private ServiceProvider _provider;
-        private IServiceScope _scope;
-
         public SolidHttpCoreBuilder()
             : this(new ServiceCollection())
         {
         }
         public SolidHttpCoreBuilder(IServiceCollection services)
+            : base(services)
         {
-            _services = services;
-
             var events = new SolidHttpEvents();
-            services.AddSingleton<ISolidHttpEvents>(events);
-            services.AddSingleton<ISolidHttpEventHandlerProvider>(events);
+            Services.AddSingleton<ISolidHttpEvents>(events);
+            Services.AddSingleton<ISolidHttpEventHandlerProvider>(events);
 
-            services.AddSingleton<ISolidHttpInitializer, SolidHttpInitializer>();
+            Services.AddSingleton<ISolidHttpInitializer, SolidHttpInitializer>();
 
-            services.AddSingleton<IHttpClientCache, HttpClientCache>();
-            services.AddTransient<IHttpClientFactory, TFactory>();
+            Services.AddSingleton<IHttpClientCache, HttpClientCache>();
+            Services.AddTransient<IHttpClientFactory, TFactory>();
 
-            services.AddScoped<ISolidHttpEventInvoker, SolidHttpEventInvoker>();
-            services.AddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
+            Services.AddScoped<ISolidHttpEventInvoker, SolidHttpEventInvoker>();
+            Services.AddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
 
-            services.AddSingleton<ISolidHttpOptions, SolidHttpOptions>();
+            Services.AddSingleton<ISolidHttpOptions, SolidHttpOptions>();
         }
 
-        public IServiceCollection Services => _services;
-
-        public ISolidHttpCoreBuilder AddSolidHttpCoreOptions(Action<ISolidHttpOptions> configure)
+        public SolidHttpCoreBuilder<TFactory> AddSolidHttpCoreOptions(Action<ISolidHttpOptions> configure)
         {
-            _services.AddSingleton(configure);
+            Services.AddSingleton(configure);
             return this;
         }
-        
-        public ISolidHttpClientFactory Build()
+
+        ISolidHttpCoreBuilder ISolidHttpCoreBuilder.AddSolidHttpCoreOptions(Action<ISolidHttpOptions> configure)
         {
-            if (_provider == null)
-                _provider = _services.BuildServiceProvider();
-
-            var initializer = _provider.GetRequiredService<ISolidHttpInitializer>();
-            initializer.Initialize();
-
-            if (_scope != null)
-                _scope.Dispose();
-            _scope = _provider.CreateScope();
-            return _scope.ServiceProvider.GetRequiredService<ISolidHttpClientFactory>();
-        }
-
-        public void Dispose()
-        {
-            if (_provider != null)
-                _provider.Dispose();
-
-            if (_scope != null)
-                _scope.Dispose();
+            return AddSolidHttpCoreOptions(configure);
         }
     }
 }
