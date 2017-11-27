@@ -17,6 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SolidHttp\Solid.Http.csproj" />
+    <ProjectReference Include="..\Solid.Http\Solid.Http.csproj" />
   </ItemGroup>
 </Project>
