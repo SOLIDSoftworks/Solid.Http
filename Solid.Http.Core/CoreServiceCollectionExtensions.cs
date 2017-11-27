@@ -58,7 +58,7 @@ namespace Solid.Http
             return services.AddSolidHttpCore<SimpleHttpClientFactory>(configure);
         }
 
-        public static IServiceCollection AddDeserializer(this IServiceCollection services, IResponseDeserializerFactory factory, string mimeType, params string[] more)
+        public static IServiceCollection AddSolidHttpDeserializer(this IServiceCollection services, IResponseDeserializerFactory factory, string mimeType, params string[] more)
         {
             services.AddSingleton<IDeserializer>(new Deserializer(mimeType, factory));
             foreach (var mime in more)
@@ -66,7 +66,7 @@ namespace Solid.Http
             return services;
         }
 
-        public static IServiceCollection AddDeserializer<TFactory>(this IServiceCollection services, string mimeType, params string[] more)
+        public static IServiceCollection AddSolidHttpDeserializer<TFactory>(this IServiceCollection services, string mimeType, params string[] more)
             where TFactory : class, IResponseDeserializerFactory
         {
             services.AddSingleton<TFactory>();

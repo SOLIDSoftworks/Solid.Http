@@ -21,13 +21,14 @@ namespace Solid.Http.Json
         /// <param name="builder">The setup</param>
         /// <param name="settings">Supplied JsonSerializerSettings</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static ISolidHttpCoreBuilder AddJson(this ISolidHttpCoreBuilder builder, JsonSerializerSettings settings)
+        public static TBuilder AddJson<TBuilder>(this TBuilder builder, JsonSerializerSettings settings)
+            where TBuilder : class, ISolidHttpCoreBuilder
         {
             var provider = new JsonSerializerSettingsProvider(settings);
             builder.Services.AddSingleton<IJsonSerializerSettingsProvider>(provider);
+            builder.Services.AddSolidHttpDeserializer<JsonResponseDeserializerFactory>("application/json", "text/json", "text/javascript");
 
             return builder
-                .AddDeserializer<JsonResponseDeserializerFactory>("application/json", "text/json", "text/javascript")
                 .AddSolidHttpCoreOptions(options =>
                 {
                     options.Events.OnRequestCreated += (sender, args) =>
@@ -35,18 +36,19 @@ namespace Solid.Http.Json
                         var p = args.Services.GetRequiredService<IJsonSerializerSettingsProvider>();
                         args.Request.BaseRequest.Properties.Add("JsonSerializerSettings", p.GetJsonSerializerSettings());
                     };
-                });
+                }) as TBuilder;
         }
 
         /// <summary>
         /// Adds json support using default settings
         /// </summary>
-        /// <param name="setup">The setup</param>
+        /// <param name="builder">The builder</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static ISolidHttpCoreBuilder AddJson(this ISolidHttpCoreBuilder setup)
+        public static TBuilder AddJson<TBuilder>(this TBuilder builder)
+            where TBuilder : class, ISolidHttpCoreBuilder
         {
             var settings = new JsonSerializerSettings();
-            return setup.AddJson(settings);
+            return builder.AddJson(settings);
         }
     }
 }
