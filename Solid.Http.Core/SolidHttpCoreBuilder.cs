@@ -36,8 +36,6 @@ namespace Solid.Http
             Services.AddSingleton<ISolidHttpEvents>(events);
             Services.AddSingleton<ISolidHttpEventHandlerProvider>(events);
 
-            Services.AddSingleton<ISolidHttpInitializer, SolidHttpInitializer>();
-
             Services.AddSingleton<IHttpClientCache, HttpClientCache>();
             Services.AddTransient<IHttpClientFactory, TFactory>();
 

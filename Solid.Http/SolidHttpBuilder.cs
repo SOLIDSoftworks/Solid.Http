@@ -55,7 +55,8 @@ namespace Solid.Http
 
         ISolidHttpBuilder ISolidHttpBuilder.AddSolidHttpOptions(Action<ISolidHttpOptions> configure)
         {
-            throw new NotImplementedException();
+            _core.AddSolidHttpCoreOptions(configure);
+            return this;
         }
     }
 }

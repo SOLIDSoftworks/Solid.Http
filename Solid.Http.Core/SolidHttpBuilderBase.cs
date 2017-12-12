@@ -23,9 +23,6 @@ namespace Solid.Http
             if (_provider == null)
                 _provider = _services.BuildServiceProvider();
 
-            var initializer = _provider.GetRequiredService<ISolidHttpInitializer>();
-            initializer.Initialize();
-
             if (_scope != null)
                 _scope.Dispose();
             _scope = _provider.CreateScope();

@@ -20,6 +20,7 @@ namespace Solid.Http.Events
             add
             {
                 var key = value.Method.Name;
+                if (_clientCreatedEventHandlers.ContainsKey(key)) return;
                 _clientCreatedEventHandlers.Add(key, (sender, args) => value(sender, args));
             }
             remove
@@ -35,6 +36,7 @@ namespace Solid.Http.Events
             add
             {
                 var key = value.Method.Name;
+                if (_requestCreatedEventHandlers.ContainsKey(key)) return;
                 _requestCreatedEventHandlers.Add(key, (sender, args) => value(sender, args));
             }
             remove
@@ -49,6 +51,7 @@ namespace Solid.Http.Events
             add
             {
                 var key = value.Method.Name;
+                if (_requestEventHandlers.ContainsKey(key)) return;
                 _requestEventHandlers.Add(key, (sender, args) => value(sender, args));
             }
             remove
@@ -63,6 +66,7 @@ namespace Solid.Http.Events
             add
             {
                 var key = value.Method.Name;
+                if (_responseEventHandlers.ContainsKey(key)) return;
                 _responseEventHandlers.Add(key, (sender, args) => value(sender, args));
             }
             remove

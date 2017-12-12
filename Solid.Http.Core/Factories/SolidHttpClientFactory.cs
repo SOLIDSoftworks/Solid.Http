@@ -16,7 +16,6 @@ namespace Solid.Http.Factories
         private ISolidHttpEventInvoker _events;
         private IEnumerable<IDeserializer> _deserializers;
         private IConfiguration _configuration;
-        private ISolidHttpInitializer _initializer;
         private IHttpClientCache _cache;
 
         /// <summary>
@@ -44,9 +43,13 @@ namespace Solid.Http.Factories
         /// <param name="events">The events to be triggered when a SolidHttpClient is created</param>
         /// <param name="deserializers">The deserializer provider for SolidHttp</param>
         /// <param name="configuration">The application configuration</param>
-        public SolidHttpClientFactory(IHttpClientCache cache, ISolidHttpEventInvoker events, IEnumerable<IDeserializer> deserializers, ISolidHttpInitializer initializer, IConfiguration configuration = null)
+        public SolidHttpClientFactory(
+            IHttpClientCache cache, 
+            ISolidHttpEventInvoker events, 
+            IEnumerable<IDeserializer> deserializers, 
+            ISolidHttpOptions options, // this is only added so that the ServicePRovider initializes it
+            IConfiguration configuration = null)
         {
-            _initializer = initializer;
             _cache = cache;
             _events = events;
             _deserializers = deserializers;
@@ -59,7 +62,6 @@ namespace Solid.Http.Factories
         /// <returns>SolidHttpClient</returns>
         public SolidHttpClient Create()
         {
-            AssertInitialized();
             return CreateSolidHttpClient(_cache.Get());
         }
 
@@ -80,16 +82,6 @@ namespace Solid.Http.Factories
             var client = new SolidHttpClient(inner, _deserializers, _events);
             _events.InvokeOnClientCreated(this, client);
             return client;
-        }
-
-        private void AssertInitialized()
-        {
-            if (_initializer.IsInitialized) return;
-
-            var message =
-                "SolidHttp hasn't been initialized." + Environment.NewLine +
-                "Call ISolidHttpInitializer.Initialize() to initialize.";
-            throw new InvalidOperationException(message);
         }
     }
 }

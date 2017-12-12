@@ -17,8 +17,7 @@ namespace Solid.Http
             where TFactory : class, IHttpClientFactory
         {
             var core = services
-                .AddSolidHttpCore<TFactory>()
-                .AddJson();
+                .AddSolidHttpCore<TFactory>();
             return new SolidHttpBuilder(core);
         }
 
@@ -30,8 +29,7 @@ namespace Solid.Http
         public static ISolidHttpBuilder AddSolidHttp(this IServiceCollection services)
         {
             var core = services
-                .AddSolidHttpCore()
-                .AddJson();
+                .AddSolidHttpCore();
             return new SolidHttpBuilder(core);
         }
 
@@ -45,8 +43,7 @@ namespace Solid.Http
             where TFactory : class, IHttpClientFactory
         {
             var core = services
-                .AddSolidHttpCore<TFactory>(configure)
-                .AddJson();
+                .AddSolidHttpCore<TFactory>(configure);
             return new SolidHttpBuilder(core);
         }
 
@@ -58,8 +55,7 @@ namespace Solid.Http
         public static ISolidHttpBuilder AddSolidHttp(this IServiceCollection services, Action<ISolidHttpOptions> configure)
         {
             var core = services
-                .AddSolidHttpCore(configure)
-                .AddJson();
+                .AddSolidHttpCore(configure);
             return new SolidHttpBuilder(core);
         }
     }

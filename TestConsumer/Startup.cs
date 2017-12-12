@@ -45,7 +45,6 @@ namespace TestConsumer
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.ApplicationServices.GetRequiredService<ISolidHttpInitializer>().Initialize();
             app.UseMvc();
         }
     }
