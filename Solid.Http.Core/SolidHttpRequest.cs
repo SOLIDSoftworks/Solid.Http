@@ -27,6 +27,11 @@ namespace Solid.Http
         public HttpRequestMessage BaseRequest { get; private set; }
 
         /// <summary>
+        /// The response
+        /// </summary>
+        public HttpResponseMessage Response { get; private set; }
+
+        /// <summary>
         /// The cancellation token for the request
         /// </summary>
         public CancellationToken CancellationToken { get; private set; }
