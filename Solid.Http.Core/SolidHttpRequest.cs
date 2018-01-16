@@ -36,16 +36,30 @@ namespace Solid.Http
         /// </summary>
         public CancellationToken CancellationToken { get; private set; }
 
+
         /// <summary>
         /// The event triggered before an http request is sent
         /// </summary>
         public event EventHandler<RequestEventArgs> OnRequest;
 
+        private event EventHandler<ResponseEventArgs> _onResponse;
         /// <summary>
         /// The event triggered after an http response is received
         /// </summary>
-        public event EventHandler<ResponseEventArgs> OnResponse;
-        
+        public event EventHandler<ResponseEventArgs> OnResponse
+        {
+            add
+            {                
+                _onResponse += value;
+                if (Response != null)
+                    value(this, Client.Events.CreateArgs(Response));
+            }
+            remove
+            {
+                _onResponse -= value;
+            }
+        }
+
         /// <summary>
         /// The awaiter that enables a SolidHttpRequest to be awaited
         /// </summary>
@@ -58,12 +72,12 @@ namespace Solid.Http
                 if (OnRequest != null)
                     OnRequest(this, Client.Events.CreateArgs(BaseRequest));
 
-                var response = await Client.InnerClient.SendAsync(BaseRequest, CancellationToken);
+                Response = await Client.InnerClient.SendAsync(BaseRequest, CancellationToken);
 
-                Client.Events.InvokeOnResponse(this, response);
-                if (OnResponse != null)
-                    OnResponse(this, Client.Events.CreateArgs(response));
-                return response;
+                Client.Events.InvokeOnResponse(this, Response);
+                if (_onResponse != null)
+                    _onResponse(this, Client.Events.CreateArgs(Response));
+                return Response;
             });
             return waiter(this).GetAwaiter();
         }
