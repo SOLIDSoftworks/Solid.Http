@@ -68,15 +68,18 @@ namespace Solid.Http
         {
             Func<SolidHttpRequest, Task<HttpResponseMessage>> waiter = (async r =>
             {
-                Client.Events.InvokeOnRequest(this, BaseRequest);
-                if (OnRequest != null)
-                    OnRequest(this, Client.Events.CreateArgs(BaseRequest));
+                if (Response == null)
+                {
+                    Client.Events.InvokeOnRequest(this, BaseRequest);
+                    if (OnRequest != null)
+                        OnRequest(this, Client.Events.CreateArgs(BaseRequest));
 
-                Response = await Client.InnerClient.SendAsync(BaseRequest, CancellationToken);
+                    Response = await Client.InnerClient.SendAsync(BaseRequest, CancellationToken);
 
-                Client.Events.InvokeOnResponse(this, Response);
-                if (_onResponse != null)
-                    _onResponse(this, Client.Events.CreateArgs(Response));
+                    Client.Events.InvokeOnResponse(this, Response);
+                    if (_onResponse != null)
+                        _onResponse(this, Client.Events.CreateArgs(Response));
+                }
                 return Response;
             });
             return waiter(this).GetAwaiter();
