@@ -6,5 +6,6 @@ namespace Solid.Http.Abstractions
     internal interface IHttpClientCache
     {
         HttpClient Get();
+        void Clear();
     }
 }

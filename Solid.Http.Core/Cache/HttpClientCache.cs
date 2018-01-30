@@ -6,7 +6,7 @@ using Solid.Http.Abstractions;
 
 namespace Solid.Http.Cache
 {
-    internal class HttpClientCache : IHttpClientCache
+    internal class HttpClientCache : IHttpClientCache, IDisposable
     {
         private IServiceProvider _serviceProvider;
         private Lazy<HttpClient> _lazyClient;
@@ -14,12 +14,23 @@ namespace Solid.Http.Cache
         public HttpClientCache(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-            _lazyClient = new Lazy<HttpClient>(Create, LazyThreadSafetyMode.ExecutionAndPublication);
+            InitializeLazyClient();
         }
 
         public HttpClient Get()
         {
             return _lazyClient.Value;
+        }
+
+        public void Clear()
+        {
+            DisposeLazyClient();
+            InitializeLazyClient();
+        }
+
+        public void Dispose()
+        {
+            DisposeLazyClient();
         }
 
         private HttpClient Create()
@@ -29,5 +40,15 @@ namespace Solid.Http.Cache
             return client;
         }
 
+        private void InitializeLazyClient()
+        {
+            _lazyClient = new Lazy<HttpClient>(Create, LazyThreadSafetyMode.ExecutionAndPublication);
+        }
+
+        private void DisposeLazyClient()
+        {
+            if (_lazyClient.IsValueCreated)
+                _lazyClient.Value.Dispose();
+        }
     }
 }
