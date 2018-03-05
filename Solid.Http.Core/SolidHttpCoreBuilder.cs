@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Solid.Http.Abstractions;
 using Solid.Http.Cache;
 using Solid.Http.Events;
@@ -33,16 +34,16 @@ namespace Solid.Http
             : base(services)
         {
             var events = new SolidHttpEvents();
-            Services.AddSingleton<ISolidHttpEvents>(events);
-            Services.AddSingleton<ISolidHttpEventHandlerProvider>(events);
+            Services.TryAddSingleton<ISolidHttpEvents>(events);
+            Services.TryAddSingleton<ISolidHttpEventHandlerProvider>(events);
 
-            Services.AddSingleton<IHttpClientCache, HttpClientCache>();
-            Services.AddTransient<IHttpClientFactory, TFactory>();
+            Services.TryAddSingleton<IHttpClientCache, HttpClientCache>();
+            Services.TryAddTransient<IHttpClientFactory, TFactory>();
 
-            Services.AddScoped<ISolidHttpEventInvoker, SolidHttpEventInvoker>();
-            Services.AddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
+            Services.TryAddScoped<ISolidHttpEventInvoker, SolidHttpEventInvoker>();
+            Services.TryAddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
 
-            Services.AddSingleton<ISolidHttpOptions, SolidHttpOptions>();
+            Services.TryAddSingleton<ISolidHttpOptions, SolidHttpOptions>();
         }
 
         public SolidHttpCoreBuilder<TFactory> AddSolidHttpCoreOptions(Action<ISolidHttpOptions> configure)
