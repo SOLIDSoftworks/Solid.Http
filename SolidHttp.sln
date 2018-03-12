@@ -22,7 +22,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http", "Solid.Http\So
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{EF3A369E-E95C-43BC-A2A4-D229C4B5FD4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Xml", "Solid.Http.Xml\Solid.Http.Xml.csproj", "{6E542E89-8E5D-4B28-B088-0AE156A2BCB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Xml", "Extensions\Solid.Http.Xml\Solid.Http.Xml.csproj", "{6E542E89-8E5D-4B28-B088-0AE156A2BCB2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
