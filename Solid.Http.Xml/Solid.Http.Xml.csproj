@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Solid.Http.Core\Solid.Http.Core.csproj" />
+    <ProjectReference Include="..\Solid.Http\Solid.Http.csproj" />
+  </ItemGroup>
+
+</Project>
