@@ -72,7 +72,7 @@ namespace Solid.Http
             services.AddSingleton<TFactory>();
             services.AddSingleton<IDeserializer>(p => new Deserializer<TFactory>(mimeType, p.GetRequiredService<TFactory>()));
             foreach (var mime in more)
-                services.AddSingleton<IDeserializer>(p => new Deserializer<TFactory>(mimeType, p.GetRequiredService<TFactory>()));
+                services.AddSingleton<IDeserializer>(p => new Deserializer<TFactory>(mime, p.GetRequiredService<TFactory>()));
             return services;
         }
     }
