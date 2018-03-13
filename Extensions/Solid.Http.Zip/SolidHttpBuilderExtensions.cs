@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Solid.Http.Abstractions;
 using Solid.Http.Zip.Abstraction;
 using Solid.Http.Zip.Providers;
 using System;
@@ -17,14 +18,29 @@ namespace Solid.Http.Zip
         /// <param name="builder">The setup</param>
         /// <param name="settings">Supplied XmlSerializerSettings</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static TBuilder AddZip<TBuilder>(this TBuilder builder, ZipArchiveMode mode = ZipArchiveMode.Read)
-            where TBuilder : class, ISolidHttpBuilder
+        public static ISolidHttpBuilder AddZip(this ISolidHttpBuilder builder, ZipArchiveMode mode = ZipArchiveMode.Read)
         {
             var provider = new ZipArchiveSerializerSettingsProvider(mode);
             builder.Services.AddSingleton<IZipSerializerSettingsProvider>(provider);
             builder.Services.AddSolidHttpDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", "application/octet-stream");
 
-            return builder as TBuilder;
+            return builder;
+        }
+
+        /// <summary>
+        /// Adds support for ZipArchive
+        /// <para>Can create a deserializer for application/xml and text/xml</para>
+        /// </summary>
+        /// <param name="builder">The setup</param>
+        /// <param name="settings">Supplied XmlSerializerSettings</param>
+        /// <returns>ISolidHttpSetup</returns>
+        public static ISolidHttpCoreBuilder AddZip(this ISolidHttpCoreBuilder builder, ZipArchiveMode mode = ZipArchiveMode.Read)
+        {
+            var provider = new ZipArchiveSerializerSettingsProvider(mode);
+            builder.Services.AddSingleton<IZipSerializerSettingsProvider>(provider);
+            builder.Services.AddSolidHttpDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", "application/octet-stream");
+
+            return builder;
         }
     }
 }
