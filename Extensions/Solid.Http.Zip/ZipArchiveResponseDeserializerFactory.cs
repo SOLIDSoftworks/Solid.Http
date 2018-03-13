@@ -25,6 +25,7 @@ namespace Solid.Http.Zip
         private Func<ZipArchiveMode> GetSettings { get; }
         public Func<HttpContent, Task<T>> CreateDeserializer<T>()
         {
+            if (typeof(T) != typeof(ZipArchive)) throw new NotSupportedException("Type not supported");
             return async (content) =>
             {
                 var ms = new MemoryStream();
