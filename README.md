@@ -1,5 +1,4 @@
-# SolidHttp 
-[![solidsoftworks MyGet Build Status](https://www.myget.org/BuildSource/Badge/solidsoftworks?identifier=a3ce4e9e-bc86-4795-a1fb-3fe77c9662f6)](https://www.myget.org/)
+# SolidHttp [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://en.wikipedia.org/wiki/MIT_License) [![solidsoftworks MyGet Build Status](https://www.myget.org/BuildSource/Badge/solidsoftworks?identifier=a3ce4e9e-bc86-4795-a1fb-3fe77c9662f6)](https://www.myget.org/)
 
 Solid.Http is a library to simplify http calls in C# for .net standard 2.0. It's designed to be async and fully extendable.
 
