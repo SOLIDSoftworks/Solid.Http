@@ -24,6 +24,9 @@ namespace Solid.Http
         {
             var content = await request.GetContentAsync();
             if (content == null) return default(T); // should we maybe throw an exception if there is no content?
+
+            if (request.BaseRequest.Properties.ContainsKey("IgnoreSerializationError"))
+                return await SafeDeserializeAsync(() => deserialize(content));
             return await deserialize(content);
         }
 
@@ -78,6 +81,8 @@ namespace Solid.Http
             var deserializer = request.Client.Deserializers.FirstOrDefault(d => d.CanDeserialize(mime));
             if (deserializer == null)
                 throw new InvalidOperationException($"Cannot deserialize {mime} response as {typeof(T).FullName}");
+            if(request.BaseRequest.Properties.ContainsKey("IgnoreSerializationError"))
+                return await SafeDeserializeAsync(() => deserializer.DeserializeAsync<T>(content));
             return await deserializer.DeserializeAsync<T>(content);
         }
 
@@ -108,6 +113,18 @@ namespace Solid.Http
                     throw new InvalidOperationException(message);
                 }
             };
+            return request;
+        }
+
+        /// <summary>
+        /// Expect a success status code
+        /// <para>If a non-success status code is received, an InvalidOperationException is thrown</para>
+        /// </summary>        
+        /// <param name="request">The SolidHttpRequest</param>
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest IgnoreSerializationError(this SolidHttpRequest request)
+        {
+            request.BaseRequest.Properties.Add("IgnoreSerializationError", bool.TrueString);
             return request;
         }
 
@@ -172,6 +189,18 @@ namespace Solid.Http
         {
             var response = await request;
             return response.Content;
+        }
+
+        private static async Task<T> SafeDeserializeAsync<T>(Func<Task<T>> deserialize)
+        {
+            try
+            {
+                return await deserialize();
+            }
+            catch(Exception)
+            {
+                return default(T);
+            }
         }
     }
 }
