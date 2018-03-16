@@ -144,15 +144,39 @@ namespace Solid.Http
         /// Map a handler to a specific http status code
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="predicate">The http status code</param>
+        /// <param name="code">The http status code</param>
+        /// <param name="handler">The handler</param>
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest On(this SolidHttpRequest request, HttpStatusCode code, Action<HttpResponseMessage, IServiceProvider> handler)
+        {
+            return request.On(r => r.StatusCode == code, handler);
+        }
+
+        /// <summary>
+        /// Map a handler to a specific http status code
+        /// </summary>
+        /// <param name="request">The SolidHttpRequest</param>
+        /// <param name="predicate">The predicate</param>
         /// <param name="handler">The handler</param>
         /// <returns>SolidHttpRequest</returns>
         public static SolidHttpRequest On(this SolidHttpRequest request, Func<HttpResponseMessage, bool> predicate, Action<HttpResponseMessage> handler)
         {
+            return request.On(predicate, (response, services) => handler(response));
+        }
+
+        /// <summary>
+        /// Map a handler to a specific http status code
+        /// </summary>
+        /// <param name="request">The SolidHttpRequest</param>
+        /// <param name="predicate">The predicate</param>
+        /// <param name="handler">The handler</param>
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest On(this SolidHttpRequest request, Func<HttpResponseMessage, bool> predicate, Action<HttpResponseMessage, IServiceProvider> handler)
+        {
             request.OnResponse += (sender, args) =>
             {
                 if (predicate(args.Response))
-                    handler(args.Response);
+                    handler(args.Response, args.Services);
             };
             return request;
         }
@@ -166,11 +190,47 @@ namespace Solid.Http
         /// <returns>SolidHttpRequest</returns>
         public static SolidHttpRequest On(this SolidHttpRequest request, HttpStatusCode code, Func<HttpResponseMessage, Task> handler)
         {
+            return request.On(code, (response, provider) => handler(response));
+        }       
+        
+        /// <summary>
+        /// Map an async handler to a specific http status code
+        /// </summary>
+        /// <param name="request">The SolidHttpRequest</param>
+        /// <param name="code">The http status code</param>
+        /// <param name="handler">The async handler</param>
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest On(this SolidHttpRequest request, HttpStatusCode code, Func<HttpResponseMessage, IServiceProvider, Task> handler)
+        {
+            return request.On(response => response.StatusCode == code, handler);
+        }       
+        
+        /// <summary>
+        /// Map an async handler to a specific http status code
+        /// </summary>
+        /// <param name="request">The SolidHttpRequest</param>
+        /// <param name="predicate">The predicate</param>
+        /// <param name="handler">The async handler</param>
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest On(this SolidHttpRequest request, Func<HttpResponseMessage, bool> predicate, Func<HttpResponseMessage, Task> handler)
+        {
+            return request.On(predicate, (response, provider) => handler(response));
+        }       
+        
+        /// <summary>
+        /// Map an async handler to a specific http status code
+        /// </summary>
+        /// <param name="request">The SolidHttpRequest</param>
+        /// <param name="predicate">The predicate</param>
+        /// <param name="handler">The async handler</param>
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest On(this SolidHttpRequest request, Func<HttpResponseMessage, bool> predicate, Func<HttpResponseMessage, IServiceProvider, Task> handler)
+        {
             request.OnResponse += (sender, args) =>
             {
                 var done = false;
-                if (args.Response.StatusCode == code)
-                    handler(args.Response).ContinueWith(t =>
+                if (predicate(args.Response))
+                    handler(args.Response, args.Services).ContinueWith(t =>
                     {
                         done = true;
                     });
