@@ -21,8 +21,7 @@ namespace Solid.Http.Json
         /// <param name="builder">The setup</param>
         /// <param name="settings">Supplied JsonSerializerSettings</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static TBuilder AddJson<TBuilder>(this TBuilder builder, JsonSerializerSettings settings)
-            where TBuilder : class, ISolidHttpCoreBuilder
+        public static ISolidHttpCoreBuilder AddJson(this ISolidHttpCoreBuilder builder, JsonSerializerSettings settings)
         {
             var provider = new JsonSerializerSettingsProvider(settings);
             builder.Services.AddSingleton<IJsonSerializerSettingsProvider>(provider);
@@ -36,7 +35,7 @@ namespace Solid.Http.Json
                         var p = args.Services.GetRequiredService<IJsonSerializerSettingsProvider>();
                         args.Request.BaseRequest.Properties.Add("JsonSerializerSettings", p.GetJsonSerializerSettings());
                     };
-                }) as TBuilder;
+                });
         }
 
         /// <summary>
@@ -44,8 +43,7 @@ namespace Solid.Http.Json
         /// </summary>
         /// <param name="builder">The builder</param>
         /// <returns>ISolidHttpSetup</returns>
-        public static TBuilder AddJson<TBuilder>(this TBuilder builder)
-            where TBuilder : class, ISolidHttpCoreBuilder
+        public static ISolidHttpCoreBuilder AddJson(this ISolidHttpCoreBuilder builder)
         {
             var settings = new JsonSerializerSettings();
             return builder.AddJson(settings);
