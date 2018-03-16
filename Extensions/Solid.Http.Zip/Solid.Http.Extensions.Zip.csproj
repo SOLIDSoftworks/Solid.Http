@@ -6,7 +6,7 @@
     <PackageProjectUrl>https://github.com/SOLIDSoftworks/Solid.Http</PackageProjectUrl>
     <Summary>In-memory ZIP archive extension for Solid.Http</Summary>
     <PackageTags>zip http solid</PackageTags>
-    <Title>Solid.Http.Zip</Title>
+    <Title>Solid.Http.Extensions.Zip</Title>
     <Authors>Solid Softworks</Authors>
     <Description>In-memory ZIP archive extension for Solid.Http</Description>
   </PropertyGroup>
