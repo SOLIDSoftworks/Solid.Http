@@ -4,6 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Solid.Http.Core</AssemblyName>
     <RootNamespace>Solid.Http</RootNamespace>
+    <PackageProjectUrl>https://github.com/SOLIDSoftworks/Solid.Http</PackageProjectUrl>
+    <Owners>Solid Softworks</Owners>
+    <Summary>Core library for Solid.Http</Summary>
+    <Title>Solid.Http.Core</Title>
+    <Description>Core library for Solid.Http</Description>
   </PropertyGroup>
 
   <ItemGroup>

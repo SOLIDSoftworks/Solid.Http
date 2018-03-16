@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Owners>Solid Softworks</Owners>
+    <PackageProjectUrl>https://github.com/SOLIDSoftworks/Solid.Http</PackageProjectUrl>
+    <Summary>Xml serialization extension for Solid.Http</Summary>
+    <PackageTags>http xml solid</PackageTags>
+    <Title>Solid.Http.Xml</Title>
+    <Authors>Solid Softworks</Authors>
+    <Description>Xml serialization extension for Solid.Http</Description>
   </PropertyGroup>
 
   <ItemGroup>

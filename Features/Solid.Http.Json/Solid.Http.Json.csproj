@@ -4,6 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Solid.Http.Json</RootNamespace>
     <AssemblyName>Solid.Http.Json</AssemblyName>
+    <Authors>Solid Softworks</Authors>
+    <Owners>Solid Softworks</Owners>
+    <PackageProjectUrl>https://github.com/SOLIDSoftworks/Solid.Http</PackageProjectUrl>
+    <Summary>Json serialization core library for Solid.Http</Summary>
+    <Title>Solid.Http.Json</Title>
+    <Description>Json serialization cor library for Solid.Http</Description>
   </PropertyGroup>
 
   <ItemGroup>
