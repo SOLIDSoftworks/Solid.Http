@@ -137,9 +137,21 @@ namespace Solid.Http
         /// <returns>SolidHttpRequest</returns>
         public static SolidHttpRequest On(this SolidHttpRequest request, HttpStatusCode code, Action<HttpResponseMessage> handler)
         {
+            return request.On(r => r.StatusCode == code, handler);
+        }
+
+        /// <summary>
+        /// Map a handler to a specific http status code
+        /// </summary>
+        /// <param name="request">The SolidHttpRequest</param>
+        /// <param name="predicate">The http status code</param>
+        /// <param name="handler">The handler</param>
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest On(this SolidHttpRequest request, Func<HttpResponseMessage, bool> predicate, Action<HttpResponseMessage> handler)
+        {
             request.OnResponse += (sender, args) =>
             {
-                if (args.Response.StatusCode == code)
+                if (predicate(args.Response))
                     handler(args.Response);
             };
             return request;
