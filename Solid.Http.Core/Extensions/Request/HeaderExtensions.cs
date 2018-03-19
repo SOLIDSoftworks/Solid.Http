@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Linq;
+using Microsoft.Extensions.Primitives;
 
 namespace Solid.Http
 {
@@ -16,11 +17,11 @@ namespace Solid.Http
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The name of the header</param>
-        /// <param name="value">The value of the header</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithHeader(this SolidHttpRequest request, string name, IEnumerable<string> values)
+        /// <param name="values">More values for the header</param>
+        /// <returns></returns>
+        public static SolidHttpRequest WithHeader(this SolidHttpRequest request, string name, StringValues values)
         {
-            return request.WithHeaders(headers => headers.Add(name, values));
+            return request.WithHeaders(headers => headers.Add(name, values.ToArray()));
         }
 
         /// <summary>
@@ -28,12 +29,13 @@ namespace Solid.Http
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The name of the header</param>
-        /// <param name="value">The value of the header</param>
+        /// <param name="firstValue">The first value of the header</param>
+        /// <param name="secondValue">The second value of the header</param>
         /// <param name="more">More values for the header</param>
         /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithHeader(this SolidHttpRequest request, string name, string value, params string[] more)
+        public static SolidHttpRequest WithHeader(this SolidHttpRequest request, string name, string firstValue, string secondValue, params string[] moreValues)
         {
-            var values = new[] { value }.Concat(more);
+            var values = new[] { firstValue, secondValue }.Concat(moreValues);
             return request.WithHeaders(headers => headers.Add(name, values));
         }
 
@@ -48,13 +50,5 @@ namespace Solid.Http
             addHeaders(request.BaseRequest.Headers);
             return request;
         }
-
-        //public static SolidHttpRequest WithContentHeader(this SolidHttpRequest request, string name, string value)
-        //{
-        //    if (request.BaseRequest.Content == null)
-        //        throw new InvalidOperationException("Cannot set a content header on null content");
-        //    request.BaseRequest.Content.Headers.Add(name, value);
-        //    return request;
-        //}
     }
 }
