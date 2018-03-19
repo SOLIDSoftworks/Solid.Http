@@ -25,6 +25,21 @@ namespace Solid.Http
         }
 
         /// <summary>
+        /// Adds a header to the http request
+        /// </summary>
+        /// <param name="request">The SolidHttpRequest</param>
+        /// <param name="name">The name of the header</param>
+        /// <param name="firstValue">The first value of the header</param>
+        /// <param name="secondValue">The second value of the header</param>
+        /// <param name="more">More values for the header</param>
+        /// <returns>SolidHttpRequest</returns>
+        public static SolidHttpRequest WithHeader(this SolidHttpRequest request, string name, string firstValue, string secondValue, params string[] moreValues)
+        {
+            var values = new[] { firstValue, secondValue }.Concat(moreValues);
+            return request.WithHeaders(headers => headers.Add(name, values));
+        }
+
+        /// <summary>
         /// Adds headers to the http request
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
