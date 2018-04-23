@@ -38,10 +38,10 @@ namespace Solid.Http
             Services.TryAddSingleton<ISolidHttpEventHandlerProvider>(events);
 
             Services.TryAddSingleton<IHttpClientCache, HttpClientCache>();
-            Services.TryAddTransient<IHttpClientFactory, TFactory>();
+            Services.TryAddSingleton<IHttpClientFactory, TFactory>();
 
-            Services.TryAddScoped<ISolidHttpEventInvoker, SolidHttpEventInvoker>();
-            Services.TryAddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
+            Services.TryAddSingleton<ISolidHttpEventInvoker, SolidHttpEventInvoker>();
+            Services.TryAddSingleton<ISolidHttpClientFactory, SolidHttpClientFactory>();
 
             Services.TryAddSingleton<ISolidHttpOptions, SolidHttpOptions>();
         }
