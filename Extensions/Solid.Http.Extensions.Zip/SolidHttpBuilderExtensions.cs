@@ -13,32 +13,35 @@ namespace Solid.Http.Zip
     {
         /// <summary>
         /// Adds support for ZipArchive
-        /// <para>Can create a deserializer for application/xml and text/xml</para>
+        /// <para>Can create a deserializer for supplied mime types for zip archives</para>
         /// </summary>
         /// <param name="builder">The setup</param>
-        /// <param name="settings">Supplied XmlSerializerSettings</param>
-        /// <returns>ISolidHttpSetup</returns>
-        public static ISolidHttpBuilder AddZip(this ISolidHttpBuilder builder, ZipArchiveMode mode = ZipArchiveMode.Read)
+        /// <param name="mode">ZipArhive mode</param>
+        /// <param name="mimeTypes">MimeTypes for the deserializer</param>
+        /// <returns>ISolidHttpBuilder</returns>
+        public static ISolidHttpBuilder AddZip(this ISolidHttpBuilder builder, ZipArchiveMode mode = ZipArchiveMode.Read, params string[] additionalMimeTypes )
         {
             var provider = new ZipArchiveSerializerSettingsProvider(mode);
             builder.Services.AddSingleton<IZipSerializerSettingsProvider>(provider);
-            builder.Services.AddSolidHttpDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", "application/octet-stream");
+            builder.Services.AddSolidHttpDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", additionalMimeTypes);
 
             return builder;
         }
 
+
         /// <summary>
         /// Adds support for ZipArchive
-        /// <para>Can create a deserializer for application/xml and text/xml</para>
+        /// <para>Can create a deserializer for supplied mime types for zip archives</para>
         /// </summary>
         /// <param name="builder">The setup</param>
-        /// <param name="settings">Supplied XmlSerializerSettings</param>
-        /// <returns>ISolidHttpSetup</returns>
-        public static ISolidHttpCoreBuilder AddZip(this ISolidHttpCoreBuilder builder, ZipArchiveMode mode = ZipArchiveMode.Read)
+        /// <param name="mode">ZipArhive mode</param>
+        /// <param name="additionalMimeTypes">Additional MimeTypes for the deserializer, the default one is application/zip</param>
+        /// <returns>ISolidHttpCoreBuilder</returns>
+        public static ISolidHttpCoreBuilder AddZip(this ISolidHttpCoreBuilder builder, ZipArchiveMode mode = ZipArchiveMode.Read, params string[] additionalMimeTypes)
         {
             var provider = new ZipArchiveSerializerSettingsProvider(mode);
             builder.Services.AddSingleton<IZipSerializerSettingsProvider>(provider);
-            builder.Services.AddSolidHttpDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", "application/octet-stream");
+            builder.Services.AddSolidHttpDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", additionalMimeTypes);
 
             return builder;
         }
