@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Primitives;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,29 +33,11 @@ namespace Solid.Http
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The name of the query parameter</param>
-        /// <param name="value">The value of the query parameter</param>
+        /// <param name="values">Value or values for the query parameter</param>
         /// <returns></returns>
-        public static SolidHttpRequest WithQueryParameter(this SolidHttpRequest request, string name, string value)
+        public static SolidHttpRequest WithQueryParameter(this SolidHttpRequest request, string name, StringValues values)
         {
-            var url = request.BaseRequest.RequestUri.OriginalString;
-            if (url.Contains("?"))
-                url += $"&{name}={value}";
-            else
-                url += $"?{name}={value}";
-            request.BaseRequest.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
-            return request;
-        }
-        
-        /// <summary>
-        /// Adds a query parameter to the url
-        /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="name">The name of the query parameter</param>
-        /// <param name="values">The list of values for the query parameter</param>
-        /// <returns></returns>
-        public static SolidHttpRequest WithQueryParameter(this SolidHttpRequest request, string name, IEnumerable<string> values)
-        {
-            if (values == null || !values.Any()) return request;
+            if (values == StringValues.Empty) return request;
             var queryVals = string.Join("&", values.Select(v => $"{name}={v}"));
 
             var url = request.BaseRequest.RequestUri.OriginalString;
