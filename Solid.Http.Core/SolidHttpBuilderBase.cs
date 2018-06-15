@@ -9,7 +9,6 @@ namespace Solid.Http
     public class SolidHttpBuilderBase : IDisposable
     {
         private IServiceCollection _services;
-        private ServiceProvider _provider;
         private IServiceScope _scope;
         protected SolidHttpBuilderBase(IServiceCollection services)
         {
@@ -18,21 +17,23 @@ namespace Solid.Http
 
         public IServiceCollection Services => _services;
 
+        public ServiceProvider Provider { get; private set; }
+
         public ISolidHttpClientFactory Build()
         {
-            if (_provider == null)
-                _provider = _services.BuildServiceProvider();
+            if (Provider == null)
+                Provider = _services.BuildServiceProvider();
 
             if (_scope != null)
                 _scope.Dispose();
-            _scope = _provider.CreateScope();
+            _scope = Provider.CreateScope();
             return _scope.ServiceProvider.GetRequiredService<ISolidHttpClientFactory>();
         }
 
         public void Dispose()
         {
-            if (_provider != null)
-                _provider.Dispose();
+            if (Provider != null)
+                Provider.Dispose();
 
             if (_scope != null)
                 _scope.Dispose();

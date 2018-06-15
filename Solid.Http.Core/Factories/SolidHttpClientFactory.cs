@@ -16,7 +16,7 @@ namespace Solid.Http.Factories
         private ISolidHttpEventInvoker _events;
         private IEnumerable<IDeserializer> _deserializers;
         private IConfiguration _configuration;
-        private IHttpClientCache _cache;
+        private IHttpClientProvider _provider;
 
         /// <summary>
         /// The application configuration which can be used in extension methods
@@ -44,13 +44,14 @@ namespace Solid.Http.Factories
         /// <param name="deserializers">The deserializer provider for SolidHttp</param>
         /// <param name="configuration">The application configuration</param>
         public SolidHttpClientFactory(
-            IHttpClientCache cache, 
             ISolidHttpEventInvoker events, 
             IEnumerable<IDeserializer> deserializers, 
             ISolidHttpOptions options, // this is only added so that the ServicePRovider initializes it
+
+            IHttpClientProvider provider, 
             IConfiguration configuration = null)
         {
-            _cache = cache;
+            _provider = provider;
             _events = events;
             _deserializers = deserializers;
             _configuration = configuration;
@@ -62,7 +63,7 @@ namespace Solid.Http.Factories
         /// <returns>SolidHttpClient</returns>
         public SolidHttpClient Create()
         {
-            return CreateSolidHttpClient(_cache.Get());
+            return CreateSolidHttpClient(_provider.Get());
         }
 
         /// <summary>

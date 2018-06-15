@@ -22,7 +22,7 @@ namespace Solid.Http.Core.Tests
         {
             var services = new ServiceCollection();
             services.AddSingleton<HttpMessageHandler>(p => new StaticHttpMessageHandler(_response, _statusCode));
-            services.AddSolidHttpCore<Factory>();
+            services.AddSolidHttpCore();
             _root = services.BuildServiceProvider();
             _scope = _root.CreateScope();
         }
@@ -139,7 +139,7 @@ namespace Solid.Http.Core.Tests
                 _handler = handler;
             }
 
-            public HttpClient Create()
+            public HttpClient CreateClient(string name)
             {
                 return new HttpClient(_handler);
             }

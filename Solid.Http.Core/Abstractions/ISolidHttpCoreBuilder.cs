@@ -8,15 +8,8 @@ namespace Solid.Http.Abstractions
     /// <summary>
     /// The ISolidHttpBuilder interface
     /// </summary>
-    public interface ISolidHttpCoreBuilder
+    public interface ISolidHttpCoreBuilder : ISolidHttpOptionsBuilder<ISolidHttpCoreBuilder>
     {
-        /// <summary>
-        /// Configure SolidHttp
-        /// </summary>
-        /// <param name="configure">The method used to configure SolidHttp</param>
-        /// <returns>ISolidHttpSetup</returns>
-        ISolidHttpCoreBuilder AddSolidHttpCoreOptions(Action<ISolidHttpOptions> configure);
-
         IServiceCollection Services { get; }
     }
 }

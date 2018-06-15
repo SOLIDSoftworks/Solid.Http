@@ -4,15 +4,8 @@ using System;
 
 namespace Solid.Http
 {
-    public interface ISolidHttpBuilder
+    public interface ISolidHttpBuilder : ISolidHttpOptionsBuilder<ISolidHttpBuilder>
     {
-        /// <summary>
-        /// Configure SolidHttp
-        /// </summary>
-        /// <param name="configure">The method used to configure SolidHttp</param>
-        /// <returns>ISolidHttpSetup</returns>
-        ISolidHttpBuilder AddSolidHttpOptions(Action<ISolidHttpOptions> configure);
-
         IServiceCollection Services { get; }
     }
 }

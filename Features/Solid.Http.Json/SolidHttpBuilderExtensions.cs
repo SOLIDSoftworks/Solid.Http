@@ -28,7 +28,7 @@ namespace Solid.Http.Json
             builder.Services.AddSolidHttpDeserializer<JsonResponseDeserializerFactory>("application/json", "text/json", "text/javascript");
 
             return builder
-                .AddSolidHttpCoreOptions(options =>
+                .AddSolidHttpOptions(options =>
                 {
                     options.Events.OnRequestCreated += (sender, args) =>
                     {

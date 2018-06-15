@@ -7,25 +7,6 @@ using Solid.Http.Json;
 
 namespace Solid.Http
 {
-    public class SolidHttpBuilder<TFactory> : SolidHttpBuilder
-        where TFactory : class, IHttpClientFactory
-    {
-        public SolidHttpBuilder()
-            : base(new SolidHttpCoreBuilder<TFactory>())
-        {
-        }
-
-        public SolidHttpBuilder(IServiceCollection services)
-            : this(services.AddSolidHttpCore<TFactory>())
-        {
-        }
-
-        public SolidHttpBuilder(ISolidHttpCoreBuilder core) 
-            : base(core)
-        {
-        }
-    }
-
     public class SolidHttpBuilder : SolidHttpBuilderBase, ISolidHttpBuilder, IDisposable
     {
         private ISolidHttpCoreBuilder _core;
@@ -47,15 +28,9 @@ namespace Solid.Http
             _core.AddJson();
         }
 
-        public SolidHttpBuilder AddSolidHttpOptions(Action<ISolidHttpOptions> configure)
+        public ISolidHttpBuilder AddSolidHttpOptions(Action<ISolidHttpOptions> configure)
         {
-            _core.AddSolidHttpCoreOptions(configure);
-            return this;
-        }
-
-        ISolidHttpBuilder ISolidHttpBuilder.AddSolidHttpOptions(Action<ISolidHttpOptions> configure)
-        {
-            _core.AddSolidHttpCoreOptions(configure);
+            _core.AddSolidHttpOptions(configure);
             return this;
         }
     }

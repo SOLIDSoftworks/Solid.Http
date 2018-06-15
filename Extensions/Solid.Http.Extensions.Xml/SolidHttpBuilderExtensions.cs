@@ -49,7 +49,7 @@ namespace Solid.Http.Xml
             builder.Services.AddSolidHttpDeserializer<XmlResponseDeserializerFactory>("application/xml", "text/xml");
 
             return builder
-                .AddSolidHttpCoreOptions(options =>
+                .AddSolidHttpOptions(options =>
                 {
                     options.Events.OnRequestCreated += (sender, args) =>
                     {
