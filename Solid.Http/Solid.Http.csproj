@@ -10,6 +10,7 @@
     <Summary>Library for adding Solid.Http.Core and Core features.</Summary>
     <Title>Solid.Http</Title>
     <Description>Library for adding Solid.Http.Core and Core features.</Description>
+    <ReleaseVersion>2.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

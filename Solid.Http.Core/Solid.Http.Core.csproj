@@ -9,6 +9,7 @@
     <Summary>Core library for Solid.Http</Summary>
     <Title>Solid.Http.Core</Title>
     <Description>Core library for Solid.Http</Description>
+    <ReleaseVersion>2.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

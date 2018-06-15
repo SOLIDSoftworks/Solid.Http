@@ -10,6 +10,7 @@
     <Summary>Json serialization core library for Solid.Http</Summary>
     <Title>Solid.Http.Json</Title>
     <Description>Json serialization cor library for Solid.Http</Description>
+    <ReleaseVersion>2.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

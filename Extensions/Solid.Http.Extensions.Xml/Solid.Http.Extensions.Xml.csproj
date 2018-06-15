@@ -9,6 +9,7 @@
     <Title>Solid.Http.Extensions.Xml</Title>
     <Authors>Solid Softworks</Authors>
     <Description>Xml serialization extension for Solid.Http</Description>
+    <ReleaseVersion>2.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>

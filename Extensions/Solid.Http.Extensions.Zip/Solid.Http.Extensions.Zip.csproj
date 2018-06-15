@@ -9,6 +9,7 @@
     <Title>Solid.Http.Extensions.Zip</Title>
     <Authors>Solid Softworks</Authors>
     <Description>In-memory ZIP archive extension for Solid.Http</Description>
+    <ReleaseVersion>2.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
