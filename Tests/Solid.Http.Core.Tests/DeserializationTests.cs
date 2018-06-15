@@ -22,6 +22,7 @@ namespace Solid.Http.Core.Tests
         {
             var services = new ServiceCollection();
             services.AddSingleton<HttpMessageHandler>(p => new StaticHttpMessageHandler(_response, _statusCode));
+            services.AddSingleton<IHttpClientFactory, Factory>();
             services.AddSolidHttpCore();
             _root = services.BuildServiceProvider();
             _scope = _root.CreateScope();
