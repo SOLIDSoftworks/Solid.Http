@@ -1,5 +1,6 @@
 ﻿using Solid.Http.Abstractions;
 using System;
+using System.Collections.Concurrent;
 using System.Net.Http;
 
 namespace Solid.Http.Factories
@@ -9,16 +10,22 @@ namespace Solid.Http.Factories
     /// </summary>
     public class FauxHttpClientFactory : IHttpClientFactory
     {
-        private Lazy<HttpClient> _lazyClient;
+        private ConcurrentDictionary<string, Lazy<HttpClient>> _lazyClients;
 
         public FauxHttpClientFactory()
-        {
-            _lazyClient = new Lazy<HttpClient>(InitializeClient, System.Threading.LazyThreadSafetyMode.ExecutionAndPublication);
+        { 
+            _lazyClients = new ConcurrentDictionary<string, Lazy<HttpClient>>();
         }
 
         public HttpClient CreateClient(string name)
         {
-            return _lazyClient.Value;
+            var lazy = _lazyClients.GetOrAdd(name, key => InitializeLazyClient());
+            return lazy.Value;
+        }
+
+        private Lazy<HttpClient> InitializeLazyClient()
+        {
+            return new Lazy<HttpClient>(InitializeClient, System.Threading.LazyThreadSafetyMode.ExecutionAndPublication);
         }
 
         private HttpClient InitializeClient()
