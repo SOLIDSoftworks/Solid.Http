@@ -19,6 +19,6 @@ namespace Solid.Http.Abstractions
         /// Creates a SolidHttpClient
         /// </summary>
         /// <returns>SolidHttpClient</returns>
-        SolidHttpClient Create();
+        ISolidHttpClient Create();
     }
 }

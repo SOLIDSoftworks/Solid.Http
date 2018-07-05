@@ -30,11 +30,11 @@ namespace Solid.Http.Json
             return builder
                 .AddSolidHttpOptions(options =>
                 {
-                    options.Events.OnRequestCreated += (sender, args) =>
+                    options.Events.OnRequestCreated((services, request) =>
                     {
-                        var p = args.Services.GetRequiredService<IJsonSerializerSettingsProvider>();
-                        args.Request.BaseRequest.Properties.Add("JsonSerializerSettings", p.GetJsonSerializerSettings());
-                    };
+                        var p = services.GetRequiredService<IJsonSerializerSettingsProvider>();
+                        request.BaseRequest.Properties.Add("JsonSerializerSettings", p.GetJsonSerializerSettings());
+                    });
                 });
         }
 

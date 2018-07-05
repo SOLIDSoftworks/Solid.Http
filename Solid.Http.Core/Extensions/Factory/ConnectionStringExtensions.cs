@@ -17,7 +17,7 @@ namespace Solid.Http
         /// <param name="factory">The ISolidHttpClientFactory</param>
         /// <param name="connectionStringName">The name of the connection string in the configuration file</param>
         /// <returns>SolidHttpClient</returns>
-        public static SolidHttpClient CreateUsingConnectionString(this ISolidHttpClientFactory factory, string connectionStringName)
+        public static ISolidHttpClient CreateUsingConnectionString(this ISolidHttpClientFactory factory, string connectionStringName)
         {
             var baseAddress = factory.Configuration.GetConnectionString(connectionStringName);
             return factory.CreateWithBaseAddress(baseAddress);

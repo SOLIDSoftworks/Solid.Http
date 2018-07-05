@@ -31,10 +31,10 @@ namespace TestConsumer
                 .AddSolidHttp()
                 .AddSolidHttpOptions(options =>
                 {
-                    options.Events.OnRequestCreated += (sender, args) =>
+                    options.Events.OnRequestCreated((s, request) =>
                     {
-                        var factory = args.Services.GetRequiredService<ISolidHttpClientFactory>();
-                    };
+                        var factory = s.GetRequiredService<ISolidHttpClientFactory>();
+                    });
                 });
         }
 

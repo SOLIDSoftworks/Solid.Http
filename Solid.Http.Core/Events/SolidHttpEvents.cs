@@ -1,100 +1,50 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Solid.Http.Abstractions;
 using Solid.Http.Events;
+using Solid.Http.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Solid.Http.Events
 {
-    internal class SolidHttpEvents : ISolidHttpEvents, ISolidHttpEventHandlerProvider
+    internal class SolidHttpEvents : ISolidHttpEvents
     {
-        private Dictionary<string, Action<object, SolidHttpClientCreatedEventArgs>> _clientCreatedEventHandlers = new Dictionary<string, Action<object, SolidHttpClientCreatedEventArgs>>();
-        private Dictionary<string, Action<object, SolidHttpRequestCreatedEventArgs>> _requestCreatedEventHandlers = new Dictionary<string, Action<object, SolidHttpRequestCreatedEventArgs>>();
-        private Dictionary<string, Action<object, RequestEventArgs>> _requestEventHandlers = new Dictionary<string, Action<object, RequestEventArgs>>();
-        private Dictionary<string, Action<object, ResponseEventArgs>> _responseEventHandlers = new Dictionary<string, Action<object, ResponseEventArgs>>();
+        private List<Action<IServiceProvider, ISolidHttpClient>> _clientCreatedHandlers = new List<Action<IServiceProvider, ISolidHttpClient>>();
 
-        public event EventHandler<SolidHttpClientCreatedEventArgs> OnClientCreated
+        public IEnumerable<Action<IServiceProvider, ISolidHttpClient>> ClientCreatedHandlers => _clientCreatedHandlers.AsEnumerable();
+
+        public void OnClientCreated(Action<IServiceProvider, ISolidHttpClient> handler)
         {
-            add
-            {
-                var key = value.Method.Name;
-                if (_clientCreatedEventHandlers.ContainsKey(key)) return;
-                _clientCreatedEventHandlers.Add(key, (sender, args) => value(sender, args));
-            }
-            remove
-            {
-                var key = value.Method.Name;
-                if (_clientCreatedEventHandlers.ContainsKey(key)) // this is experimental
-                    _clientCreatedEventHandlers.Remove(key);
-            }
+            _clientCreatedHandlers.Add(handler);
         }
 
-        public event EventHandler<SolidHttpRequestCreatedEventArgs> OnRequestCreated
+        public void OnRequest(Action<IServiceProvider, HttpRequestMessage> handler)
         {
-            add
-            {
-                var key = value.Method.Name;
-                if (_requestCreatedEventHandlers.ContainsKey(key)) return;
-                _requestCreatedEventHandlers.Add(key, (sender, args) => value(sender, args));
-            }
-            remove
-            {
-                var key = value.Method.Name;
-                if (_requestCreatedEventHandlers.ContainsKey(key)) // this is experimental
-                    _requestCreatedEventHandlers.Remove(key);
-            }
-        }
-        public event EventHandler<RequestEventArgs> OnRequest
-        {
-            add
-            {
-                var key = value.Method.Name;
-                if (_requestEventHandlers.ContainsKey(key)) return;
-                _requestEventHandlers.Add(key, (sender, args) => value(sender, args));
-            }
-            remove
-            {
-                var key = value.Method.Name;
-                if (_requestEventHandlers.ContainsKey(key)) // this is experimental
-                    _requestEventHandlers.Remove(key);
-            }
-        }
-        public event EventHandler<ResponseEventArgs> OnResponse
-        {
-            add
-            {
-                var key = value.Method.Name;
-                if (_responseEventHandlers.ContainsKey(key)) return;
-                _responseEventHandlers.Add(key, (sender, args) => value(sender, args));
-            }
-            remove
-            {
-                var key = value.Method.Name;
-                if (_responseEventHandlers.ContainsKey(key)) // this is experimental
-                    _responseEventHandlers.Remove(key);
-            }
+            OnRequest(handler.ToAsyncFunc());
         }
 
-        public IEnumerable<Action<object, SolidHttpClientCreatedEventArgs>> GetOnClientCreatedEventHandlers()
+        public void OnRequest(Func<IServiceProvider, HttpRequestMessage, Task> handler)
         {
-            return _clientCreatedEventHandlers.Values;
+            OnRequestCreated((p, r) => r.OnRequest(handler));
         }
 
-        public IEnumerable<Action<object, SolidHttpRequestCreatedEventArgs>> GetOnRequestCreatedEventHandlers()
+        public void OnRequestCreated(Action<IServiceProvider, ISolidHttpRequest> handler)
         {
-            return _requestCreatedEventHandlers.Values;
+            OnClientCreated((p, c) => c.OnRequestCreated(handler));
         }
 
-        public IEnumerable<Action<object, RequestEventArgs>> GetOnRequestEventHandlers()
+        public void OnResponse(Action<IServiceProvider, HttpResponseMessage> handler)
         {
-            return _requestEventHandlers.Values;
+            OnResponse(handler.ToAsyncFunc());
         }
 
-        public IEnumerable<Action<object, ResponseEventArgs>> GetOnResponseEventHandlers()
+        public void OnResponse(Func<IServiceProvider, HttpResponseMessage, Task> handler)
         {
-            return _responseEventHandlers.Values;
+            OnRequestCreated((p, r) => r.OnResponse(handler));
         }
     }
 }

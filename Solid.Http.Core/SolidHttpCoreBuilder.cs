@@ -21,15 +21,16 @@ namespace Solid.Http
             : base(services)
         {
             var events = new SolidHttpEvents();
+
+            Services.TryAddTransient<ISolidHttpClient, SolidHttpClient>();
+
             Services.TryAddSingleton<ISolidHttpEvents>(events);
-            Services.TryAddSingleton<ISolidHttpEventHandlerProvider>(events);
 
             Services.TryAddSingleton<IHttpClientProvider, HttpClientProvider>();
 
             //Services.TryAddSingleton<IHttpClientCache, HttpClientCache>();
             //Services.TryAddTransient<IHttpClientFactory, TFactory>();
 
-            Services.TryAddScoped<ISolidHttpEventInvoker, SolidHttpEventInvoker>();
             Services.TryAddScoped<ISolidHttpClientFactory, SolidHttpClientFactory>();
 
             Services.TryAddSingleton<ISolidHttpOptions, SolidHttpOptions>();

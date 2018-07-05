@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Solid.Http.Models;
+using System;
 namespace Solid.Http.Abstractions
 {
     /// <summary>
@@ -6,10 +7,10 @@ namespace Solid.Http.Abstractions
     /// </summary>
     public interface ISolidHttpOptions
     {
-
         /// <summary>
         /// The global events to be triggered during SolidHttp events
         /// </summary>
         ISolidHttpEvents Events { get; }
+        HttpClientStrategy Strategy { get; set; }
     }
 }

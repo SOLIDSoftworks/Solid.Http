@@ -17,7 +17,7 @@ namespace Solid.Http
         /// <param name="factory">The ISolidHttpClientFactory</param>
         /// <param name="baseAddress">The base address to use</param>
         /// <returns>SolidHttpClient</returns>
-        public static SolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, string baseAddress)
+        public static ISolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, string baseAddress)
         {
             return factory.CreateWithBaseAddress(new Uri(baseAddress));
         }
@@ -28,21 +28,21 @@ namespace Solid.Http
         /// <param name="factory">The ISolidHttpClientFactory</param>
         /// <param name="baseAddress">The base address to use</param>
         /// <returns>SolidHttpClient</returns>
-        public static SolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, Uri baseAddress)
+        public static ISolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, Uri baseAddress)
         {
             var client = factory.Create();
             client.AddProperty("Client::BaseAddress", baseAddress);
-            client.OnRequestCreated += OnRequestCreated;
+            client.OnRequestCreated(OnRequestCreated);
             return client;
         }
 
-        private static void OnRequestCreated(object sender, SolidHttpRequestCreatedEventArgs args)
+        private static void OnRequestCreated(IServiceProvider services, ISolidHttpRequest request)
         {
-            var baseAddress = args.Request.Client.GetProperty<Uri>("Client::BaseAddress");
+            var baseAddress = request.Client.GetProperty<Uri>("Client::BaseAddress");
             if (baseAddress == null) return;
 
-            var url = new Uri(baseAddress, args.Request.BaseRequest.RequestUri);
-            args.Request.BaseRequest.RequestUri = url;
+            var url = new Uri(baseAddress, request.BaseRequest.RequestUri);
+            request.BaseRequest.RequestUri = url;
         }
     }
 }

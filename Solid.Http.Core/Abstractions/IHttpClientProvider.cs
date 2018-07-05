@@ -5,6 +5,6 @@ namespace Solid.Http.Abstractions
 {
     public interface IHttpClientProvider
     {
-        HttpClient Get();
+        HttpClient Get(Uri url);
     }
 }
