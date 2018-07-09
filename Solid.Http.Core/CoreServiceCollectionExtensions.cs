@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
+using Solid.Http;
 using Solid.Http.Abstractions;
 using Solid.Http.Factories;
 using Solid.Http.Serialization;
 
-namespace Solid.Http
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Extensions method for the service collection

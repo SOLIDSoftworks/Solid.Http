@@ -3,7 +3,7 @@ using Solid.Http.Abstractions;
 using Solid.Http.Json;
 using System;
 
-namespace Solid.Http
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ServiceCollectionExtensions
     {

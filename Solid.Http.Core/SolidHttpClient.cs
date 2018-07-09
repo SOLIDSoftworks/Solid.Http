@@ -25,6 +25,8 @@ namespace Solid.Http
         /// <param name="serializers">The deserializers supported by this SolidHttpClient</param>
         public SolidHttpClient(IServiceProvider services, IEnumerable<IDeserializer> deserializers)
         {
+            Deserializers = deserializers;
+
             _services = services;
             _requestCreatedHandlers = new List<Action<IServiceProvider, ISolidHttpRequest>>();
         }
