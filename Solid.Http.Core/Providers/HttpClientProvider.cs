@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net.Http;
-using Solid.Http.Abstractions;
 using Solid.Http.Factories;
 using Solid.Http.Models;
 

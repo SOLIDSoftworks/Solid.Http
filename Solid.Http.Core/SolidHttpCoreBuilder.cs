@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Solid.Http.Abstractions;
 using Solid.Http.Events;
 using Solid.Http.Factories;
 using Solid.Http.Setup;

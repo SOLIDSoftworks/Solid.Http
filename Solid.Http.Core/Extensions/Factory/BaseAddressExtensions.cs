@@ -1,4 +1,4 @@
-﻿using Solid.Http.Abstractions;
+﻿
 using Solid.Http.Events;
 using System;
 using System.Collections.Generic;

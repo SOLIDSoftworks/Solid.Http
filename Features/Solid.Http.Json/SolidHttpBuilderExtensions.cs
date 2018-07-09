@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Solid.Http.Abstractions;
 using Solid.Http.Json.Abstraction;
 using Solid.Http.Json.Providers;
 using System;

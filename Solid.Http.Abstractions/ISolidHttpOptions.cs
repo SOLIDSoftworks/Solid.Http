@@ -1,6 +1,6 @@
 ﻿using Solid.Http.Models;
 using System;
-namespace Solid.Http.Abstractions
+namespace Solid.Http
 {
     /// <summary>
     /// The ISolidHttpOptions interface

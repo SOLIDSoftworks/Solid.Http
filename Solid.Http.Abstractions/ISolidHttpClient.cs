@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Solid.Http.Abstractions
+namespace Solid.Http
 {
     public interface ISolidHttpClient
     {

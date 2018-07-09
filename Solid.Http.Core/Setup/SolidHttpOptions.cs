@@ -1,5 +1,4 @@
-﻿using Solid.Http.Abstractions;
-using Solid.Http.Models;
+﻿using Solid.Http.Models;
 using System;
 using System.Collections.Generic;
 

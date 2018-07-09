@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Solid.Http.Abstractions;
+
 using Xunit;
 
 namespace Solid.Http.Core.Tests

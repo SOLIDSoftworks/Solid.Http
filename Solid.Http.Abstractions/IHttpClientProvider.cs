@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 
-namespace Solid.Http.Abstractions
+namespace Solid.Http
 {
     public interface IHttpClientProvider
     {

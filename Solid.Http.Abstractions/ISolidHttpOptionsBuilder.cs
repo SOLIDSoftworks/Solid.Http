@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Solid.Http.Abstractions
+namespace Solid.Http
 {
     public interface ISolidHttpOptionsBuilder<TBuilder>
     {

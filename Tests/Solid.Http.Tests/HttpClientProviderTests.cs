@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Solid.Http.Abstractions;
+
 using Solid.Http.Factories;
 using Solid.Http.Providers;
 using Xunit;

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Solid.Http.Abstractions;
 using Solid.Http.Zip.Abstraction;
 using Solid.Http.Zip.Providers;
 using System;
