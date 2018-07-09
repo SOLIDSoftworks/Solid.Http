@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Extensions.Xml",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Tests", "Tests\Solid.Http.Tests\Solid.Http.Tests.csproj", "{9E37E4D1-BDD7-4A53-A36A-67F1F34A8DF6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Abstractions", "Solid.Http.Abstractions\Solid.Http.Abstractions.csproj", "{A20D9BB1-04F0-4425-A63F-1C0C6B01A0A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -62,6 +64,10 @@ Global
 		{9E37E4D1-BDD7-4A53-A36A-67F1F34A8DF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E37E4D1-BDD7-4A53-A36A-67F1F34A8DF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E37E4D1-BDD7-4A53-A36A-67F1F34A8DF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A20D9BB1-04F0-4425-A63F-1C0C6B01A0A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A20D9BB1-04F0-4425-A63F-1C0C6B01A0A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A20D9BB1-04F0-4425-A63F-1C0C6B01A0A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A20D9BB1-04F0-4425-A63F-1C0C6B01A0A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
