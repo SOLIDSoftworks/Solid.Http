@@ -1,7 +1,7 @@
-﻿using Solid.Http.Abstractions;
-using Solid.Http.Events;
+﻿using Solid.Http.Events;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
@@ -11,8 +11,10 @@ namespace Solid.Http
     /// <summary>
     /// A SolidHttpClient that is used to perform create SolidHttpRequests. This class is designed be extended using extension methods.
     /// </summary>
-    public class SolidHttpClient
+    public class SolidHttpClient : ISolidHttpClient
     {
+        private IServiceProvider _services;
+        private List<Action<IServiceProvider, ISolidHttpRequest>> _requestCreatedHandlers;
         private IDictionary<string, object> _properties = new Dictionary<string, object>();
 
         /// <summary>
@@ -20,16 +22,17 @@ namespace Solid.Http
         /// </summary>
         /// <param name="client">The inner HttpClient to be used</param>
         /// <param name="serializers">The deserializers supported by this SolidHttpClient</param>
-        public SolidHttpClient(HttpClient client, IEnumerable<IDeserializer> deserializers, ISolidHttpEventInvoker events)
+        public SolidHttpClient(IServiceProvider services, IEnumerable<IDeserializer> deserializers)
         {
-            Events = events;
-            InnerClient = client;
             Deserializers = deserializers;
+
+            _services = services;
+            _requestCreatedHandlers = new List<Action<IServiceProvider, ISolidHttpRequest>>();
         }
 
-        internal ISolidHttpEventInvoker Events { get; private set; }
-        internal HttpClient InnerClient { get; private set; }
-        internal IEnumerable<IDeserializer> Deserializers { get; private set; }
+        //internal ISolidHttpEvents Events { get; private set; }
+        //internal HttpClient InnerClient { get; private set; }
+        public IEnumerable<IDeserializer> Deserializers { get; }
 
         /// <summary>
         /// Adds a property to the client that can be used in extensions methods
@@ -67,7 +70,7 @@ namespace Solid.Http
         /// <summary>
         /// The event triggered when a SolidHttpRequest is created
         /// </summary>
-        public event EventHandler<SolidHttpRequestCreatedEventArgs> OnRequestCreated;
+        //public event EventHandler<SolidHttpRequestCreatedEventArgs> OnRequestCreated;
 
         /// <summary>
         /// Perform an http request
@@ -76,13 +79,27 @@ namespace Solid.Http
         /// <param name="url">The url to be requested</param>
         /// <param name="cancellationToken">The cancellation token for the request</param>
         /// <returns></returns>
-        public SolidHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
+        //public SolidHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
+        //{
+        //    var request = new SolidHttpRequest(method, url, cancellationToken);
+        //    Events.InvokeOnRequestCreated(this, request);
+        //    if (OnRequestCreated != null)
+        //        OnRequestCreated(this, Events.CreateArgs(request));
+        //    return request;
+        //}
+
+        ISolidHttpRequest ISolidHttpClient.PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
-            var request = new SolidHttpRequest(this, method, url, cancellationToken);
-            Events.InvokeOnRequestCreated(this, request);
-            if (OnRequestCreated != null)
-                OnRequestCreated(this, Events.CreateArgs(request));
+            var request = new SolidHttpRequest(this, _services, method, url, cancellationToken);
+            foreach(var handler in _requestCreatedHandlers)
+                handler(_services, request);
             return request;
+        }
+
+
+        void ISolidHttpClient.OnRequestCreated(Action<IServiceProvider, ISolidHttpRequest> handler)
+        {
+            _requestCreatedHandlers.Add(handler);
         }
     }
 }

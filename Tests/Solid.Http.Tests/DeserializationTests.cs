@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
-using Solid.Http.Abstractions;
+
 using Xunit;
 
 namespace Solid.Http.Core.Tests
@@ -22,7 +22,8 @@ namespace Solid.Http.Core.Tests
         {
             var services = new ServiceCollection();
             services.AddSingleton<HttpMessageHandler>(p => new StaticHttpMessageHandler(_response, _statusCode));
-            services.AddSolidHttpCore<Factory>();
+            services.AddSingleton<IHttpClientFactory, Factory>();
+            services.AddSolidHttpCore();
             _root = services.BuildServiceProvider();
             _scope = _root.CreateScope();
         }
@@ -139,7 +140,7 @@ namespace Solid.Http.Core.Tests
                 _handler = handler;
             }
 
-            public HttpClient Create()
+            public HttpClient CreateClient(string name)
             {
                 return new HttpClient(_handler);
             }

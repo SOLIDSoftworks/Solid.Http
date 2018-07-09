@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Solid.Http.Abstractions;
 using Solid.Http.Json.Abstraction;
 using Solid.Http.Json.Providers;
 using System;
@@ -28,13 +27,13 @@ namespace Solid.Http.Json
             builder.Services.AddSolidHttpDeserializer<JsonResponseDeserializerFactory>("application/json", "text/json", "text/javascript");
 
             return builder
-                .AddSolidHttpCoreOptions(options =>
+                .AddSolidHttpOptions(options =>
                 {
-                    options.Events.OnRequestCreated += (sender, args) =>
+                    options.Events.OnRequestCreated((services, request) =>
                     {
-                        var p = args.Services.GetRequiredService<IJsonSerializerSettingsProvider>();
-                        args.Request.BaseRequest.Properties.Add("JsonSerializerSettings", p.GetJsonSerializerSettings());
-                    };
+                        var p = services.GetRequiredService<IJsonSerializerSettingsProvider>();
+                        request.BaseRequest.Properties.Add("JsonSerializerSettings", p.GetJsonSerializerSettings());
+                    });
                 });
         }
 

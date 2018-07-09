@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Solid.Http.Abstractions;
+
 using Solid.Http.Json;
 
 namespace TestConsumer
@@ -31,10 +31,10 @@ namespace TestConsumer
                 .AddSolidHttp()
                 .AddSolidHttpOptions(options =>
                 {
-                    options.Events.OnRequestCreated += (sender, args) =>
+                    options.Events.OnRequestCreated((s, request) =>
                     {
-                        var factory = args.Services.GetRequiredService<ISolidHttpClientFactory>();
-                    };
+                        var factory = s.GetRequiredService<ISolidHttpClientFactory>();
+                    });
                 });
         }
 

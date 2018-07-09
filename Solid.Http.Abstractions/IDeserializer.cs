@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solid.Http.Abstractions
+namespace Solid.Http
 {
     public interface IDeserializer
     {
