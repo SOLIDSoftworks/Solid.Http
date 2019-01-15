@@ -43,7 +43,7 @@ namespace Solid.Http.Abstractions
         ISolidHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Add a hanlder to be run when Solid.Http request object is created.
+        /// Add a handler to be run when Solid.Http request object is created.
         /// </summary>
         /// <param name="handler">The handler to be run</param>
         /// <returns>ISolidHttpClient</returns>
