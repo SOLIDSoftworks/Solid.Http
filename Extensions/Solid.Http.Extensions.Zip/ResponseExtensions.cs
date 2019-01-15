@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     public static class ResponseExtensions
     {
@@ -18,7 +18,7 @@ namespace Solid.Http
         /// <param name="request"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public static async Task<T> As<T>(this SolidHttpRequest request, ZipArchiveMode mode)
+        public static async Task<T> As<T>(this ISolidHttpRequest request, ZipArchiveMode mode)
         {
             var factory = new ZipArchiveResponseDeserializerFactory(mode);
             var deserialize = factory.CreateDeserializer<T>();

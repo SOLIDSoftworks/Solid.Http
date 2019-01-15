@@ -1,10 +1,10 @@
 ﻿
-using Solid.Http.Events;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// Extensions to create a SolidHttpClient with a base address
@@ -32,7 +32,7 @@ namespace Solid.Http
         {
             var client = factory.Create();
             client.AddProperty("Client::BaseAddress", baseAddress);
-            client.OnRequestCreated(OnRequestCreated);
+            client.OnRequestCreated((services, request) => OnRequestCreated(services, request));
             return client;
         }
 

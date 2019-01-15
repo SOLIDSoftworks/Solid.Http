@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Solid.Http.Abstractions;
+using Solid.Http.Xml;
 using Solid.Http.Xml.Abstraction;
 using Solid.Http.Xml.Providers;
 using System;
@@ -6,7 +8,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Solid.Http.Xml
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class SolidHttpBuilderExtensions
     {
@@ -21,16 +23,13 @@ namespace Solid.Http.Xml
         {
             var provider = new XmlSerializerSettingsProvider(settings);
             builder.Services.AddSingleton<IXmlSerializerSettingsProvider>(provider);
-            builder.Services.AddSolidHttpDeserializer<XmlResponseDeserializerFactory>("application/xml", "text/xml");
+            builder.AddDeserializer<XmlResponseDeserializerFactory>("application/xml", "text/xml");
 
             return builder
-                .AddSolidHttpOptions(options =>
+                .OnRequestCreated((services, request) =>
                 {
-                    options.Events.OnRequestCreated((services, request) =>
-                    {
-                        var p = services.GetRequiredService<IXmlSerializerSettingsProvider>();
-                        request.BaseRequest.Properties.Add("XmlSerializerSettings", p.GetXmlSerializerSettings());
-                    });
+                    var p = services.GetRequiredService<IXmlSerializerSettingsProvider>();
+                    request.BaseRequest.Properties.Add("XmlSerializerSettings", p.GetXmlSerializerSettings());
                 });
         }
 
@@ -45,17 +44,13 @@ namespace Solid.Http.Xml
         {
             var provider = new XmlSerializerSettingsProvider(settings);
             builder.Services.AddSingleton<IXmlSerializerSettingsProvider>(provider);
-            builder.Services.AddSolidHttpDeserializer<XmlResponseDeserializerFactory>("application/xml", "text/xml");
+            builder.AddDeserializer<XmlResponseDeserializerFactory>("application/xml", "text/xml");
 
-            return builder
-                .AddSolidHttpOptions(options =>
-                {
-                    options.Events.OnRequestCreated((services, request) =>
-                    {
-                        var p = services.GetRequiredService<IXmlSerializerSettingsProvider>();
-                        request.BaseRequest.Properties.Add("XmlSerializerSettings", p.GetXmlSerializerSettings());
-                    });
-                });
+            return builder.OnRequestCreated((services, request) =>
+            {
+                var p = services.GetRequiredService<IXmlSerializerSettingsProvider>();
+                request.BaseRequest.Properties.Add("XmlSerializerSettings", p.GetXmlSerializerSettings());
+            });
         }
 
         /// <summary>

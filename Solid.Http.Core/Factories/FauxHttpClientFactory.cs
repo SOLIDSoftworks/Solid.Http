@@ -9,27 +9,39 @@ namespace Solid.Http.Factories
     /// </summary>
     public class FauxHttpClientFactory : IHttpClientFactory
     {
-        private ConcurrentDictionary<string, Lazy<HttpClient>> _lazyClients;
+        private ConcurrentDictionary<string, HttpClient> _clients;
 
         public FauxHttpClientFactory()
         { 
-            _lazyClients = new ConcurrentDictionary<string, Lazy<HttpClient>>();
+            _clients = new ConcurrentDictionary<string, HttpClient>();
         }
 
         public HttpClient CreateClient(string name)
         {
-            var lazy = _lazyClients.GetOrAdd(name, key => InitializeLazyClient());
-            return lazy.Value;
+            var client = _clients.GetOrAdd(name, key => InitializeClient(key));            
+            return client;
         }
 
-        private Lazy<HttpClient> InitializeLazyClient()
+        private HttpClient InitializeClient(string name)
         {
-            return new Lazy<HttpClient>(InitializeClient, System.Threading.LazyThreadSafetyMode.ExecutionAndPublication);
+            return new CachedHttpClient(() => _clients.TryRemove(name, out var _));
         }
 
-        private HttpClient InitializeClient()
+        class CachedHttpClient : HttpClient
         {
-            return new HttpClient();
+            private Action _disposing;
+
+            public CachedHttpClient(Action disposing) : base()
+            {
+                _disposing = disposing;
+            }
+
+            protected override void Dispose(bool disposing)
+            {
+                if (disposing)
+                    _disposing();
+                base.Dispose(disposing);
+            }
         }
     }
 }

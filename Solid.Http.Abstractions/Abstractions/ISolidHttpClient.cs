@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     public interface ISolidHttpClient
     {
@@ -13,6 +13,6 @@ namespace Solid.Http
         void AddProperty<T>(string key, T value);
         T GetProperty<T>(string key);
         ISolidHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken);
-        void OnRequestCreated(Action<IServiceProvider, ISolidHttpRequest> handler);
+        ISolidHttpClient OnRequestCreated(Action<IServiceProvider, ISolidHttpRequest> handler);
     }
 }

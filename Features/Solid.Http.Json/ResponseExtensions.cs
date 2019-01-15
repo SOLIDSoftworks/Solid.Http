@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// Response extensions for json responses
@@ -19,7 +19,7 @@ namespace Solid.Http
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="settings">The specified JsonSerializerSettings</param>
         /// <returns>Task of type T</returns>
-        public static async Task<T> As<T>(this SolidHttpRequest request, JsonSerializerSettings settings)
+        public static async Task<T> As<T>(this ISolidHttpRequest request, JsonSerializerSettings settings)
         {
             var factory = new JsonResponseDeserializerFactory(settings);
             var deserialize = factory.CreateDeserializer<T>();
@@ -34,7 +34,7 @@ namespace Solid.Http
         /// <param name="anonymous">The anonymous type</param>
         /// <param name="settings">The specified JsonSerializerSettings</param>
         /// <returns>Task of type T</returns>
-        public static Task<T> As<T>(this SolidHttpRequest request, T anonymous, JsonSerializerSettings settings)
+        public static Task<T> As<T>(this ISolidHttpRequest request, T anonymous, JsonSerializerSettings settings)
         {
             return request.As<T>(settings);
         }
@@ -46,7 +46,7 @@ namespace Solid.Http
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="settings">The specified JsonSerializerSettings</param>
         /// <returns>Task of type IEnumerable&lt;T&gt;</returns>
-        public static Task<IEnumerable<T>> AsMany<T>(this SolidHttpRequest request, JsonSerializerSettings settings)
+        public static Task<IEnumerable<T>> AsMany<T>(this ISolidHttpRequest request, JsonSerializerSettings settings)
         {
             return request.As<IEnumerable<T>>(settings);
         }
@@ -59,7 +59,7 @@ namespace Solid.Http
         /// <param name="anonymous">The anonymous type</param>
         /// <param name="settings">The specified JsonSerializerSettings</param>
         /// <returns>Task of type IEnumerable&lt;T&gt;</returns>
-        public static Task<IEnumerable<T>> AsMany<T>(this SolidHttpRequest request, T anonymous, JsonSerializerSettings settings)
+        public static Task<IEnumerable<T>> AsMany<T>(this ISolidHttpRequest request, T anonymous, JsonSerializerSettings settings)
         {
             return request.As<IEnumerable<T>>(settings);
         }

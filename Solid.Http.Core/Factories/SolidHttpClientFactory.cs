@@ -5,6 +5,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+using Solid.Http.Abstractions;
 
 namespace Solid.Http.Factories
 {
@@ -16,8 +18,9 @@ namespace Solid.Http.Factories
         //    private ISolidHttpEvents _events;
         //    private IEnumerable<IDeserializer> _deserializers;
         private IConfiguration _configuration;
-        private ISolidHttpEvents _events;
+        //private ISolidHttpEvents _events;
         private IServiceProvider _services;
+        private Action<IServiceProvider, ISolidHttpClient> _onClientCreated;
 
         //private IHttpClientProvider _provider;
 
@@ -47,18 +50,18 @@ namespace Solid.Http.Factories
         /// <param name="deserializers">The deserializer provider for SolidHttp</param>
         /// <param name="configuration">The application configuration</param>
         public SolidHttpClientFactory(
-            ISolidHttpEvents events, 
             //IEnumerable<IDeserializer> deserializers, 
-            ISolidHttpOptions options, // this is only added so that the ServiceProvider initializes it
             IServiceProvider services,
+            Action<IServiceProvider, ISolidHttpClient> onClientCreated = null,
             //IHttpClientProvider provider, 
             IConfiguration configuration = null)
         {
-            _events = events;
+            //_events = events;
             _services = services;
             //_provider = provider;
             //_events = events;
             //_deserializers = deserializers;
+            _onClientCreated += onClientCreated ?? ((_, __) => { });
             _configuration = configuration;
         }
         
@@ -69,8 +72,7 @@ namespace Solid.Http.Factories
         public ISolidHttpClient Create()
         {
             var client = _services.GetService<ISolidHttpClient>();
-            foreach (var handler in _events.ClientCreatedHandlers)
-                handler(_services, client);
+            _onClientCreated(_services, client);
             return client;
         }
 

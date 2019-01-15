@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Solid.Http.Abstractions;
 using Solid.Http.Zip.Abstraction;
 using Solid.Http.Zip.Providers;
 using System;
@@ -21,7 +22,7 @@ namespace Solid.Http.Zip
         {
             var provider = new ZipArchiveSerializerSettingsProvider(mode);
             builder.Services.AddSingleton<IZipSerializerSettingsProvider>(provider);
-            builder.Services.AddSolidHttpDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", "application/octet-stream");
+            builder.AddDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", "application/octet-stream");
 
             return builder;
         }
@@ -37,7 +38,7 @@ namespace Solid.Http.Zip
         {
             var provider = new ZipArchiveSerializerSettingsProvider(mode);
             builder.Services.AddSingleton<IZipSerializerSettingsProvider>(provider);
-            builder.Services.AddSolidHttpDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", "application/octet-stream");
+            builder.AddDeserializer<ZipArchiveResponseDeserializerFactory>("application/zip", "application/octet-stream");
 
             return builder;
         }

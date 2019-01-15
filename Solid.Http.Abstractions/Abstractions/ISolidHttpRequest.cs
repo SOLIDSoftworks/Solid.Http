@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     public interface ISolidHttpRequest
     {
@@ -14,10 +14,9 @@ namespace Solid.Http
         HttpRequestMessage BaseRequest { get; }
         HttpResponseMessage BaseResponse { get; }
         CancellationToken CancellationToken { get; }
-        void OnRequest(Action<IServiceProvider, HttpRequestMessage> handler);
-        void OnRequest(Func<IServiceProvider, HttpRequestMessage, Task> handler);
-        void OnResponse(Action<IServiceProvider, HttpResponseMessage> handler);
-        void OnResponse(Func<IServiceProvider, HttpResponseMessage, Task> handler);
+
+        ISolidHttpRequest OnRequest(Func<IServiceProvider, HttpRequestMessage, Task> handler);
+        ISolidHttpRequest OnResponse(Func<IServiceProvider, HttpResponseMessage, Task> handler);
         TaskAwaiter<HttpResponseMessage> GetAwaiter();
     }
 }

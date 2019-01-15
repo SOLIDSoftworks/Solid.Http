@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Solid.Http.Abstractions;
 
 namespace Solid.Http
 {
@@ -14,17 +15,27 @@ namespace Solid.Http
     /// </summary>
     public class SolidHttpRequest : ISolidHttpRequest
     {
-        private List<Func<IServiceProvider, HttpRequestMessage, Task>> _requestHandlers = new List<Func<IServiceProvider, HttpRequestMessage, Task>>();
-        private List<Func<IServiceProvider, HttpResponseMessage, Task>> _responseHandlers = new List<Func<IServiceProvider, HttpResponseMessage, Task>>();
+        private Func<IServiceProvider, HttpRequestMessage, Task> _onRequest;
+        private Func<IServiceProvider, HttpResponseMessage, Task> _onResponse;
 
         private IServiceProvider _services;
 
-        internal SolidHttpRequest(ISolidHttpClient client, IServiceProvider services, HttpMethod method, Uri url, CancellationToken cancellationToken)
+        internal SolidHttpRequest(
+            ISolidHttpClient client, 
+            IServiceProvider services, 
+            HttpMethod method, 
+            Uri url,
+            Func<IServiceProvider, HttpRequestMessage, Task> onRequest,
+            Func<IServiceProvider, HttpResponseMessage, Task> onResponse, 
+            CancellationToken cancellationToken)
         {
             _services = services;
             Client = client;
             BaseRequest = new HttpRequestMessage(method, url);
             CancellationToken = cancellationToken;
+
+            _onRequest += onRequest ?? ((_, __) => Task.CompletedTask);
+            _onResponse += onResponse ?? ((_, __) => Task.CompletedTask);
         }
 
         public ISolidHttpClient Client { get; }
@@ -78,38 +89,27 @@ namespace Solid.Http
             {
                 if (BaseResponse == null)
                 {
-                    foreach (var handler in _requestHandlers)
-                        await handler(_services, BaseRequest);
+                    await _onRequest(_services, BaseRequest);
                     var provider = _services.GetService<IHttpClientProvider>();
                     var http = provider.Get(BaseRequest.RequestUri);
                     BaseResponse = await http.SendAsync(BaseRequest, CancellationToken);
-
-                    foreach (var handler in _responseHandlers)
-                        await handler(_services, BaseResponse);
+                    await _onResponse(_services, BaseResponse);
                 }
                 return BaseResponse;
             });
             return waiter(this).GetAwaiter();
         }
 
-        public void OnRequest(Action<IServiceProvider, HttpRequestMessage> handler)
+        public ISolidHttpRequest OnRequest(Func<IServiceProvider, HttpRequestMessage, Task> handler)
         {
-            OnRequest(handler.ToAsyncFunc());
+            _onRequest += handler;
+            return this;
         }
 
-        public void OnRequest(Func<IServiceProvider, HttpRequestMessage, Task> handler)
+        public ISolidHttpRequest OnResponse(Func<IServiceProvider, HttpResponseMessage, Task> handler)
         {
-            _requestHandlers.Add(handler);
-        }
-
-        public void OnResponse(Action<IServiceProvider, HttpResponseMessage> handler)
-        {
-            OnResponse(handler.ToAsyncFunc());
-        }
-
-        public void OnResponse(Func<IServiceProvider, HttpResponseMessage, Task> handler)
-        {
-            _responseHandlers.Add(handler);
+            _onResponse += handler;
+            return this;
         }
     }
 }

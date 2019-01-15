@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
-
+using Solid.Http.Abstractions;
 using Solid.Http.Factories;
 using Solid.Http.Providers;
 using Xunit;
@@ -13,9 +13,10 @@ namespace Solid.Http.Core.Tests
         [Fact]
         public void ShouldUseFauxHttpClientFactory()
         {
-            var builder = new SolidHttpCoreBuilder();
-            builder.Build();
-            var provider = builder.Provider.CreateScope().ServiceProvider.GetService<IHttpClientProvider>() as HttpClientProvider;
+            var services = new ServiceCollection();
+            services.AddSolidHttpCore();
+            var root = services.BuildServiceProvider();
+            var provider = root.GetService<IHttpClientProvider>() as HttpClientProvider;
             Assert.IsType<FauxHttpClientFactory>(provider.Factory);
         }
 
@@ -25,9 +26,9 @@ namespace Solid.Http.Core.Tests
             var services = new ServiceCollection();
             services.AddHttpClient();
 
-            var builder = new SolidHttpCoreBuilder(services);
-            builder.Build();
-            var provider = builder.Provider.CreateScope().ServiceProvider.GetService<IHttpClientProvider>() as HttpClientProvider;
+            services.AddSolidHttpCore();
+            var root = services.BuildServiceProvider();
+            var provider = root.GetService<IHttpClientProvider>() as HttpClientProvider;
             var type = provider.Factory.GetType();
             Assert.Equal("Microsoft.Extensions.Http.DefaultHttpClientFactory", type.FullName);
         }
@@ -37,10 +38,9 @@ namespace Solid.Http.Core.Tests
         {
             var services = new ServiceCollection();
             services.AddSingleton<IHttpClientFactory, CustomHttpClientFactory>();
-
-            var builder = new SolidHttpCoreBuilder(services);
-            builder.Build();
-            var provider = builder.Provider.CreateScope().ServiceProvider.GetService<IHttpClientProvider>() as HttpClientProvider;
+            services.AddSolidHttpCore();
+            var root = services.BuildServiceProvider();
+            var provider = root.GetService<IHttpClientProvider>() as HttpClientProvider;
             Assert.IsType<CustomHttpClientFactory>(provider.Factory);
         }
 

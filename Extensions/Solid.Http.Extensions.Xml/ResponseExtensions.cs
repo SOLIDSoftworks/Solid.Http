@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     public static class ResponseExtensions
     {
@@ -16,7 +16,7 @@ namespace Solid.Http
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="settings">The specified DataContractSerializerSettings</param>
         /// <returns>Task of type T</returns>
-        public static async Task<T> As<T>(this SolidHttpRequest request, DataContractSerializerSettings settings)
+        public static async Task<T> As<T>(this ISolidHttpRequest request, DataContractSerializerSettings settings)
         {
             var factory = new XmlResponseDeserializerFactory(settings);
             var deserialize = factory.CreateDeserializer<T>();
@@ -31,7 +31,7 @@ namespace Solid.Http
         /// <param name="anonymous">The anonymous type</param>
         /// <param name="settings">The specified DataContractSerializerSettings</param>
         /// <returns>Task of type T</returns>
-        public static Task<T> As<T>(this SolidHttpRequest request, T anonymous, DataContractSerializerSettings settings)
+        public static Task<T> As<T>(this ISolidHttpRequest request, T anonymous, DataContractSerializerSettings settings)
         {
             return request.As<T>(settings);
         }
@@ -43,7 +43,7 @@ namespace Solid.Http
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="settings">The specified JsonSerializerSettings</param>
         /// <returns>Task of type IEnumerable&lt;T&gt;</returns>
-        public static Task<IEnumerable<T>> AsMany<T>(this SolidHttpRequest request, DataContractSerializerSettings settings)
+        public static Task<IEnumerable<T>> AsMany<T>(this ISolidHttpRequest request, DataContractSerializerSettings settings)
         {
             return request.As<IEnumerable<T>>(settings);
         }
@@ -56,7 +56,7 @@ namespace Solid.Http
         /// <param name="anonymous">The anonymous type</param>
         /// <param name="settings">The specified DataContractSerializerSettings</param>
         /// <returns>Task of type IEnumerable&lt;T&gt;</returns>
-        public static Task<IEnumerable<T>> AsMany<T>(this SolidHttpRequest request, T anonymous, DataContractSerializerSettings settings)
+        public static Task<IEnumerable<T>> AsMany<T>(this ISolidHttpRequest request, T anonymous, DataContractSerializerSettings settings)
         {
             return request.As<IEnumerable<T>>(settings);
         }

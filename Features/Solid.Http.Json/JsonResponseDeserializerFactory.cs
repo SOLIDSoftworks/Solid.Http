@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Solid.Http.Abstractions;
 using Solid.Http.Json.Abstraction;
 using System;
 using System.Collections.Generic;

@@ -7,7 +7,7 @@ using Solid.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Diagnostics;
-
+using Solid.Http.Abstractions;
 
 namespace TestConsumer.Controllers
 {

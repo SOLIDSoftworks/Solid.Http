@@ -1,4 +1,5 @@
 ﻿
+using Solid.Http.Abstractions;
 using Solid.Http.Zip.Abstraction;
 using System;
 using System.Collections.Generic;

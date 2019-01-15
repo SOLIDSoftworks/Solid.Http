@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Solid.Http;
+using Solid.Http.Abstractions;
 using Solid.Http.Json;
 using System;
 
@@ -13,23 +14,20 @@ namespace Microsoft.Extensions.DependencyInjection
         /// </summary>
         /// <param name="services">The service collection</param>
         /// <returns>ISolidHttpBuilder</returns>
-        public static ISolidHttpBuilder AddSolidHttp(this IServiceCollection services)
-        {
-            var core = services
-                .AddSolidHttpCore();
-            return new SolidHttpBuilder(core);
-        }
+        public static IServiceCollection AddSolidHttp(this IServiceCollection services) => services.AddSolidHttp(_ => { });
 
         /// <summary>
         /// Add SolidHttp to the service collection using the default implementation of IHttpClientFactory
         /// </summary>
         /// <param name="services">The service collection</param>
         /// <returns>ISolidHttpBuilder</returns>
-        public static ISolidHttpBuilder AddSolidHttp(this IServiceCollection services, Action<ISolidHttpOptions> configure)
+        public static IServiceCollection AddSolidHttp(this IServiceCollection services, Action<ISolidHttpBuilder> action)
         {
-            var core = services
-                .AddSolidHttpCore(configure);
-            return new SolidHttpBuilder(core);
+            var builder = null as ISolidHttpCoreBuilder;
+            services.AddSolidHttpCore(b => builder = b);
+            builder.AddJson();
+            action(builder);
+            return services;
         }
     }
 }

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using Solid.Http.Json;
+using Solid.Http.Abstractions;
 
 namespace TestConsumer
 {
@@ -28,14 +29,10 @@ namespace TestConsumer
         {
             services.AddMvc();
             services
-                .AddSolidHttp()
-                .AddSolidHttpOptions(options =>
+                .AddSolidHttp(builder => builder.OnRequestCreated((s, request) =>
                 {
-                    options.Events.OnRequestCreated((s, request) =>
-                    {
-                        var factory = s.GetRequiredService<ISolidHttpClientFactory>();
-                    });
-                });
+                    var factory = s.GetRequiredService<ISolidHttpClientFactory>();
+                }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,8 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// Extensions to create a SolidHttpClient using a connection string

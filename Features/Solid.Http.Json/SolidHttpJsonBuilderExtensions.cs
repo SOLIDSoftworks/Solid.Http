@@ -1,17 +1,19 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Solid.Http.Abstractions;
+using Solid.Http.Json;
 using Solid.Http.Json.Abstraction;
 using Solid.Http.Json.Providers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Solid.Http.Json
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Extension class to add Json support
     /// </summary>
-    public static class SolidHttpBuilderExtensions
+    public static class SolidHttpJsonBuilderExtensions
     {
         /// <summary>
         /// Adds json support using supplied settings
@@ -24,16 +26,13 @@ namespace Solid.Http.Json
         {
             var provider = new JsonSerializerSettingsProvider(settings);
             builder.Services.AddSingleton<IJsonSerializerSettingsProvider>(provider);
-            builder.Services.AddSolidHttpDeserializer<JsonResponseDeserializerFactory>("application/json", "text/json", "text/javascript");
+            builder.AddDeserializer<JsonResponseDeserializerFactory>("application/json", "text/json", "text/javascript");
 
             return builder
-                .AddSolidHttpOptions(options =>
+                .OnRequestCreated((services, request) =>
                 {
-                    options.Events.OnRequestCreated((services, request) =>
-                    {
-                        var p = services.GetRequiredService<IJsonSerializerSettingsProvider>();
-                        request.BaseRequest.Properties.Add("JsonSerializerSettings", p.GetJsonSerializerSettings());
-                    });
+                    var p = services.GetRequiredService<IJsonSerializerSettingsProvider>();
+                    request.BaseRequest.Properties.Add("JsonSerializerSettings", p.GetJsonSerializerSettings());
                 });
         }
 

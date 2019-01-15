@@ -17,9 +17,6 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="2.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Providers\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Solid.Http.Abstractions\Solid.Http.Abstractions.csproj" />
   </ItemGroup>
 </Project>
