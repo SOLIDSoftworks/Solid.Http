@@ -15,14 +15,9 @@ namespace Solid.Http.Factories
     /// </summary>
     internal class SolidHttpClientFactory : ISolidHttpClientFactory
     {
-        //    private ISolidHttpEvents _events;
-        //    private IEnumerable<IDeserializer> _deserializers;
         private IConfiguration _configuration;
-        //private ISolidHttpEvents _events;
         private IServiceProvider _services;
         private Action<IServiceProvider, ISolidHttpClient> _onClientCreated;
-
-        //private IHttpClientProvider _provider;
 
         /// <summary>
         /// The application configuration which can be used in extension methods
@@ -46,21 +41,15 @@ namespace Solid.Http.Factories
         /// <summary>
         /// Creates a SolidHttpClientFactory
         /// </summary>
-        /// <param name="events">The events to be triggered when a SolidHttpClient is created</param>
-        /// <param name="deserializers">The deserializer provider for SolidHttp</param>
+        /// <param name="services">The root service provider</param>
+        /// <param name="onClientCreated">The registered onClientCreated handlers</param>
         /// <param name="configuration">The application configuration</param>
         public SolidHttpClientFactory(
-            //IEnumerable<IDeserializer> deserializers, 
             IServiceProvider services,
             Action<IServiceProvider, ISolidHttpClient> onClientCreated = null,
-            //IHttpClientProvider provider, 
             IConfiguration configuration = null)
         {
-            //_events = events;
             _services = services;
-            //_provider = provider;
-            //_events = events;
-            //_deserializers = deserializers;
             _onClientCreated += onClientCreated ?? ((_, __) => { });
             _configuration = configuration;
         }
@@ -87,13 +76,5 @@ namespace Solid.Http.Factories
         public virtual void Dispose()
         {
         }
-
-        //private SolidHttpClient CreateSolidHttpClient(HttpClient inner)
-        //{
-        //    var client = new SolidHttpClient(inner, _deserializers, _events);
-        //    foreach (var handler in _events.ClientCreatedHandlers)
-        //        handler(_services, client);
-        //    return client;
-        //}
     }
 }

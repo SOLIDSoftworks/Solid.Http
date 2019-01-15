@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Solid.Http.Providers
 {
-    public class InstancePerHostHttpClientProvider : HttpClientProvider
+    internal class InstancePerHostHttpClientProvider : HttpClientProvider
     {
         public InstancePerHostHttpClientProvider(IHttpClientFactory factory = null) : base(factory)
         {

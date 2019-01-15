@@ -1,0 +1,908 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Solid.Http.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Solid.Http.Abstractions.OnRequestCreatedExtensions">
+            <summary>
+            OnRequestCreated extensions methods
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.OnRequestCreatedExtensions.OnRequestCreated(Solid.Http.Abstractions.ISolidHttpClient,System.Action{Solid.Http.Abstractions.ISolidHttpRequest})">
+            <summary>
+            Add a handler to be run when Solid.Http request object is created.
+            </summary>
+            <param name="client">The Solid.Http client</param>
+            <param name="action">The handler to be run</param>
+            <returns>ISolidHttpClient</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.BaseAddressExtensions">
+            <summary>
+            Extensions to create a SolidHttpClient with a base address
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BaseAddressExtensions.CreateWithBaseAddress(Solid.Http.Abstractions.ISolidHttpClientFactory,System.String)">
+            <summary>
+            Creates a SolidHttpClient with a base address
+            </summary>
+            <param name="factory">The ISolidHttpClientFactory</param>
+            <param name="baseAddress">The base address to use</param>
+            <returns>SolidHttpClient</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BaseAddressExtensions.CreateWithBaseAddress(Solid.Http.Abstractions.ISolidHttpClientFactory,System.Uri)">
+            <summary>
+            Creates a SolidHttpClient with a base address
+            </summary>
+            <param name="factory">The ISolidHttpClientFactory</param>
+            <param name="baseAddress">The base address to use</param>
+            <returns>SolidHttpClient</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.ConnectionStringExtensions">
+            <summary>
+            Extensions to create a SolidHttpClient using a connection string
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ConnectionStringExtensions.CreateUsingConnectionString(Solid.Http.Abstractions.ISolidHttpClientFactory,System.String)">
+            <summary>
+            Creates a SolidHttpClient using a connection string
+            </summary>
+            <param name="factory">The ISolidHttpClientFactory</param>
+            <param name="connectionStringName">The name of the connection string in the configuration file</param>
+            <returns>SolidHttpClient</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.BodyExtensions">
+            <summary>
+            BodyExtensions
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BodyExtensions.WithFormBoundary(Solid.Http.Abstractions.ISolidHttpRequest,System.String)">
+            <summary>
+            Changes the boundary of the multipart form data content
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="boundary">The boundary of the multipart form data content</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BodyExtensions.WithSubtype(Solid.Http.Abstractions.ISolidHttpRequest,System.String)">
+            <summary>
+            Changes the sub type of the multipart content
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="subtype">The subtype of the multipart content</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BodyExtensions.WithSubTypeAndBoundary(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.String)">
+            <summary>
+            Changes the sub type and boundary of the multipart content
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="subtype">The subtype of the multipart content</param>
+            <param name="boundary">The boundary of the multipart content</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BodyExtensions.WithFormDataContent(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.String)">
+            <summary>
+            Adds form data content to the request
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="name">The form name of the content</param>
+            <param name="content">The string value of the content</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BodyExtensions.WithFormDataContent(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.Net.Http.HttpContent)">
+            <summary>
+            Adds form data content to the request
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="name">The form name of the content</param>
+            <param name="content">The HttpContent</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BodyExtensions.WithFormDataFile(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.Net.Http.StreamContent,System.String)">
+            <summary>
+            Adds form data file to request
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="name">The form name of the file</param>
+            <param name="content">The file StreamContent</param>
+            <param name="fileName">The file name</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BodyExtensions.WithFormDataFile(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.Net.Http.ByteArrayContent,System.String)">
+            <summary>
+            Adds form data file to request
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="name">The form name of the file</param>
+            <param name="content">The file ByteArrayContent</param>
+            <param name="fileName">The file name</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.BodyExtensions.WithContent(Solid.Http.Abstractions.ISolidHttpRequest,System.Net.Http.HttpContent)">
+            <summary>
+            Adds HttpContent to the request
+            <para>If there is already HttpContent on the request, it makes the request multipart</para>
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="content">The HttpContent</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.HeaderExtensions">
+            <summary>
+            HeaderExtensions
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.HeaderExtensions.WithHeader(Solid.Http.Abstractions.ISolidHttpRequest,System.String,Microsoft.Extensions.Primitives.StringValues)">
+            <summary>
+            Adds a header to the http request
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="name">The name of the header</param>
+            <param name="values">Value(s) for the header</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.HeaderExtensions.WithHeader(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.String,System.String,System.String[])">
+            <summary>
+            Adds a header to the http request
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="name">The name of the header</param>
+            <param name="firstValue">The first value of the header</param>
+            <param name="secondValue">The second value of the header</param>
+            <param name="moreValues">More values for the header</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.HeaderExtensions.WithHeaders(Solid.Http.Abstractions.ISolidHttpRequest,System.Action{System.Net.Http.Headers.HttpRequestHeaders})">
+            <summary>
+            Adds headers to the http request
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="addHeaders">The action to add headers</param>
+            <returns>ISolidHttpRequest</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.MethodExtensions">
+            <summary>
+            MethodExtensions
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.GetAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String)">
+            <summary>
+            Performs a GET request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.GetAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri)">
+            <summary>
+            Performs a GET request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.GetAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Performs a GET request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.GetAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri,System.Threading.CancellationToken)">
+            <summary>
+            Performs a GET request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PostAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String)">
+            <summary>
+            Performs a POST request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PostAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri)">
+            <summary>
+            Performs a POST request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PostAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Performs a POST request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PostAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri,System.Threading.CancellationToken)">
+            <summary>
+            Performs a POST request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PutAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String)">
+            <summary>
+            Performs a PUT request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PutAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri)">
+            <summary>
+            Performs a PUT request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PutAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Performs a PUT request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PutAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri,System.Threading.CancellationToken)">
+            <summary>
+            Performs a PUT request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PatchAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String)">
+            <summary>
+            Performs a PATCH request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PatchAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri)">
+            <summary>
+            Performs a PATCH request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PatchAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Performs a PATCH request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.PatchAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri,System.Threading.CancellationToken)">
+            <summary>
+            Performs a PATCH request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.DeleteAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String)">
+            <summary>
+            Performs a DELETE request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.DeleteAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri)">
+            <summary>
+            Performs a DELETE request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.DeleteAsync(Solid.Http.Abstractions.ISolidHttpClient,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Performs a DELETE request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.MethodExtensions.DeleteAsync(Solid.Http.Abstractions.ISolidHttpClient,System.Uri,System.Threading.CancellationToken)">
+            <summary>
+            Performs a DELETE request
+            </summary>
+            <param name="client">The ISolidHttpClient</param>
+            <param name="url">The url to be requested</param>
+            <param name="cancellationToken">The cancellation token for the request</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.OnRequestExtensions">
+            <summary>
+            OnRequest extension methods
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.OnRequestExtensions.OnRequest(Solid.Http.Abstractions.ISolidHttpRequest,System.Action{System.IServiceProvider,System.Net.Http.HttpRequestMessage})">
+            <summary>
+            Add an event handler to be run just before the request is sent
+            </summary>
+            <param name="request">The Solid.Http request</param>
+            <param name="action">The handler to be run</param>
+            <returns>The Solid.Http request object</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.OnRequestExtensions.OnRequest(Solid.Http.Abstractions.ISolidHttpRequest,System.Action{System.Net.Http.HttpRequestMessage})">
+            <summary>
+            Add an event handler to be run just before the request is sent
+            </summary>
+            <param name="request">The Solid.Http request</param>
+            <param name="action">The handler to be run</param>
+            <returns>The Solid.Http request object</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.OnRequestExtensions.OnRequest(Solid.Http.Abstractions.ISolidHttpRequest,System.Func{System.Net.Http.HttpRequestMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Add an event handler to be run just before the request is sent
+            </summary>
+            <param name="request">The Solid.Http request</param>
+            <param name="func">The handler to be run</param>
+            <returns>The Solid.Http request object</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.OnResponseExtensions">
+            <summary>
+            OnResponse extension methods
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.OnResponseExtensions.OnResponse(Solid.Http.Abstractions.ISolidHttpRequest,System.Action{System.IServiceProvider,System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Add an event to be run the moment the response is received
+            </summary>
+            <param name="request">The Solid.Http request</param>
+            <param name="action">The handler to be run</param>
+            <returns>The Solid.Http request object</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.OnResponseExtensions.OnResponse(Solid.Http.Abstractions.ISolidHttpRequest,System.Action{System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Add an event to be run the moment the response is received
+            </summary>
+            <param name="request">The Solid.Http request</param>
+            <param name="action">The handler to be run</param>
+            <returns>The Solid.Http request object</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.OnResponseExtensions.OnResponse(Solid.Http.Abstractions.ISolidHttpRequest,System.Func{System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Add an event to be run the moment the response is received
+            </summary>
+            <param name="request">The Solid.Http request</param>
+            <param name="func">The handler to be run</param>
+            <returns>The Solid.Http request object</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.ResponseExtensions">
+            <summary>
+            ResponseExtensions
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.As``1(Solid.Http.Abstractions.ISolidHttpRequest,System.Func{System.Net.Http.HttpContent,System.Threading.Tasks.Task{``0}})">
+            <summary>
+            Deserializes the response content using a specified deserializer
+            </summary>
+            <typeparam name="T">The type to deserialize to</typeparam>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="deserialize">The deserialization method</param>
+            <returns>Task of type T</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.As``1(Solid.Http.Abstractions.ISolidHttpRequest,``0)">
+            <summary>
+            Deserializes the response content as the specified anonymous type
+            </summary>
+            <typeparam name="T">The type to deserialize to</typeparam>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="anonymous">An anonumous type to infer T</param>
+            <returns>Task of type T</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.AsMany``1(Solid.Http.Abstractions.ISolidHttpRequest,``0)">
+            <summary>
+            Deserializes the response content as an array of the specified anonymous type
+            </summary>
+            <typeparam name="T">The type to deserialize to</typeparam>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="anonymous"></param>
+            <returns>Task of type IEnumerable&lt;T&gt;</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.AsMany``1(Solid.Http.Abstractions.ISolidHttpRequest)">
+            <summary>
+            Deserializes the response content as an array of type T
+            </summary>
+            <typeparam name="T">The type to deserialize to</typeparam>
+            <param name="request">The ISolidHttpRequest</param>
+            <returns>Task of type IEnumerable&lt;T&gt;</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.As``1(Solid.Http.Abstractions.ISolidHttpRequest)">
+            <summary>
+            Deserializes the response content
+            </summary>
+            <typeparam name="T">The type to deserialize to</typeparam>
+            <param name="request">The ISolidHttpRequest</param>
+            <returns>Task of type T</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.AsText(Solid.Http.Abstractions.ISolidHttpRequest)">
+            <summary>
+            Returns the response content as text
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <returns>Task of type string</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.ExpectSuccess(Solid.Http.Abstractions.ISolidHttpRequest)">
+            <summary>
+            Expect a success status code
+            <para>If a non-success status code is received, an InvalidOperationException is thrown</para>
+            </summary>        
+            <param name="request">The ISolidHttpRequest</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.IgnoreSerializationError(Solid.Http.Abstractions.ISolidHttpRequest)">
+            <summary>
+            Expect a success status code
+            <para>If a non-success status code is received, an InvalidOperationException is thrown</para>
+            </summary>        
+            <param name="request">The ISolidHttpRequest</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.On(Solid.Http.Abstractions.ISolidHttpRequest,System.Net.HttpStatusCode,System.Action{System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Map a handler to a specific http status code
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="code">The http status code</param>
+            <param name="handler">The handler</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.On(Solid.Http.Abstractions.ISolidHttpRequest,System.Net.HttpStatusCode,System.Action{System.IServiceProvider,System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Map a handler to a specific http status code
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="code">The http status code</param>
+            <param name="handler">The handler</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.On(Solid.Http.Abstractions.ISolidHttpRequest,System.Func{System.Net.Http.HttpResponseMessage,System.Boolean},System.Action{System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Map a handler to a specific http status code
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="predicate">The predicate</param>
+            <param name="handler">The handler</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.On(Solid.Http.Abstractions.ISolidHttpRequest,System.Func{System.Net.Http.HttpResponseMessage,System.Boolean},System.Action{System.IServiceProvider,System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Map a handler to a specific http status code
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="predicate">The predicate</param>
+            <param name="handler">The handler</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.On(Solid.Http.Abstractions.ISolidHttpRequest,System.Net.HttpStatusCode,System.Func{System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Map an async handler to a specific http status code
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="code">The http status code</param>
+            <param name="handler">The async handler</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.On(Solid.Http.Abstractions.ISolidHttpRequest,System.Net.HttpStatusCode,System.Func{System.IServiceProvider,System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Map an async handler to a specific http status code
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="code">The http status code</param>
+            <param name="handler">The async handler</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.On(Solid.Http.Abstractions.ISolidHttpRequest,System.Func{System.Net.Http.HttpResponseMessage,System.Boolean},System.Func{System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Map an async handler to a specific http status code
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="predicate">The predicate</param>
+            <param name="handler">The async handler</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.ResponseExtensions.On(Solid.Http.Abstractions.ISolidHttpRequest,System.Func{System.Net.Http.HttpResponseMessage,System.Boolean},System.Func{System.IServiceProvider,System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Map an async handler to a specific http status code
+            </summary>
+            <param name="request">The ISolidHttpRequest</param>
+            <param name="predicate">The predicate</param>
+            <param name="handler">The async handler</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="T:Solid.Http.Abstractions.UrlExtensions">
+            <summary>
+            UrlExtensions
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Abstractions.UrlExtensions.WithNamedParameter(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.String)">
+            <summary>
+            Replaces a templated parameter in the url
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="name">The name of the templated parameter</param>
+            <param name="value">The value to inject</param>
+            <returns>SolidHttpRequest</returns>
+        </member>
+        <member name="M:Solid.Http.Abstractions.UrlExtensions.WithQueryParameter(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.String)">
+            <summary>
+            Adds a query parameter to the url
+            </summary>
+            <param name="request">The SolidHttpRequest</param>
+            <param name="name">The name of the query parameter</param>
+            <param name="value">The value of the query parameter</param>
+            <returns></returns>
+        </member>
+        <member name="T:Solid.Http.Factories.SolidHttpClientFactory">
+            <summary>
+            The SolidHttpClientFactory
+            </summary>
+        </member>
+        <member name="P:Solid.Http.Factories.SolidHttpClientFactory.Configuration">
+            <summary>
+            The application configuration which can be used in extension methods
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Factories.SolidHttpClientFactory.#ctor(System.IServiceProvider,System.Action{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpClient},Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Creates a SolidHttpClientFactory
+            </summary>
+            <param name="services">The root service provider</param>
+            <param name="onClientCreated">The registered onClientCreated handlers</param>
+            <param name="configuration">The application configuration</param>
+        </member>
+        <member name="M:Solid.Http.Factories.SolidHttpClientFactory.Create">
+            <summary>
+            Creates a SolidHttpClient
+            </summary>
+            <returns>SolidHttpClient</returns>
+        </member>
+        <member name="M:Solid.Http.Factories.SolidHttpClientFactory.Dispose">
+            <summary>
+            Releases all resource used by the <see cref="T:SolidHttp.SolidHttpClientFactory"/> object.
+            </summary>
+            <remarks>Call <see cref="M:Solid.Http.Factories.SolidHttpClientFactory.Dispose"/> when you are finished using the <see cref="T:SolidHttp.SolidHttpClientFactory"/>.
+            The <see cref="M:Solid.Http.Factories.SolidHttpClientFactory.Dispose"/> method leaves the <see cref="T:SolidHttp.SolidHttpClientFactory"/> in an unusable
+            state. After calling <see cref="M:Solid.Http.Factories.SolidHttpClientFactory.Dispose"/>, you must release all references to the
+            <see cref="T:SolidHttp.SolidHttpClientFactory"/> so the garbage collector can reclaim the memory that the
+            <see cref="T:SolidHttp.SolidHttpClientFactory"/> was occupying.</remarks>
+        </member>
+        <member name="T:Solid.Http.Providers.HttpClientProvider">
+            <summary>
+            Abstract HttpClientProvider which tries to use IHttpClientFactory to create HttpClient instances
+            </summary>
+        </member>
+        <member name="P:Solid.Http.Providers.HttpClientProvider.Factory">
+            <summary>
+            The HttpClientFactory used by the provider
+            </summary>
+        </member>
+        <member name="M:Solid.Http.Providers.HttpClientProvider.#ctor(System.Net.Http.IHttpClientFactory)">
+            <summary>
+            Create an HttpClientProvider
+            </summary>
+            <param name="factory">The optional injected IHttpClientFactory. If nothing is injected, a simple implementation is used.</param>
+        </member>
+        <member name="M:Solid.Http.Providers.HttpClientProvider.Get(System.Uri)">
+            <summary>
+            Gets an HttpClient from an IHttpClientFactory using the request url
+            </summary>
+            <param name="url">The request url</param>
+            <returns>An HttpClient</returns>
+        </member>
+        <member name="M:Solid.Http.Providers.HttpClientProvider.GenerateHttpClientName(System.Uri)">
+            <summary>
+            Generates a name for the HttpClient being requested by using the request url
+            </summary>
+            <param name="url">The request url</param>
+            <returns>A generated name</returns>
+        </member>
+        <member name="T:Solid.Http.SolidHttpClient">
+            <summary>
+            A SolidHttpClient that is used to perform create SolidHttpRequests. This class is designed be extended using extension methods.
+            </summary>
+        </member>
+        <member name="T:Solid.Http.SolidHttpRequest">
+            <summary>
+            A SolidHttpRequest that is used to perform http requests. This class is designed be extended using extension methods.
+            </summary>
+        </member>
+        <member name="P:Solid.Http.SolidHttpRequest.BaseRequest">
+            <summary>
+            The base request that is sent
+            </summary>
+        </member>
+        <member name="P:Solid.Http.SolidHttpRequest.BaseResponse">
+            <summary>
+            The response
+            </summary>
+        </member>
+        <member name="P:Solid.Http.SolidHttpRequest.CancellationToken">
+            <summary>
+            The cancellation token for the request
+            </summary>
+        </member>
+        <member name="M:Solid.Http.SolidHttpRequest.GetAwaiter">
+            <summary>
+            The awaiter that enables a SolidHttpRequest to be awaited
+            </summary>
+            <returns>A TaskAwaiter for an HttpResponseMessage</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions">
+            <summary>
+            ISolidHttpBuilder extensions methods
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.AddDeserializer(Solid.Http.Abstractions.ISolidHttpCoreBuilder,Solid.Http.Abstractions.IResponseDeserializerFactory,System.String,System.String[])">
+            <summary>
+            Adds a deserializer factory used to deserialize the specified mime types
+            </summary>
+            <param name="builder">The extended ISolidHttpCoreBuilder</param>
+            <param name="factory">The deserializer factory instance</param>
+            <param name="mimeType">The mime type to deserialize</param>
+            <param name="more">More mime types</param>
+            <returns>ISolidHttpCoreBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.AddDeserializer``1(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.String,System.String[])">
+            <summary>
+            Adds a deserializer factory used to deserialize the specified mime types
+            </summary>
+            <typeparam name="TFactory">The deserializer factory type</typeparam>
+            <param name="builder">The extended ISolidHttpCoreBuilder</param>
+            <param name="mimeType">The mime type to deserialize</param>
+            <param name="more">More mime types</param>
+            <returns>ISolidHttpCoreBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.AddDeserializer(Solid.Http.Abstractions.ISolidHttpBuilder,Solid.Http.Abstractions.IResponseDeserializerFactory,System.String,System.String[])">
+            <summary>
+            Adds a deserializer factory used to deserialize the specified mime types
+            </summary>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="factory">The deserializer factory instance</param>
+            <param name="mimeType">The mime type to deserialize</param>
+            <param name="more">More mime types</param>
+            <returns>ISolidHttpBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.AddDeserializer``1(Solid.Http.Abstractions.ISolidHttpBuilder,System.String,System.String[])">
+            <summary>
+            Adds a deserializer factory used to deserialize the specified mime types
+            </summary>
+            <typeparam name="TFactory">The deserializer factory type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="mimeType">The mime type to deserialize</param>
+            <param name="more">More mime types</param>
+            <returns>ISolidHttpBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseSingleInstanceHttpClientProvider(Solid.Http.Abstractions.ISolidHttpBuilder)">
+            <summary>
+            Configures Solid.Http to use one HttpClient for the whole application
+            </summary>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <returns>ISolidHttpBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseInstancePerHostHttpClientProvider(Solid.Http.Abstractions.ISolidHttpBuilder)">
+            <summary>
+            Configures Solid.Http to use one HttpClient for each host requested.
+            </summary>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <returns>ISolidHttpBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpBuilder,``0)">
+            <summary>
+            Configures Solid.Http to use a custom HttpClientProvider
+            </summary>
+            <typeparam name="TProvider">The custom HttpClientProvider type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="instance">The HttpClientFactory instance</param>
+            <returns>ISolidHttpBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpBuilder,System.Func{System.IServiceProvider,``0})">
+            <summary>
+            Configures Solid.Http to use a custom HttpClientProvider
+            </summary>
+            <typeparam name="TProvider">The custom HttpClientProvider type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="factory">The factory used to create the HttpClientFactory</param>
+            <returns>ISolidHttpBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpBuilder)">
+            <summary>
+            Configures Solid.Http to use a custom HttpClientProvider
+            </summary>
+            <typeparam name="TProvider">The custom HttpClientProvider type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <returns>ISolidHttpBuilder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnClientCreated``1(``0,System.Action{Solid.Http.Abstractions.ISolidHttpClient})">
+            <summary>
+            Add a global handler to be run when every Solid.Http client object is created.
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="action">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnClientCreated``1(``0,System.Action{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpClient})">
+            <summary>
+            Add a global handler to be run when every Solid.Http client object is created.
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="action">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnClientCreated``1(``0,System.Func{Solid.Http.Abstractions.ISolidHttpClient,System.Threading.Tasks.Task})">
+            <summary>
+            Add a global handler to be run when every Solid.Http client object is created.
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="func">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnClientCreated``1(``0,System.Func{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpClient,System.Threading.Tasks.Task})">
+            <summary>
+            Add a global handler to be run when every Solid.Http client object is created.
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="func">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequestCreated``1(``0,System.Action{Solid.Http.Abstractions.ISolidHttpRequest})">
+            <summary>
+            Add a global handler to be run when every Solid.Http request object is created.
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="action">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequestCreated``1(``0,System.Action{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpRequest})">
+            <summary>
+            Add a global handler to be run when every Solid.Http request object is created.
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="action">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequestCreated``1(``0,System.Func{Solid.Http.Abstractions.ISolidHttpRequest,System.Threading.Tasks.Task})">
+            <summary>
+            Add a global handler to be run when every Solid.Http request object is created.
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="func">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequestCreated``1(``0,System.Func{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpRequest,System.Threading.Tasks.Task})">
+            <summary>
+            Add a global handler to be run when every Solid.Http request object is created.
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="func">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequest``1(``0,System.Action{System.Net.Http.HttpRequestMessage})">
+            <summary>
+            Add a global handler to be run just before every request is sent
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="action">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequest``1(``0,System.Action{System.IServiceProvider,System.Net.Http.HttpRequestMessage})">
+            <summary>
+            Add a global handler to be run just before every request is sent
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="action">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequest``1(``0,System.Func{System.Net.Http.HttpRequestMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Add a global handler to be run just before every request is sent
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="func">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequest``1(``0,System.Func{System.IServiceProvider,System.Net.Http.HttpRequestMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Add a global handler to be run just before every request is sent
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="func">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnResponse``1(``0,System.Action{System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Add a global handler to be run the moment every response is received
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="action">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnResponse``1(``0,System.Action{System.IServiceProvider,System.Net.Http.HttpResponseMessage})">
+            <summary>
+            Add a global handler to be run the moment every response is received
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="action">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnResponse``1(``0,System.Func{System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Add a globa
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>l handler to be run the moment every response is received
+            </summary>
+            <param name="func">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnResponse``1(``0,System.Func{System.IServiceProvider,System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+            <summary>
+            Add a global handler to be run the moment every response is received
+            </summary>
+            <typeparam name="TBuilder">The builder type</typeparam>
+            <param name="builder">The extended ISolidHttpBuilder</param>
+            <param name="func">The handler to be run</param>
+            <returns>The builder</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.SolidHttpCoreServiceCollectionExtensions">
+            <summary>
+            Extensions method for the service collection
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreServiceCollectionExtensions.AddSolidHttpCore(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Solid.Http.Abstractions.ISolidHttpCoreBuilder})">
+            <summary>
+            Add Solid.Http.Core to the service collection
+            </summary>
+            <param name="services">The service collection</param>
+            <param name="action">Action to configure Solid.Http.Core</param>
+            <returns>IServiceCollection</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreServiceCollectionExtensions.AddSolidHttpCore(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add Solid.Http.Core to the service collection
+            </summary>
+            <param name="services">The service collection</param>
+            <returns>IServiceCollection</returns>
+        </member>
+    </members>
+</doc>

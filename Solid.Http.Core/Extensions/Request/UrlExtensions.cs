@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// UrlExtensions
@@ -17,7 +17,7 @@ namespace Solid.Http
         /// <param name="name">The name of the templated parameter</param>
         /// <param name="value">The value to inject</param>
         /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithNamedParameter(this SolidHttpRequest request, string name, string value)
+        public static ISolidHttpRequest WithNamedParameter(this ISolidHttpRequest request, string name, string value)
         {
             var url = request.BaseRequest.RequestUri.OriginalString;
             var regex = new Regex($@"{{\s*{name}\s*}}");
@@ -33,7 +33,7 @@ namespace Solid.Http
         /// <param name="name">The name of the query parameter</param>
         /// <param name="value">The value of the query parameter</param>
         /// <returns></returns>
-        public static SolidHttpRequest WithQueryParameter(this SolidHttpRequest request, string name, string value)
+        public static ISolidHttpRequest WithQueryParameter(this ISolidHttpRequest request, string name, string value)
         {
             var url = request.BaseRequest.RequestUri.OriginalString;
             if (url.Contains("?"))

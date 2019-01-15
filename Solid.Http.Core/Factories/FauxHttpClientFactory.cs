@@ -4,10 +4,7 @@ using System.Net.Http;
 
 namespace Solid.Http.Factories
 {
-    /// <summary>
-    /// Simple http client factory.
-    /// </summary>
-    public class FauxHttpClientFactory : IHttpClientFactory
+    internal class FauxHttpClientFactory : IHttpClientFactory
     {
         private ConcurrentDictionary<string, HttpClient> _clients;
 

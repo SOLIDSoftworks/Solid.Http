@@ -17,8 +17,8 @@ namespace Solid.Http.Abstractions
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The name of the header</param>
-        /// <param name="values">More values for the header</param>
-        /// <returns></returns>
+        /// <param name="values">Value(s) for the header</param>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithHeader(this ISolidHttpRequest request, string name, StringValues values)
         {
             return request.WithHeaders(headers => headers.Add(name, values.ToArray()));
@@ -31,8 +31,8 @@ namespace Solid.Http.Abstractions
         /// <param name="name">The name of the header</param>
         /// <param name="firstValue">The first value of the header</param>
         /// <param name="secondValue">The second value of the header</param>
-        /// <param name="more">More values for the header</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <param name="moreValues">More values for the header</param>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithHeader(this ISolidHttpRequest request, string name, string firstValue, string secondValue, params string[] moreValues)
         {
             var values = new[] { firstValue, secondValue }.Concat(moreValues);
@@ -44,7 +44,7 @@ namespace Solid.Http.Abstractions
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="addHeaders">The action to add headers</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithHeaders(this ISolidHttpRequest request, Action<HttpRequestHeaders> addHeaders)
         {
             addHeaders(request.BaseRequest.Headers);

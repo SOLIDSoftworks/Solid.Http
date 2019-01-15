@@ -13,7 +13,7 @@ namespace Solid.Http
     /// <summary>
     /// A SolidHttpRequest that is used to perform http requests. This class is designed be extended using extension methods.
     /// </summary>
-    public class SolidHttpRequest : ISolidHttpRequest
+    internal class SolidHttpRequest : ISolidHttpRequest
     {
         private Func<IServiceProvider, HttpRequestMessage, Task> _onRequest;
         private Func<IServiceProvider, HttpResponseMessage, Task> _onResponse;
@@ -55,29 +55,6 @@ namespace Solid.Http
         /// </summary>
         public CancellationToken CancellationToken { get; }
 
-
-        ///// <summary>
-        ///// The event triggered before an http request is sent
-        ///// </summary>
-        //public event EventHandler<RequestEventArgs> OnRequest;
-
-        //private event EventHandler<ResponseEventArgs> _onResponse;
-        ///// <summary>
-        ///// The event triggered after an http response is received
-        ///// </summary>
-        //public event EventHandler<ResponseEventArgs> OnResponse
-        //{
-        //    add
-        //    {                
-        //        _onResponse += value;
-        //        if (Response != null)
-        //            value(this, Client.Events.CreateArgs(Response));
-        //    }
-        //    remove
-        //    {
-        //        _onResponse -= value;
-        //    }
-        //}
 
         /// <summary>
         /// The awaiter that enables a SolidHttpRequest to be awaited

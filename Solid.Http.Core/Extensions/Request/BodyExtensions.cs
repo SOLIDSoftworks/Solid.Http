@@ -14,7 +14,7 @@ namespace Solid.Http.Abstractions
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="boundary">The boundary of the multipart form data content</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithFormBoundary(this ISolidHttpRequest request, string boundary)
         {
             return request.WithMultipartContent(() => new MultipartFormDataContent(boundary));
@@ -25,7 +25,7 @@ namespace Solid.Http.Abstractions
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="subtype">The subtype of the multipart content</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithSubtype(this ISolidHttpRequest request, string subtype)
         {
             return request.WithMultipartContent(() => new MultipartContent(subtype));
@@ -37,7 +37,7 @@ namespace Solid.Http.Abstractions
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="subtype">The subtype of the multipart content</param>
         /// <param name="boundary">The boundary of the multipart content</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithSubTypeAndBoundary(this ISolidHttpRequest request, string subtype, string boundary)
         {
             return request.WithMultipartContent(() => new MultipartContent(subtype, boundary));
@@ -49,7 +49,7 @@ namespace Solid.Http.Abstractions
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The form name of the content</param>
         /// <param name="content">The string value of the content</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithFormDataContent(this ISolidHttpRequest request, string name, string content)
         {
             return request.WithFormDataContent(name, new StringContent(content));
@@ -61,7 +61,7 @@ namespace Solid.Http.Abstractions
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The form name of the content</param>
         /// <param name="content">The HttpContent</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithFormDataContent(this ISolidHttpRequest request, string name, HttpContent content)
         {
             var form = request.GetMultipartFormDataContent();
@@ -76,7 +76,7 @@ namespace Solid.Http.Abstractions
         /// <param name="name">The form name of the file</param>
         /// <param name="content">The file StreamContent</param>
         /// <param name="fileName">The file name</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithFormDataFile(this ISolidHttpRequest request, string name, StreamContent content, string fileName)
         {
             var form = request.GetMultipartFormDataContent();
@@ -91,7 +91,7 @@ namespace Solid.Http.Abstractions
         /// <param name="name">The form name of the file</param>
         /// <param name="content">The file ByteArrayContent</param>
         /// <param name="fileName">The file name</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithFormDataFile(this ISolidHttpRequest request, string name, ByteArrayContent content, string fileName)
         {
             var form = request.GetMultipartFormDataContent();
@@ -105,7 +105,7 @@ namespace Solid.Http.Abstractions
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="content">The HttpContent</param>
-        /// <returns>SolidHttpRequest</returns>
+        /// <returns>ISolidHttpRequest</returns>
         public static ISolidHttpRequest WithContent(this ISolidHttpRequest request, HttpContent content)
         {
             if (request.BaseRequest.Content == null)
