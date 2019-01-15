@@ -12,6 +12,14 @@
     <ReleaseVersion>2.0</ReleaseVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Extensions\Solid.Http.Extensions.Zip\Solid.Http.Extensions.Zip.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Extensions\Solid.Http.Extensions.Zip\Solid.Http.Extensions.Zip.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\Solid.Http.Core\Solid.Http.Core.csproj" />
     <ProjectReference Include="..\..\Solid.Http\Solid.Http.csproj" />
