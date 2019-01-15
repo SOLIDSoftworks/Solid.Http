@@ -19,9 +19,9 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds json support using supplied settings
         /// <para>Can create a deserializer for application/json, text/json, and text/javascript</para>
         /// </summary>
-        /// <param name="builder">The setup</param>
+        /// <param name="builder">The builder</param>
         /// <param name="settings">Supplied JsonSerializerSettings</param>
-        /// <returns>ISolidHttpSetup</returns>
+        /// <returns>ISolidHttpCoreBuilder</returns>
         public static ISolidHttpCoreBuilder AddJson(this ISolidHttpCoreBuilder builder, JsonSerializerSettings settings)
         {
             var provider = new JsonSerializerSettingsProvider(settings);
@@ -40,7 +40,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// Adds json support using default settings
         /// </summary>
         /// <param name="builder">The builder</param>
-        /// <returns>ISolidHttpSetup</returns>
+        /// <returns>ISolidHttpCoreBuilder</returns>
         public static ISolidHttpCoreBuilder AddJson(this ISolidHttpCoreBuilder builder)
         {
             var settings = new JsonSerializerSettings();
