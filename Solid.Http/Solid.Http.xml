@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Solid.Http</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+            Service collection extension methods
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddSolidHttp(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add SolidHttp to the service collection using the default features (json)
+            </summary>
+            <param name="services">The service collection</param>
+            <returns>IServiceCollection</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddSolidHttp(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Solid.Http.Abstractions.ISolidHttpBuilder})">
+            <summary>
+            Add SolidHttp to the service collection using the default features (json)
+            </summary>
+            <param name="services">The service collection</param>
+            <param name="action">A configuration action</param>
+            <returns>IServiceCollection</returns>
+        </member>
+    </members>
+</doc>
