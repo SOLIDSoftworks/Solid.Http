@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Solid.Http.Abstractions
 {
+    /// <summary>
+    /// Solid.Http request extenions methods
+    /// </summary>
     public static class ResponseExtensions
     {
         /// <summary>

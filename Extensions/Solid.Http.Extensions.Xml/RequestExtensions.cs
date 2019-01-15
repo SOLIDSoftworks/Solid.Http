@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Solid.Http.Abstractions
 {
+    /// <summary>
+    /// Solid.Http extension methods
+    /// </summary>
     public static class RequestExtensions
     {
         /// <summary>

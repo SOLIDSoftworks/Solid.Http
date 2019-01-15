@@ -10,6 +10,9 @@ using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+    /// <summary>
+    /// Solid.Http builder extension methods
+    /// </summary>
     public static class SolidHttpBuilderExtensions
     {
         /// <summary>
