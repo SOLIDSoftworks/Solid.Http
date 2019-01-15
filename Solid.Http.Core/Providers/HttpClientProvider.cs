@@ -33,11 +33,6 @@ namespace Solid.Http.Providers
         public HttpClient Get(Uri url)
         {
             var name = GenerateHttpClientName(url);
-            //if (_options.Strategy == HttpClientStrategy.SingleInstance)
-            name = "Solid.Http";
-            //else if (_options.Strategy == HttpClientStrategy.InstancePerHost)
-            //    name = url.Host.ToLower();
-
             return Factory.CreateClient(name);
         }
         /// <summary>
