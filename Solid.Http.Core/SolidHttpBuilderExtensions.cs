@@ -1,6 +1,8 @@
 ﻿using Solid.Http;
 using Solid.Http.Abstractions;
 using Solid.Http.Extensions;
+using Solid.Http.Models;
+using Solid.Http.Providers;
 using Solid.Http.Serialization;
 using System;
 using System.Collections.Generic;
@@ -34,6 +36,39 @@ namespace Microsoft.Extensions.DependencyInjection
             builder.Services.AddSingleton<IDeserializer>(p => new Deserializer<TFactory>(mimeType, p.GetRequiredService<TFactory>()));
             foreach (var mime in more)
                 builder.Services.AddSingleton<IDeserializer>(p => new Deserializer<TFactory>(mime, p.GetRequiredService<TFactory>()));
+            return builder;
+        }
+
+        public static ISolidHttpBuilder UseSingleInstanceHttpClientProvider(this ISolidHttpBuilder builder) =>
+            builder.UseHttpClientProvider<SingleInstanceHttpClientProvider>();
+
+        public static ISolidHttpBuilder UseInstancePerHostHttpClientProvider(this ISolidHttpBuilder builder) =>
+            builder.UseHttpClientProvider<InstancePerHostHttpClientProvider>();
+
+        public static ISolidHttpBuilder UseHttpClientProvider<TProvider>(this ISolidHttpBuilder builder, TProvider instance) where TProvider : HttpClientProvider
+        {
+            var descriptor = builder.Services.FirstOrDefault(d => d.ServiceType == typeof(IHttpClientProvider));
+            if (descriptor != null)
+                builder.Services.Remove(descriptor);
+            builder.Services.AddSingleton<IHttpClientProvider>(instance);
+            return builder;
+        }
+
+        public static ISolidHttpBuilder UseHttpClientProvider<TProvider>(this ISolidHttpBuilder builder, Func<IServiceProvider, TProvider> factory) where TProvider : HttpClientProvider
+        {
+            var descriptor = builder.Services.FirstOrDefault(d => d.ServiceType == typeof(IHttpClientProvider));
+            if (descriptor != null)
+                builder.Services.Remove(descriptor);
+            builder.Services.AddSingleton<IHttpClientProvider>(factory);
+            return builder;
+        }
+
+        public static ISolidHttpBuilder UseHttpClientProvider<TProvider>(this ISolidHttpBuilder builder) where TProvider : HttpClientProvider
+        {
+            var descriptor = builder.Services.FirstOrDefault(d => d.ServiceType == typeof(IHttpClientProvider));
+            if (descriptor != null)
+                builder.Services.Remove(descriptor);
+            builder.Services.AddSingleton<IHttpClientProvider, TProvider>();
             return builder;
         }
 

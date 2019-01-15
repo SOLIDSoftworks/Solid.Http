@@ -16,7 +16,7 @@ namespace Solid.Http.Core.Tests
             var services = new ServiceCollection();
             services.AddSolidHttpCore();
             var root = services.BuildServiceProvider();
-            var provider = root.GetService<IHttpClientProvider>() as HttpClientProvider;
+            var provider = root.GetService<IHttpClientProvider>() as SingleInstanceHttpClientProvider;
             Assert.IsType<FauxHttpClientFactory>(provider.Factory);
         }
 
@@ -28,7 +28,7 @@ namespace Solid.Http.Core.Tests
 
             services.AddSolidHttpCore();
             var root = services.BuildServiceProvider();
-            var provider = root.GetService<IHttpClientProvider>() as HttpClientProvider;
+            var provider = root.GetService<IHttpClientProvider>() as SingleInstanceHttpClientProvider;
             var type = provider.Factory.GetType();
             Assert.Equal("Microsoft.Extensions.Http.DefaultHttpClientFactory", type.FullName);
         }
@@ -40,7 +40,7 @@ namespace Solid.Http.Core.Tests
             services.AddSingleton<IHttpClientFactory, CustomHttpClientFactory>();
             services.AddSolidHttpCore();
             var root = services.BuildServiceProvider();
-            var provider = root.GetService<IHttpClientProvider>() as HttpClientProvider;
+            var provider = root.GetService<IHttpClientProvider>() as SingleInstanceHttpClientProvider;
             Assert.IsType<CustomHttpClientFactory>(provider.Factory);
         }
 

@@ -25,9 +25,12 @@ namespace Solid.Http.Abstractions
                 var ser = new DataContractSerializer(typeof(T), settings ?? request.GetXmlSerializerSettings());
                 ser.WriteObject(ms, body);
                 ms.Position = 0;
-                
-                var content = new StringContent(new StreamReader(ms).ReadToEnd(), Encoding.UTF8, "application/xml");
-                return request.WithContent(content);
+
+                using (var reader = new StreamReader(ms))
+                {
+                    var content = new StringContent(reader.ReadToEnd(), Encoding.UTF8, "application/xml");
+                    return request.WithContent(content);
+                }
             }
         }
     }

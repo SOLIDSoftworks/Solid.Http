@@ -31,7 +31,7 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.TryAddTransient<ISolidHttpClient, SolidHttpClient>();
             //services.TryAddSingleton<ISolidHttpEvents, SolidHttpEvents>();
-            services.TryAddSingleton<IHttpClientProvider, HttpClientProvider>();
+            services.TryAddSingleton<IHttpClientProvider, SingleInstanceHttpClientProvider>();
             services.TryAddSingleton<ISolidHttpClientFactory, SolidHttpClientFactory>();
             //services.TryAddSingleton<ISolidHttpOptions, SolidHttpOptions>();
 
