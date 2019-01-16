@@ -1,62 +1,37 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Solid.Http;
 using Solid.Http.Abstractions;
 using Solid.Http.Json;
 using System;
 
-namespace Solid.Http
+namespace Microsoft.Extensions.DependencyInjection
 {
+    /// <summary>
+    /// Service collection extension methods
+    /// </summary>
     public static class ServiceCollectionExtensions
     {
-        /// <summary>
-        /// Add SolidHttp to the service collection
-        /// </summary>
-        /// <typeparam name="TFactory">The custom IHttpClientFactory type</typeparam>
-        /// <param name="services">The service collection</param>
-        /// <returns>ISolidHttpBuilder</returns>
-        public static ISolidHttpBuilder AddSolidHttp<TFactory>(this IServiceCollection services)
-            where TFactory : class, IHttpClientFactory
-        {
-            var core = services
-                .AddSolidHttpCore<TFactory>();
-            return new SolidHttpBuilder(core);
-        }
 
         /// <summary>
-        /// Add SolidHttp to the service collection using the default implementation of IHttpClientFactory
+        /// Add SolidHttp to the service collection using the default features (json)
         /// </summary>
         /// <param name="services">The service collection</param>
-        /// <returns>ISolidHttpBuilder</returns>
-        public static ISolidHttpBuilder AddSolidHttp(this IServiceCollection services)
-        {
-            var core = services
-                .AddSolidHttpCore();
-            return new SolidHttpBuilder(core);
-        }
+        /// <returns>IServiceCollection</returns>
+        public static IServiceCollection AddSolidHttp(this IServiceCollection services) => services.AddSolidHttp(_ => { });
 
         /// <summary>
-        /// Add SolidHttp to the service collection
-        /// </summary>
-        /// <typeparam name="TFactory">The custom IHttpClientFactory type</typeparam>
-        /// <param name="services">The service collection</param>
-        /// <returns>ISolidHttpBuilder</returns>
-        public static ISolidHttpBuilder AddSolidHttp<TFactory>(this IServiceCollection services, Action<ISolidHttpOptions> configure)
-            where TFactory : class, IHttpClientFactory
-        {
-            var core = services
-                .AddSolidHttpCore<TFactory>(configure);
-            return new SolidHttpBuilder(core);
-        }
-
-        /// <summary>
-        /// Add SolidHttp to the service collection using the default implementation of IHttpClientFactory
+        /// Add SolidHttp to the service collection using the default features (json)
         /// </summary>
         /// <param name="services">The service collection</param>
-        /// <returns>ISolidHttpBuilder</returns>
-        public static ISolidHttpBuilder AddSolidHttp(this IServiceCollection services, Action<ISolidHttpOptions> configure)
+        /// <param name="action">A configuration action</param>
+        /// <returns>IServiceCollection</returns>
+        public static IServiceCollection AddSolidHttp(this IServiceCollection services, Action<ISolidHttpBuilder> action)
         {
-            var core = services
-                .AddSolidHttpCore(configure);
-            return new SolidHttpBuilder(core);
+            var builder = null as ISolidHttpCoreBuilder;
+            services.AddSolidHttpCore(b => builder = b);
+            builder.AddJson();
+            action(builder);
+            return services;
         }
     }
 }

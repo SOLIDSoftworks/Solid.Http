@@ -1,10 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Solid.Http.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
+using Solid.Http.Abstractions;
+using Solid.Http.Events;
 
 namespace Solid.Http.Factories
 {
@@ -13,10 +16,9 @@ namespace Solid.Http.Factories
     /// </summary>
     internal class SolidHttpClientFactory : ISolidHttpClientFactory
     {
-        private ISolidHttpEventInvoker _events;
-        private IEnumerable<IDeserializer> _deserializers;
         private IConfiguration _configuration;
-        private IHttpClientCache _cache;
+        private IServiceProvider _services;
+        private Action<IServiceProvider, ISolidHttpClient> _onClientCreated;
 
         /// <summary>
         /// The application configuration which can be used in extension methods
@@ -40,19 +42,16 @@ namespace Solid.Http.Factories
         /// <summary>
         /// Creates a SolidHttpClientFactory
         /// </summary>
-        /// <param name="events">The events to be triggered when a SolidHttpClient is created</param>
-        /// <param name="deserializers">The deserializer provider for SolidHttp</param>
+        /// <param name="services">The root service provider</param>
+        /// <param name="onClientCreated">The registered onClientCreated handlers</param>
         /// <param name="configuration">The application configuration</param>
         public SolidHttpClientFactory(
-            IHttpClientCache cache, 
-            ISolidHttpEventInvoker events, 
-            IEnumerable<IDeserializer> deserializers, 
-            ISolidHttpOptions options, // this is only added so that the ServicePRovider initializes it
+            IServiceProvider services,
+            SolidEventHandler<ISolidHttpClient> onClientCreated,
             IConfiguration configuration = null)
         {
-            _cache = cache;
-            _events = events;
-            _deserializers = deserializers;
+            _services = services;
+            _onClientCreated += onClientCreated.Handler ?? onClientCreated.Noop;
             _configuration = configuration;
         }
         
@@ -60,9 +59,11 @@ namespace Solid.Http.Factories
         /// Creates a SolidHttpClient
         /// </summary>
         /// <returns>SolidHttpClient</returns>
-        public SolidHttpClient Create()
+        public ISolidHttpClient Create()
         {
-            return CreateSolidHttpClient(_cache.Get());
+            var client = _services.GetService<ISolidHttpClient>();
+            _onClientCreated(_services, client);
+            return client;
         }
 
         /// <summary>
@@ -75,13 +76,6 @@ namespace Solid.Http.Factories
         /// <see cref="T:SolidHttp.SolidHttpClientFactory"/> was occupying.</remarks>
         public virtual void Dispose()
         {
-        }
-
-        private SolidHttpClient CreateSolidHttpClient(HttpClient inner)
-        {
-            var client = new SolidHttpClient(inner, _deserializers, _events);
-            _events.InvokeOnClientCreated(this, client);
-            return client;
         }
     }
 }

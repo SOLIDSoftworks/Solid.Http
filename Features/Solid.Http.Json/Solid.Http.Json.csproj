@@ -10,6 +10,15 @@
     <Summary>Json serialization core library for Solid.Http</Summary>
     <Title>Solid.Http.Json</Title>
     <Description>Json serialization cor library for Solid.Http</Description>
+    <ReleaseVersion>2.0</ReleaseVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Features\Solid.Http.Json\Solid.Http.Json.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Features\Solid.Http.Json\Solid.Http.Json.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

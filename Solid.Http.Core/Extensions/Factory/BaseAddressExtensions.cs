@@ -1,10 +1,10 @@
-﻿using Solid.Http.Abstractions;
-using Solid.Http.Events;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// Extensions to create a SolidHttpClient with a base address
@@ -17,7 +17,7 @@ namespace Solid.Http
         /// <param name="factory">The ISolidHttpClientFactory</param>
         /// <param name="baseAddress">The base address to use</param>
         /// <returns>SolidHttpClient</returns>
-        public static SolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, string baseAddress)
+        public static ISolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, string baseAddress)
         {
             return factory.CreateWithBaseAddress(new Uri(baseAddress));
         }
@@ -28,23 +28,23 @@ namespace Solid.Http
         /// <param name="factory">The ISolidHttpClientFactory</param>
         /// <param name="baseAddress">The base address to use</param>
         /// <returns>SolidHttpClient</returns>
-        public static SolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, Uri baseAddress)
+        public static ISolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, Uri baseAddress)
         {
             var client = factory.Create();
             if (baseAddress == null) throw new ArgumentNullException(nameof(baseAddress));
             if (!string.IsNullOrEmpty(baseAddress.Query)) throw new ArgumentException("BaseAddresses with query parameters not supported.", nameof(baseAddress));
             client.AddProperty("Client::BaseAddress", EnsureTrailingSlash(baseAddress));
-            client.OnRequestCreated += OnRequestCreated;
+            client.OnRequestCreated((services, request) => OnRequestCreated(services, request));
             return client;
         }
 
-        private static void OnRequestCreated(object sender, SolidHttpRequestCreatedEventArgs args)
+        private static void OnRequestCreated(IServiceProvider services, ISolidHttpRequest request)
         {
-            var baseAddress = args.Request.Client.GetProperty<Uri>("Client::BaseAddress");
+            var baseAddress = request.Client.GetProperty<Uri>("Client::BaseAddress");
             if (baseAddress == null) return;
 
-            var url = new Uri(baseAddress, args.Request.BaseRequest.RequestUri);
-            args.Request.BaseRequest.RequestUri = url;
+            var url = new Uri(baseAddress, request.BaseRequest.RequestUri);
+            request.BaseRequest.RequestUri = url;
         }
 
         private static Uri EnsureTrailingSlash(Uri baseAddress)

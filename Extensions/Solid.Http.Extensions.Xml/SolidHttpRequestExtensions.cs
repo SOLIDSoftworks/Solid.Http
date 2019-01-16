@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Solid.Http.Xml
+namespace Solid.Http.Abstractions
 {
     internal static class SolidHttpRequestExtensions
     {
-        public static DataContractSerializerSettings GetXmlSerializerSettings(this SolidHttpRequest request)
+        public static DataContractSerializerSettings GetXmlSerializerSettings(this ISolidHttpRequest request)
         {
             return request.BaseRequest.Properties["XmlSerializerSettings"] as DataContractSerializerSettings;
         }

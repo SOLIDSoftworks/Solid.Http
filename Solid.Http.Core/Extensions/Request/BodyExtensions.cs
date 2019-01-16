@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
     /// <summary>
     /// BodyExtensions
@@ -14,8 +14,8 @@ namespace Solid.Http
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="boundary">The boundary of the multipart form data content</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithFormBoundary(this SolidHttpRequest request, string boundary)
+        /// <returns>ISolidHttpRequest</returns>
+        public static ISolidHttpRequest WithFormBoundary(this ISolidHttpRequest request, string boundary)
         {
             return request.WithMultipartContent(() => new MultipartFormDataContent(boundary));
         }
@@ -25,8 +25,8 @@ namespace Solid.Http
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="subtype">The subtype of the multipart content</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithSubtype(this SolidHttpRequest request, string subtype)
+        /// <returns>ISolidHttpRequest</returns>
+        public static ISolidHttpRequest WithSubtype(this ISolidHttpRequest request, string subtype)
         {
             return request.WithMultipartContent(() => new MultipartContent(subtype));
         }
@@ -37,8 +37,8 @@ namespace Solid.Http
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="subtype">The subtype of the multipart content</param>
         /// <param name="boundary">The boundary of the multipart content</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithSubTypeAndBoundary(this SolidHttpRequest request, string subtype, string boundary)
+        /// <returns>ISolidHttpRequest</returns>
+        public static ISolidHttpRequest WithSubTypeAndBoundary(this ISolidHttpRequest request, string subtype, string boundary)
         {
             return request.WithMultipartContent(() => new MultipartContent(subtype, boundary));
         }
@@ -49,8 +49,8 @@ namespace Solid.Http
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The form name of the content</param>
         /// <param name="content">The string value of the content</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithFormDataContent(this SolidHttpRequest request, string name, string content)
+        /// <returns>ISolidHttpRequest</returns>
+        public static ISolidHttpRequest WithFormDataContent(this ISolidHttpRequest request, string name, string content)
         {
             return request.WithFormDataContent(name, new StringContent(content));
         }
@@ -61,8 +61,8 @@ namespace Solid.Http
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The form name of the content</param>
         /// <param name="content">The HttpContent</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithFormDataContent(this SolidHttpRequest request, string name, HttpContent content)
+        /// <returns>ISolidHttpRequest</returns>
+        public static ISolidHttpRequest WithFormDataContent(this ISolidHttpRequest request, string name, HttpContent content)
         {
             var form = request.GetMultipartFormDataContent();
             form.Add(content, name);
@@ -76,8 +76,8 @@ namespace Solid.Http
         /// <param name="name">The form name of the file</param>
         /// <param name="content">The file StreamContent</param>
         /// <param name="fileName">The file name</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithFormDataFile(this SolidHttpRequest request, string name, StreamContent content, string fileName)
+        /// <returns>ISolidHttpRequest</returns>
+        public static ISolidHttpRequest WithFormDataFile(this ISolidHttpRequest request, string name, StreamContent content, string fileName)
         {
             var form = request.GetMultipartFormDataContent();
             form.Add(content, name, fileName);
@@ -91,8 +91,8 @@ namespace Solid.Http
         /// <param name="name">The form name of the file</param>
         /// <param name="content">The file ByteArrayContent</param>
         /// <param name="fileName">The file name</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithFormDataFile(this SolidHttpRequest request, string name, ByteArrayContent content, string fileName)
+        /// <returns>ISolidHttpRequest</returns>
+        public static ISolidHttpRequest WithFormDataFile(this ISolidHttpRequest request, string name, ByteArrayContent content, string fileName)
         {
             var form = request.GetMultipartFormDataContent();
             form.Add(content, name, fileName);
@@ -105,8 +105,8 @@ namespace Solid.Http
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="content">The HttpContent</param>
-        /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithContent(this SolidHttpRequest request, HttpContent content)
+        /// <returns>ISolidHttpRequest</returns>
+        public static ISolidHttpRequest WithContent(this ISolidHttpRequest request, HttpContent content)
         {
             if (request.BaseRequest.Content == null)
             {
@@ -118,7 +118,7 @@ namespace Solid.Http
             return request;
         }
 
-        private static MultipartFormDataContent GetMultipartFormDataContent(this SolidHttpRequest request)
+        private static MultipartFormDataContent GetMultipartFormDataContent(this ISolidHttpRequest request)
         {
             var multipart = request.BaseRequest.Content as MultipartFormDataContent;
             if (multipart == null)
@@ -127,7 +127,7 @@ namespace Solid.Http
             return multipart;
         }
 
-        private static SolidHttpRequest WithMultipartContent(this SolidHttpRequest request, Func<MultipartContent> create)
+        private static ISolidHttpRequest WithMultipartContent(this ISolidHttpRequest request, Func<MultipartContent> create)
         {
             var content = request.BaseRequest.Content;
             var multipart = content as MultipartContent;

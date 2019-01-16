@@ -50,6 +50,8 @@ bin
 obj
 packages
 
+**/Solid.Http.*.xml
+
 .vs
 
 *.userprefs

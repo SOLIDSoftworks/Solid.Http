@@ -9,6 +9,15 @@
     <Title>Solid.Http.Extensions.Zip</Title>
     <Authors>Solid Softworks</Authors>
     <Description>In-memory ZIP archive extension for Solid.Http</Description>
+    <ReleaseVersion>2.0</ReleaseVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Extensions\Solid.Http.Extensions.Zip\Solid.Http.Extensions.Zip.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Extensions\Solid.Http.Extensions.Zip\Solid.Http.Extensions.Zip.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

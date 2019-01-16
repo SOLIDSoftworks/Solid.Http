@@ -6,8 +6,11 @@ using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Text;
 
-namespace Solid.Http
+namespace Solid.Http.Abstractions
 {
+    /// <summary>
+    /// Solid.Http extension methods
+    /// </summary>
     public static class RequestExtensions
     {
         /// <summary>
@@ -18,16 +21,19 @@ namespace Solid.Http
         /// <param name="body">The request body object</param>
         /// <param name="settings">(Optional) DataContractSerializerSettings to use to serialize the body object</param>
         /// <returns>SolidHttpRequest</returns>
-        public static SolidHttpRequest WithXmlContent<T>(this SolidHttpRequest request, T body, DataContractSerializerSettings settings = null)
+        public static ISolidHttpRequest WithXmlContent<T>(this ISolidHttpRequest request, T body, DataContractSerializerSettings settings = null)
         {
             using (var ms = new MemoryStream())
             {
                 var ser = new DataContractSerializer(typeof(T), settings ?? request.GetXmlSerializerSettings());
                 ser.WriteObject(ms, body);
                 ms.Position = 0;
-                
-                var content = new StringContent(new StreamReader(ms).ReadToEnd(), Encoding.UTF8, "application/xml");
-                return request.WithContent(content);
+
+                using (var reader = new StreamReader(ms))
+                {
+                    var content = new StringContent(reader.ReadToEnd(), Encoding.UTF8, "application/xml");
+                    return request.WithContent(content);
+                }
             }
         }
     }

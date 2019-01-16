@@ -1,64 +1,61 @@
-﻿using Solid.Http.Events;
+﻿using Solid.Http.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Solid.Http.Abstractions;
+using Solid.Http.Events;
 
 namespace Solid.Http
 {
     /// <summary>
     /// A SolidHttpRequest that is used to perform http requests. This class is designed be extended using extension methods.
     /// </summary>
-    public class SolidHttpRequest
+    internal class SolidHttpRequest : ISolidHttpRequest
     {
-        internal SolidHttpRequest(SolidHttpClient client, HttpMethod method, Uri url, CancellationToken cancellationToken)
+        private Func<IServiceProvider, HttpRequestMessage, Task> _onRequest;
+        private Func<IServiceProvider, HttpResponseMessage, Task> _onResponse;
+
+        private IServiceProvider _services;
+
+        internal SolidHttpRequest(
+            ISolidHttpClient client, 
+            IServiceProvider services, 
+            HttpMethod method, 
+            Uri url,
+            SolidAsyncEventHandler<HttpRequestMessage> onRequest,
+            SolidAsyncEventHandler<HttpResponseMessage> onResponse, 
+            CancellationToken cancellationToken)
         {
+            _services = services;
             Client = client;
             BaseRequest = new HttpRequestMessage(method, url);
             CancellationToken = cancellationToken;
+
+            _onRequest += onRequest.Handler ?? onRequest.Noop;
+            _onResponse += onResponse.Handler ?? onResponse.Noop;
         }
 
-        internal SolidHttpClient Client { get; private set; }
+        public ISolidHttpClient Client { get; }
 
         /// <summary>
         /// The base request that is sent
         /// </summary>
-        public HttpRequestMessage BaseRequest { get; private set; }
+        public HttpRequestMessage BaseRequest { get; }
 
         /// <summary>
         /// The response
         /// </summary>
-        public HttpResponseMessage Response { get; private set; }
+        public HttpResponseMessage BaseResponse { get; private set; }
 
         /// <summary>
         /// The cancellation token for the request
         /// </summary>
-        public CancellationToken CancellationToken { get; private set; }
+        public CancellationToken CancellationToken { get; }
 
-
-        /// <summary>
-        /// The event triggered before an http request is sent
-        /// </summary>
-        public event EventHandler<RequestEventArgs> OnRequest;
-
-        private event EventHandler<ResponseEventArgs> _onResponse;
-        /// <summary>
-        /// The event triggered after an http response is received
-        /// </summary>
-        public event EventHandler<ResponseEventArgs> OnResponse
-        {
-            add
-            {                
-                _onResponse += value;
-                if (Response != null)
-                    value(this, Client.Events.CreateArgs(Response));
-            }
-            remove
-            {
-                _onResponse -= value;
-            }
-        }
 
         /// <summary>
         /// The awaiter that enables a SolidHttpRequest to be awaited
@@ -68,21 +65,29 @@ namespace Solid.Http
         {
             Func<SolidHttpRequest, Task<HttpResponseMessage>> waiter = (async r =>
             {
-                if (Response == null)
+                if (BaseResponse == null)
                 {
-                    Client.Events.InvokeOnRequest(this, BaseRequest);
-                    if (OnRequest != null)
-                        OnRequest(this, Client.Events.CreateArgs(BaseRequest));
-
-                    Response = await Client.InnerClient.SendAsync(BaseRequest, CancellationToken);
-
-                    Client.Events.InvokeOnResponse(this, Response);
-                    if (_onResponse != null)
-                        _onResponse(this, Client.Events.CreateArgs(Response));
+                    await _onRequest(_services, BaseRequest);
+                    var provider = _services.GetService<IHttpClientProvider>();
+                    var http = provider.Get(BaseRequest.RequestUri);
+                    BaseResponse = await http.SendAsync(BaseRequest, CancellationToken);
+                    await _onResponse(_services, BaseResponse);
                 }
-                return Response;
+                return BaseResponse;
             });
             return waiter(this).GetAwaiter();
+        }
+
+        public ISolidHttpRequest OnRequest(Func<IServiceProvider, HttpRequestMessage, Task> handler)
+        {
+            _onRequest += handler;
+            return this;
+        }
+
+        public ISolidHttpRequest OnResponse(Func<IServiceProvider, HttpResponseMessage, Task> handler)
+        {
+            _onResponse += handler;
+            return this;
         }
     }
 }

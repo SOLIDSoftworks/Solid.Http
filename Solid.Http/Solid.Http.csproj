@@ -10,6 +10,15 @@
     <Summary>Library for adding Solid.Http.Core and Core features.</Summary>
     <Title>Solid.Http</Title>
     <Description>Library for adding Solid.Http.Core and Core features.</Description>
+    <ReleaseVersion>2.0</ReleaseVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Solid.Http\Solid.Http.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Solid.Http\Solid.Http.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
