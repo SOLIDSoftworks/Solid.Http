@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Solid.Http.Extensions.Logging\Solid.Http.Extensions.Logging.xml</DocumentationFile>
+    <DocumentationFile>Solid.Http.Extensions.Logging.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Solid.Http.Extensions.Logging\Solid.Http.Extensions.Logging.xml</DocumentationFile>
+    <DocumentationFile>Solid.Http.Extensions.Logging.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

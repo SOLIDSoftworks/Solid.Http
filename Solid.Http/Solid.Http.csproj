@@ -14,11 +14,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Solid.Http\Solid.Http.xml</DocumentationFile>
+    <DocumentationFile>Solid.Http.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Solid.Http\Solid.Http.xml</DocumentationFile>
+    <DocumentationFile>Solid.Http.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
