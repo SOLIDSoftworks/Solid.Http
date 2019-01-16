@@ -21,7 +21,7 @@ namespace Solid.Http.Tests
                 var provider = scope.ServiceProvider;
                 var factory = provider.GetService<ISolidHttpClientFactory>();
                 var client = factory.Create();
-                var response = client
+                var request = client
                     .GetAsync("https://jsonplaceholder.typicode.com/posts/1");
                 var schema = new
                 {
@@ -30,10 +30,10 @@ namespace Solid.Http.Tests
                     Title = string.Empty,
                     Body = string.Empty
                 };
-                var post = await response
+                var post = await request
                     .As(schema);
 
-                post = await response.As(schema);
+                post = await request.As(schema);
             }
         }
     }
