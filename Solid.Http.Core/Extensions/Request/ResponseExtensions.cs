@@ -13,6 +13,8 @@ namespace Solid.Http.Abstractions
     /// </summary>
     public static class ResponseExtensions
     {
+        private const string IgnoreSerializationErrorKey = "__Solid.Http.Core::IgnoreSerializationError";
+
         /// <summary>
         /// Deserializes the response content using a specified deserializer
         /// </summary>
@@ -25,7 +27,7 @@ namespace Solid.Http.Abstractions
             var content = await request.GetContentAsync();
             if (content == null) return default(T); // should we maybe throw an exception if there is no content?
 
-            if (request.BaseRequest.Properties.ContainsKey("IgnoreSerializationError"))
+            if (request.BaseRequest.Properties.ContainsKey(IgnoreSerializationErrorKey))
                 return await SafeDeserializeAsync(() => deserialize(content));
             return await deserialize(content);
         }
@@ -81,7 +83,7 @@ namespace Solid.Http.Abstractions
             var deserializer = request.Client.Deserializers.FirstOrDefault(d => d.CanDeserialize(mime));
             if (deserializer == null)
                 throw new InvalidOperationException($"Cannot deserialize {mime} response as {typeof(T).FullName}");
-            if(request.BaseRequest.Properties.ContainsKey("IgnoreSerializationError"))
+            if(request.BaseRequest.Properties.ContainsKey(IgnoreSerializationErrorKey))
                 return await SafeDeserializeAsync(() => deserializer.DeserializeAsync<T>(content));
             return await deserializer.DeserializeAsync<T>(content);
         }
@@ -124,7 +126,7 @@ namespace Solid.Http.Abstractions
         /// <returns>SolidHttpRequest</returns>
         public static ISolidHttpRequest IgnoreSerializationError(this ISolidHttpRequest request)
         {
-            request.BaseRequest.Properties.Add("IgnoreSerializationError", bool.TrueString);
+            request.BaseRequest.Properties.Add(IgnoreSerializationErrorKey, bool.TrueString);
             return request;
         }
 
