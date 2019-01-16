@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Primitives;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -33,13 +34,16 @@ namespace Solid.Http.Abstractions
         /// <param name="name">The name of the query parameter</param>
         /// <param name="value">The value of the query parameter</param>
         /// <returns></returns>
-        public static ISolidHttpRequest WithQueryParameter(this ISolidHttpRequest request, string name, string value)
+        public static ISolidHttpRequest WithQueryParameter(this ISolidHttpRequest request, string name, StringValues values)
         {
             var url = request.BaseRequest.RequestUri.OriginalString;
-            if (url.Contains("?"))
-                url += $"&{name}={value}";
-            else
-                url += $"?{name}={value}";
+            foreach (var value in values)
+            {
+                if (url.Contains("?"))
+                    url += $"&{name}={value}";
+                else
+                    url += $"?{name}={value}";
+            }
             request.BaseRequest.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
             return request;
         }
