@@ -27,9 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Extensions.Zip",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Extensions.Xml", "Extensions\Solid.Http.Extensions.Xml\Solid.Http.Extensions.Xml.csproj", "{6E44B709-0164-4285-B45A-0819C503C882}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Tests", "Tests\Solid.Http.Tests\Solid.Http.Tests.csproj", "{9E37E4D1-BDD7-4A53-A36A-67F1F34A8DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Tests", "Tests\Solid.Http.Tests\Solid.Http.Tests.csproj", "{9E37E4D1-BDD7-4A53-A36A-67F1F34A8DF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Abstractions", "Solid.Http.Abstractions\Solid.Http.Abstractions.csproj", "{A20D9BB1-04F0-4425-A63F-1C0C6B01A0A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Abstractions", "Solid.Http.Abstractions\Solid.Http.Abstractions.csproj", "{A20D9BB1-04F0-4425-A63F-1C0C6B01A0A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

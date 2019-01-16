@@ -31,7 +31,9 @@ namespace Solid.Http.Abstractions
         public static ISolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, Uri baseAddress)
         {
             var client = factory.Create();
-            client.AddProperty("Client::BaseAddress", baseAddress);
+            if (baseAddress == null) throw new ArgumentNullException(nameof(baseAddress));
+            if (!string.IsNullOrEmpty(baseAddress.Query)) throw new ArgumentException("BaseAddresses with query parameters not supported.", nameof(baseAddress));
+            client.AddProperty("Client::BaseAddress", EnsureTrailingSlash(baseAddress));
             client.OnRequestCreated((services, request) => OnRequestCreated(services, request));
             return client;
         }
@@ -43,6 +45,13 @@ namespace Solid.Http.Abstractions
 
             var url = new Uri(baseAddress, request.BaseRequest.RequestUri);
             request.BaseRequest.RequestUri = url;
+        }
+
+        private static Uri EnsureTrailingSlash(Uri baseAddress)
+        {
+            var url = baseAddress.ToString();
+            if (url.EndsWith("/", StringComparison.OrdinalIgnoreCase)) return baseAddress;
+            return new Uri(url + "/");
         }
     }
 }

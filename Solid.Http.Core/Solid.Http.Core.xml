@@ -551,13 +551,13 @@
             <param name="value">The value to inject</param>
             <returns>SolidHttpRequest</returns>
         </member>
-        <member name="M:Solid.Http.Abstractions.UrlExtensions.WithQueryParameter(Solid.Http.Abstractions.ISolidHttpRequest,System.String,System.String)">
+        <member name="M:Solid.Http.Abstractions.UrlExtensions.WithQueryParameter(Solid.Http.Abstractions.ISolidHttpRequest,System.String,Microsoft.Extensions.Primitives.StringValues)">
             <summary>
             Adds a query parameter to the url
             </summary>
             <param name="request">The SolidHttpRequest</param>
             <param name="name">The name of the query parameter</param>
-            <param name="value">The value of the query parameter</param>
+            <param name="values">The value of the query parameter</param>
             <returns></returns>
         </member>
         <member name="T:Solid.Http.Factories.SolidHttpClientFactory">
