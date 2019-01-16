@@ -32,7 +32,7 @@ namespace Solid.Http.Abstractions
         /// </summary>
         /// <param name="request">The SolidHttpRequest</param>
         /// <param name="name">The name of the query parameter</param>
-        /// <param name="value">The value of the query parameter</param>
+        /// <param name="values">The value of the query parameter</param>
         /// <returns></returns>
         public static ISolidHttpRequest WithQueryParameter(this ISolidHttpRequest request, string name, StringValues values)
         {
