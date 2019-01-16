@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Solid.Http.Abstractions;
+using Solid.Http.Events;
 
 namespace Solid.Http
 {
@@ -25,8 +26,8 @@ namespace Solid.Http
             IServiceProvider services, 
             HttpMethod method, 
             Uri url,
-            Func<IServiceProvider, HttpRequestMessage, Task> onRequest,
-            Func<IServiceProvider, HttpResponseMessage, Task> onResponse, 
+            SolidAsyncEventHandler<HttpRequestMessage> onRequest,
+            SolidAsyncEventHandler<HttpResponseMessage> onResponse, 
             CancellationToken cancellationToken)
         {
             _services = services;
@@ -34,8 +35,8 @@ namespace Solid.Http
             BaseRequest = new HttpRequestMessage(method, url);
             CancellationToken = cancellationToken;
 
-            _onRequest += onRequest ?? ((_, __) => Task.CompletedTask);
-            _onResponse += onResponse ?? ((_, __) => Task.CompletedTask);
+            _onRequest += onRequest.Handler ?? onRequest.Noop;
+            _onResponse += onResponse.Handler ?? onResponse.Noop;
         }
 
         public ISolidHttpClient Client { get; }

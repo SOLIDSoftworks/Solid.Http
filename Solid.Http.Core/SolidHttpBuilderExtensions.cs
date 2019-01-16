@@ -1,5 +1,6 @@
 ﻿using Solid.Http;
 using Solid.Http.Abstractions;
+using Solid.Http.Events;
 using Solid.Http.Extensions;
 using Solid.Http.Providers;
 using Solid.Http.Serialization;
@@ -155,25 +156,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="action">The handler to be run</param>
         /// <returns>The builder</returns>
         public static TBuilder OnClientCreated<TBuilder>(this TBuilder builder, Action<IServiceProvider, ISolidHttpClient> action) where TBuilder : ISolidHttpBuilder
-            => builder.OnClientCreated(action.ToAsyncFunc());
-        /// <summary>
-        /// Add a global handler to be run when every Solid.Http client object is created.
-        /// </summary>
-        /// <typeparam name="TBuilder">The builder type</typeparam>
-        /// <param name="builder">The extended ISolidHttpBuilder</param>
-        /// <param name="func">The handler to be run</param>
-        /// <returns>The builder</returns>
-        public static TBuilder OnClientCreated<TBuilder>(this TBuilder builder, Func<ISolidHttpClient, Task> func) where TBuilder : ISolidHttpBuilder
-            => builder.OnClientCreated((_, c) => func(c));
-        /// <summary>
-        /// Add a global handler to be run when every Solid.Http client object is created.
-        /// </summary>
-        /// <typeparam name="TBuilder">The builder type</typeparam>
-        /// <param name="builder">The extended ISolidHttpBuilder</param>
-        /// <param name="func">The handler to be run</param>
-        /// <returns>The builder</returns>
-        public static TBuilder OnClientCreated<TBuilder>(this TBuilder builder, Func<IServiceProvider, ISolidHttpClient, Task> func) where TBuilder : ISolidHttpBuilder
-            => builder.On(func);
+            => builder.On(action);
 
 
         /// <summary>
@@ -193,26 +176,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <param name="action">The handler to be run</param>
         /// <returns>The builder</returns>
         public static TBuilder OnRequestCreated<TBuilder>(this TBuilder builder, Action<IServiceProvider, ISolidHttpRequest> action) where TBuilder : ISolidHttpBuilder
-            => builder.OnRequestCreated(action.ToAsyncFunc());
-        /// <summary>
-        /// Add a global handler to be run when every Solid.Http request object is created.
-        /// </summary>
-        /// <typeparam name="TBuilder">The builder type</typeparam>
-        /// <param name="builder">The extended ISolidHttpBuilder</param>
-        /// <param name="func">The handler to be run</param>
-        /// <returns>The builder</returns>
-        public static TBuilder OnRequestCreated<TBuilder>(this TBuilder builder, Func<ISolidHttpRequest, Task> func) where TBuilder : ISolidHttpBuilder
-            => builder.OnRequestCreated((_, c) => func(c));
-        /// <summary>
-        /// Add a global handler to be run when every Solid.Http request object is created.
-        /// </summary>
-        /// <typeparam name="TBuilder">The builder type</typeparam>
-        /// <param name="builder">The extended ISolidHttpBuilder</param>
-        /// <param name="func">The handler to be run</param>
-        /// <returns>The builder</returns>
-        public static TBuilder OnRequestCreated<TBuilder>(this TBuilder builder, Func<IServiceProvider, ISolidHttpRequest, Task> func) where TBuilder : ISolidHttpBuilder
-            => builder.On(func);
-
+            => builder.On(action);
 
         /// <summary>
         /// Add a global handler to be run just before every request is sent
@@ -250,7 +214,6 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>The builder</returns>
         public static TBuilder OnRequest<TBuilder>(this TBuilder builder, Func<IServiceProvider, HttpRequestMessage, Task> func) where TBuilder : ISolidHttpBuilder
             => builder.On(func);
-
 
         /// <summary>
         /// Add a global handler to be run the moment every response is received
@@ -292,14 +255,15 @@ namespace Microsoft.Extensions.DependencyInjection
         private static TBuilder On<T, TBuilder>(this TBuilder builder, Func<IServiceProvider, T, Task> func) where TBuilder : ISolidHttpBuilder
         {
             if (func == null) return builder;
-            var descriptor = builder.Services.FirstOrDefault(d => d.ServiceType == func.GetType());
-            if (descriptor == null)
-                builder.Services.AddSingleton(func);
-            else
-            {
-                var registered = (Func<IServiceProvider, T, Task>)descriptor.ImplementationInstance;
-                registered += func;
-            }
+            var descriptor = builder.Services.First(d => d.ServiceType == typeof(SolidAsyncEventHandler<T>));
+            ((SolidAsyncEventHandler<T>)descriptor.ImplementationInstance).Handler += func;
+            return builder;
+        }
+        private static TBuilder On<T, TBuilder>(this TBuilder builder, Action<IServiceProvider, T> action) where TBuilder : ISolidHttpBuilder
+        {
+            if (action == null) return builder;
+            var descriptor = builder.Services.First(d => d.ServiceType == typeof(SolidEventHandler<T>));
+            ((SolidEventHandler<T>)descriptor.ImplementationInstance).Handler += action;
             return builder;
         }
     }

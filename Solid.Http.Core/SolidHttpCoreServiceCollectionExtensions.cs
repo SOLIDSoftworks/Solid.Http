@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Solid.Http;
 using Solid.Http.Abstractions;
+using Solid.Http.Events;
 using Solid.Http.Factories;
 using Solid.Http.Providers;
 using Solid.Http.Serialization;
@@ -28,6 +30,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 Services = services,
                 Properties = new Dictionary<string, object>()
             };
+            services.TryAddSingleton(new SolidEventHandler<ISolidHttpClient>());
+            services.TryAddSingleton(new SolidEventHandler<ISolidHttpRequest>());
+            services.TryAddSingleton(new SolidAsyncEventHandler<HttpRequestMessage>());
+            services.TryAddSingleton(new SolidAsyncEventHandler<HttpResponseMessage>());
             services.TryAddTransient<ISolidHttpClient, SolidHttpClient>();
             services.TryAddSingleton<ISolidHttpClientFactory, SolidHttpClientFactory>();
             action(builder);

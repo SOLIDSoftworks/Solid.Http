@@ -7,6 +7,7 @@ using System.Threading;
 using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using Solid.Http.Abstractions;
+using Solid.Http.Events;
 
 namespace Solid.Http.Factories
 {
@@ -46,11 +47,11 @@ namespace Solid.Http.Factories
         /// <param name="configuration">The application configuration</param>
         public SolidHttpClientFactory(
             IServiceProvider services,
-            Action<IServiceProvider, ISolidHttpClient> onClientCreated = null,
+            SolidEventHandler<ISolidHttpClient> onClientCreated,
             IConfiguration configuration = null)
         {
             _services = services;
-            _onClientCreated += onClientCreated ?? ((_, __) => { });
+            _onClientCreated += onClientCreated.Handler ?? onClientCreated.Noop;
             _configuration = configuration;
         }
         

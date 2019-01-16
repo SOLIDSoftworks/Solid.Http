@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Solid.Http.Events;
 
 namespace Solid.Http
 {
@@ -19,12 +20,12 @@ namespace Solid.Http
         private Action<IServiceProvider, ISolidHttpRequest> _onRequestCreated;
         private IDictionary<string, object> _properties = new Dictionary<string, object>();
 
-        public SolidHttpClient(IServiceProvider services, IEnumerable<IDeserializer> deserializers, Action<IServiceProvider, ISolidHttpRequest> onRequestCreated = null)
+        public SolidHttpClient(IServiceProvider services, IEnumerable<IDeserializer> deserializers, SolidEventHandler<ISolidHttpRequest> onRequestCreated)
         {
             Deserializers = deserializers;
 
             _services = services;
-            _onRequestCreated += onRequestCreated ?? ((_, __) => { });
+            _onRequestCreated += onRequestCreated.Handler ?? onRequestCreated.Noop;
         }
 
         public IEnumerable<IDeserializer> Deserializers { get; }
@@ -58,8 +59,8 @@ namespace Solid.Http
 
         public ISolidHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken)
         {
-            var onRequest = _services.GetService<Func<IServiceProvider, HttpRequestMessage, Task>>();
-            var onResponse = _services.GetService<Func<IServiceProvider, HttpResponseMessage, Task>>();
+            var onRequest = _services.GetService<SolidAsyncEventHandler<HttpRequestMessage>>();
+            var onResponse = _services.GetService<SolidAsyncEventHandler<HttpResponseMessage>>();
             var request = new SolidHttpRequest(this, _services, method, url, onRequest, onResponse, cancellationToken);
             _onRequestCreated(_services, request);
             return request;
