@@ -13,11 +13,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Extensions\Solid.Http.Extensions.Xml\Solid.Http.Extensions.Xml.xml</DocumentationFile>
+    <DocumentationFile>Solid.Http.Extensions.Xml.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Extensions\Solid.Http.Extensions.Xml\Solid.Http.Extensions.Xml.xml</DocumentationFile>
+    <DocumentationFile>Solid.Http.Extensions.Xml.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

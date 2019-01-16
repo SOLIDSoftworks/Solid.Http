@@ -14,11 +14,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Features\Solid.Http.Json\Solid.Http.Json.xml</DocumentationFile>
+    <DocumentationFile>Solid.Http.Json.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>H:\github\SolidSoftworks\SolidHttp\Features\Solid.Http.Json\Solid.Http.Json.xml</DocumentationFile>
+    <DocumentationFile>Solid.Http.Json.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
