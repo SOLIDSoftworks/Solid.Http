@@ -21,11 +21,11 @@ namespace Solid.Http.Abstractions
         /// <param name="request">The extended ISolidHttpRequest</param>
         /// <param name="mode">The zip archive mode</param>
         /// <returns>An awaitable task</returns>
-        public static async Task<T> As<T>(this ISolidHttpRequest request, ZipArchiveMode mode)
+        public static Task<ZipArchive> AsZipArchive(this ISolidHttpRequest request, ZipArchiveMode mode = ZipArchiveMode.Read)
         {
             var factory = new ZipArchiveResponseDeserializerFactory(mode);
-            var deserialize = factory.CreateDeserializer<T>();
-            return await request.As<T>();
+            var deserialize = factory.CreateDeserializer<ZipArchive>();
+            return request.As<ZipArchive>();
         }
     }
 }
