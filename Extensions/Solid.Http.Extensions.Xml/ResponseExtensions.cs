@@ -1,4 +1,4 @@
-﻿using Solid.Http.Xml;
+﻿using Solid.Http.Extenstions.Xml;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
