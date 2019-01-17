@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Solid.Http.Tests
+namespace Solid.Http.Json.Tests
 {
     public class JsonTests
     {
@@ -13,7 +13,7 @@ namespace Solid.Http.Tests
         public async Task ShouldDeserializeSingleJsonObject()
         {
             var services = new ServiceCollection();
-            services.AddSolidHttp();
+            services.AddSolidHttpCore(b => b.AddJson());
             var root = services.BuildServiceProvider();
             using (var scope = root.CreateScope())
             {
@@ -41,7 +41,7 @@ namespace Solid.Http.Tests
         public async Task ShouldDeserializeJsonArray()
         {
             var services = new ServiceCollection();
-            services.AddSolidHttp();
+            services.AddSolidHttpCore(b => b.AddJson());
             var root = services.BuildServiceProvider();
             using (var scope = root.CreateScope())
             {
