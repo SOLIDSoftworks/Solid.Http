@@ -1,6 +1,5 @@
-﻿
-using Solid.Http.Abstractions;
-using Solid.Http.Xml.Abstraction;
+﻿using Solid.Http.Abstractions;
+using Solid.Http.Extenstions.Xml.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +8,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solid.Http.Xml
+namespace Solid.Http.Extenstions.Xml
 {
     internal class XmlResponseDeserializerFactory : IResponseDeserializerFactory
     {

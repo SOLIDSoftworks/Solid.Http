@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Runtime.Serialization;
 
-namespace Solid.Http.Xml.Providers
+namespace Solid.Http.Extenstions.Xml.Providers
 {
     internal class XmlSerializerSettingsProvider : IXmlSerializerSettingsProvider
     {
