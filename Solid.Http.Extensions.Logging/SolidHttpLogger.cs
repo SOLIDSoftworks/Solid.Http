@@ -3,6 +3,7 @@ using Solid.Http.Abstractions;
 using Solid.Http.Extensions.Logging.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -24,18 +25,25 @@ namespace Solid.Http.Extensions.Logging
         public async Task LogRequestAsync(HttpRequestMessage request)
         {
             var scopes = new List<IDisposable>();
+            var stopwatch = new Stopwatch();
             scopes.Add(_inner.BeginScope("Solid.Http"));
             scopes.Add(_inner.BeginScope($"{request.Method} - {request.RequestUri}"));
             request.Properties.Add("__Solid.Http.Extensions.Logging::Scopes", scopes);
+            request.Properties.Add("__Solid.Http.Extensions.Logging::Stopwatch", stopwatch);
+
             _inner.LogInformation($"Performing {request.Method} on {request.RequestUri}");
             await LogDebugAsync(request.Headers, request.Content);
+            stopwatch.Start();
         }
 
         public async Task LogResponseAsync(HttpResponseMessage response)
         {
+            var stopwatch = response.RequestMessage.Properties["__Solid.Http.Extensions.Logging::Stopwatch"] as Stopwatch;
             var scopes = response.RequestMessage.Properties["__Solid.Http.Extensions.Logging::Scopes"] as IEnumerable<IDisposable>;
 
-            var message = $"Received {response.StatusCode} response when Performing {response.RequestMessage.Method} on {response.RequestMessage.RequestUri}";
+            stopwatch.Stop();
+
+            var message = $"{response.RequestMessage.Method} on {response.RequestMessage.RequestUri} took {stopwatch.ElapsedMilliseconds}ms to response and responded with {(int)response.StatusCode}({response.StatusCode})";
 
             if ((int)response.StatusCode < 400)
                 _inner.LogInformation(message);
