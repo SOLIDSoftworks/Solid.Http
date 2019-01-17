@@ -1,4 +1,4 @@
-﻿using Solid.Http.Zip;
+﻿using Solid.Http.Extenstions.Zip;
 using System;
 using System.Collections.Generic;
 using System.IO;

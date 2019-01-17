@@ -1,6 +1,5 @@
-﻿
-using Solid.Http.Abstractions;
-using Solid.Http.Zip.Abstraction;
+﻿using Solid.Http.Abstractions;
+using Solid.Http.Extenstions.Zip.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Solid.Http.Zip
+namespace Solid.Http.Extenstions.Zip
 {
     internal class ZipArchiveResponseDeserializerFactory : IResponseDeserializerFactory
     {

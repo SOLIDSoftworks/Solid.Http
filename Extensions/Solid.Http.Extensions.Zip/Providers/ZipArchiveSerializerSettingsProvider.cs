@@ -1,10 +1,10 @@
-﻿using Solid.Http.Zip.Abstraction;
+﻿using Solid.Http.Extenstions.Zip.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.IO.Compression;
 using System.Text;
 
-namespace Solid.Http.Zip.Providers
+namespace Solid.Http.Extenstions.Zip.Providers
 {
     internal class ZipArchiveSerializerSettingsProvider : IZipSerializerSettingsProvider
     {

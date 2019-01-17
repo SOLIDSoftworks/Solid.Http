@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Solid.Http.Abstractions;
-using Solid.Http.Zip;
-using Solid.Http.Zip.Abstraction;
-using Solid.Http.Zip.Providers;
+using Solid.Http.Extenstions.Zip;
+using Solid.Http.Extenstions.Zip.Abstraction;
+using Solid.Http.Extenstions.Zip.Providers;
 using System;
 using System.Collections.Generic;
 using System.IO.Compression;
