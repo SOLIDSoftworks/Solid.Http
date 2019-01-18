@@ -48,21 +48,6 @@
             <typeparam name="T">The type to deserialize to</typeparam>
             <returns>A deserializer which takes in HttpContent and returns a Task of type T</returns>
         </member>
-        <member name="T:Solid.Http.Abstractions.ISolidHttpBuilder">
-            <summary>
-            A builder used to configure Solid.Http.Builder
-            </summary>
-        </member>
-        <member name="P:Solid.Http.Abstractions.ISolidHttpBuilder.Services">
-            <summary>
-            The service collection
-            </summary>
-        </member>
-        <member name="P:Solid.Http.Abstractions.ISolidHttpBuilder.Properties">
-            <summary>
-            Properties that can be used in extensions
-            </summary>
-        </member>
         <member name="T:Solid.Http.Abstractions.ISolidHttpClient">
             <summary>
             A SolidHttpClient that is used to perform create SolidHttpRequests. This class is designed be extended using extension methods.
@@ -124,6 +109,16 @@
         <member name="T:Solid.Http.Abstractions.ISolidHttpCoreBuilder">
             <summary>
             The ISolidHttpBuilder interface
+            </summary>
+        </member>
+        <member name="P:Solid.Http.Abstractions.ISolidHttpCoreBuilder.Services">
+            <summary>
+            The service collection
+            </summary>
+        </member>
+        <member name="P:Solid.Http.Abstractions.ISolidHttpCoreBuilder.Properties">
+            <summary>
+            Properties that can be used in extensions
             </summary>
         </member>
         <member name="T:Solid.Http.Abstractions.ISolidHttpRequest">

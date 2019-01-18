@@ -9,7 +9,7 @@ using Solid.Http.Abstractions;
 
 namespace Solid.Http
 {
-    internal class SolidHttpBuilder : ISolidHttpCoreBuilder
+    internal class SolidHttpCoreBuilder : ISolidHttpCoreBuilder
     {
         public IServiceCollection Services { get; set; }
         public IDictionary<string, object> Properties { get; set; }

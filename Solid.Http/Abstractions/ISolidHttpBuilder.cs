@@ -18,5 +18,10 @@ namespace Solid.Http.Abstractions
         /// Properties that can be used in extensions
         /// </summary>
         IDictionary<string, object> Properties { get; }
+
+        /// <summary>
+        /// The core builder
+        /// </summary>
+        ISolidHttpCoreBuilder Core { get; }
     }
 }

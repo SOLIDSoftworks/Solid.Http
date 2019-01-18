@@ -655,32 +655,12 @@
             </summary>
             <returns>A TaskAwaiter for an HttpResponseMessage</returns>
         </member>
-        <member name="T:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions">
+        <member name="T:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions">
             <summary>
             ISolidHttpBuilder extensions methods
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.AddDeserializer(Solid.Http.Abstractions.ISolidHttpCoreBuilder,Solid.Http.Abstractions.IResponseDeserializerFactory,System.String,System.String[])">
-            <summary>
-            Adds a deserializer factory used to deserialize the specified mime types
-            </summary>
-            <param name="builder">The extended ISolidHttpCoreBuilder</param>
-            <param name="factory">The deserializer factory instance</param>
-            <param name="mimeType">The mime type to deserialize</param>
-            <param name="more">More mime types</param>
-            <returns>ISolidHttpCoreBuilder</returns>
-        </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.AddDeserializer``1(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.String,System.String[])">
-            <summary>
-            Adds a deserializer factory used to deserialize the specified mime types
-            </summary>
-            <typeparam name="TFactory">The deserializer factory type</typeparam>
-            <param name="builder">The extended ISolidHttpCoreBuilder</param>
-            <param name="mimeType">The mime type to deserialize</param>
-            <param name="more">More mime types</param>
-            <returns>ISolidHttpCoreBuilder</returns>
-        </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.AddDeserializer(Solid.Http.Abstractions.ISolidHttpBuilder,Solid.Http.Abstractions.IResponseDeserializerFactory,System.String,System.String[])">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.AddDeserializer(Solid.Http.Abstractions.ISolidHttpCoreBuilder,Solid.Http.Abstractions.IResponseDeserializerFactory,System.String,System.String[])">
             <summary>
             Adds a deserializer factory used to deserialize the specified mime types
             </summary>
@@ -690,7 +670,7 @@
             <param name="more">More mime types</param>
             <returns>ISolidHttpBuilder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.AddDeserializer``1(Solid.Http.Abstractions.ISolidHttpBuilder,System.String,System.String[])">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.AddDeserializer``1(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.String,System.String[])">
             <summary>
             Adds a deserializer factory used to deserialize the specified mime types
             </summary>
@@ -700,21 +680,21 @@
             <param name="more">More mime types</param>
             <returns>ISolidHttpBuilder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseSingleInstanceHttpClientProvider(Solid.Http.Abstractions.ISolidHttpBuilder)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.UseSingleInstanceHttpClientProvider(Solid.Http.Abstractions.ISolidHttpCoreBuilder)">
             <summary>
             Configures Solid.Http to use one HttpClient for the whole application
             </summary>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <returns>ISolidHttpBuilder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseInstancePerHostHttpClientProvider(Solid.Http.Abstractions.ISolidHttpBuilder)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.UseInstancePerHostHttpClientProvider(Solid.Http.Abstractions.ISolidHttpCoreBuilder)">
             <summary>
             Configures Solid.Http to use one HttpClient for each host requested.
             </summary>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <returns>ISolidHttpBuilder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpBuilder,``0)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpCoreBuilder,``0)">
             <summary>
             Configures Solid.Http to use a custom HttpClientProvider
             </summary>
@@ -723,7 +703,7 @@
             <param name="instance">The HttpClientFactory instance</param>
             <returns>ISolidHttpBuilder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpBuilder,System.Func{System.IServiceProvider,``0})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Func{System.IServiceProvider,``0})">
             <summary>
             Configures Solid.Http to use a custom HttpClientProvider
             </summary>
@@ -732,7 +712,7 @@
             <param name="factory">The factory used to create the HttpClientFactory</param>
             <returns>ISolidHttpBuilder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpBuilder)">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.UseHttpClientProvider``1(Solid.Http.Abstractions.ISolidHttpCoreBuilder)">
             <summary>
             Configures Solid.Http to use a custom HttpClientProvider
             </summary>
@@ -740,110 +720,98 @@
             <param name="builder">The extended ISolidHttpBuilder</param>
             <returns>ISolidHttpBuilder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnClientCreated``1(``0,System.Action{Solid.Http.Abstractions.ISolidHttpClient})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnClientCreated(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Action{Solid.Http.Abstractions.ISolidHttpClient})">
             <summary>
             Add a global handler to be run when every Solid.Http client object is created.
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="action">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnClientCreated``1(``0,System.Action{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpClient})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnClientCreated(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Action{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpClient})">
             <summary>
             Add a global handler to be run when every Solid.Http client object is created.
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="action">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequestCreated``1(``0,System.Action{Solid.Http.Abstractions.ISolidHttpRequest})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnRequestCreated(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Action{Solid.Http.Abstractions.ISolidHttpRequest})">
             <summary>
             Add a global handler to be run when every Solid.Http request object is created.
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="action">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequestCreated``1(``0,System.Action{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpRequest})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnRequestCreated(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Action{System.IServiceProvider,Solid.Http.Abstractions.ISolidHttpRequest})">
             <summary>
             Add a global handler to be run when every Solid.Http request object is created.
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="action">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequest``1(``0,System.Action{System.Net.Http.HttpRequestMessage})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnRequest(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Action{System.Net.Http.HttpRequestMessage})">
             <summary>
             Add a global handler to be run just before every request is sent
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="action">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequest``1(``0,System.Action{System.IServiceProvider,System.Net.Http.HttpRequestMessage})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnRequest(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Action{System.IServiceProvider,System.Net.Http.HttpRequestMessage})">
             <summary>
             Add a global handler to be run just before every request is sent
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="action">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequest``1(``0,System.Func{System.Net.Http.HttpRequestMessage,System.Threading.Tasks.Task})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnRequest(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Func{System.Net.Http.HttpRequestMessage,System.Threading.Tasks.Task})">
             <summary>
             Add a global handler to be run just before every request is sent
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="func">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnRequest``1(``0,System.Func{System.IServiceProvider,System.Net.Http.HttpRequestMessage,System.Threading.Tasks.Task})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnRequest(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Func{System.IServiceProvider,System.Net.Http.HttpRequestMessage,System.Threading.Tasks.Task})">
             <summary>
             Add a global handler to be run just before every request is sent
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="func">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnResponse``1(``0,System.Action{System.Net.Http.HttpResponseMessage})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnResponse(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Action{System.Net.Http.HttpResponseMessage})">
             <summary>
             Add a global handler to be run the moment every response is received
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="action">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnResponse``1(``0,System.Action{System.IServiceProvider,System.Net.Http.HttpResponseMessage})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnResponse(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Action{System.IServiceProvider,System.Net.Http.HttpResponseMessage})">
             <summary>
             Add a global handler to be run the moment every response is received
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="action">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnResponse``1(``0,System.Func{System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnResponse(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Func{System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
             <summary>
             Add a globa
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>l handler to be run the moment every response is received
             </summary>
             <param name="func">The handler to be run</param>
             <returns>The builder</returns>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpBuilderExtensions.OnResponse``1(``0,System.Func{System.IServiceProvider,System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.SolidHttpCoreBuilderExtensions.OnResponse(Solid.Http.Abstractions.ISolidHttpCoreBuilder,System.Func{System.IServiceProvider,System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
             <summary>
             Add a global handler to be run the moment every response is received
             </summary>
-            <typeparam name="TBuilder">The builder type</typeparam>
             <param name="builder">The extended ISolidHttpBuilder</param>
             <param name="func">The handler to be run</param>
             <returns>The builder</returns>

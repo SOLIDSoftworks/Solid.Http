@@ -8,7 +8,15 @@ namespace Solid.Http.Abstractions
     /// <summary>
     /// The ISolidHttpBuilder interface
     /// </summary>
-    public interface ISolidHttpCoreBuilder : ISolidHttpBuilder
+    public interface ISolidHttpCoreBuilder
     {
+        /// <summary>
+        /// The service collection
+        /// </summary>
+        IServiceCollection Services { get; }
+        /// <summary>
+        /// Properties that can be used in extensions
+        /// </summary>
+        IDictionary<string, object> Properties { get; }
     }
 }

@@ -25,7 +25,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>IServiceCollection</returns>
         public static IServiceCollection AddSolidHttpCore(this IServiceCollection services, Action<ISolidHttpCoreBuilder> action)
         {
-            var builder = new SolidHttpBuilder
+            var builder = new SolidHttpCoreBuilder
             {
                 Services = services,
                 Properties = new Dictionary<string, object>()
