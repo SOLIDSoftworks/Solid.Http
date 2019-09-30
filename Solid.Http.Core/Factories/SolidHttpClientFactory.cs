@@ -83,7 +83,7 @@ namespace Solid.Http.Factories
         {
             var list = handler.GetInvocationList().Cast<Action<IServiceProvider, T>>();
             foreach (var action in list)
-                handler(_services, t);
+                action(_services, t);
         }
     }
 }

@@ -67,5 +67,22 @@ namespace Solid.Http.Tests
                 Assert.Equal("Exception", exception.Message);
             }
         }
+
+        [Fact]
+        public async Task ShouldNotFailOnBaseAddressClientCreation()
+        {
+            var services = new ServiceCollection();
+            services.AddSolidHttp();
+            var root = services.BuildServiceProvider();
+            using (var scope = root.CreateScope())
+            {
+                var provider = scope.ServiceProvider;
+                var factory = provider.GetService<ISolidHttpClientFactory>();
+                var client = factory.CreateWithBaseAddress("https://jsonplaceholder.typicode.com/");
+                    await client
+                        .GetAsync("posts/1")
+                    ;
+            }
+        }
     }
 }
