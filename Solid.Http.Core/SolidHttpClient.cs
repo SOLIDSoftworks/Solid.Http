@@ -62,8 +62,15 @@ namespace Solid.Http
             var onRequest = _services.GetService<SolidAsyncEventHandler<HttpRequestMessage>>();
             var onResponse = _services.GetService<SolidAsyncEventHandler<HttpResponseMessage>>();
             var request = new SolidHttpRequest(this, _services, method, url, onRequest, onResponse, cancellationToken);
-            _onRequestCreated(_services, request);
+            Invoke(_onRequestCreated, request);
             return request;
+        }
+
+        private void Invoke<T>(Action<IServiceProvider, T> handler, T t)
+        {
+            var list = handler.GetInvocationList().Cast<Action<IServiceProvider, T>>();
+            foreach (var action in list)
+                handler(_services, t);
         }
     }
 }

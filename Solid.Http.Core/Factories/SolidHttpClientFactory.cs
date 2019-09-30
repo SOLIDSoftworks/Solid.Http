@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Threading.Tasks;
 using Solid.Http.Abstractions;
 using Solid.Http.Events;
+using System.Linq;
 
 namespace Solid.Http.Factories
 {
@@ -62,7 +63,7 @@ namespace Solid.Http.Factories
         public ISolidHttpClient Create()
         {
             var client = _services.GetService<ISolidHttpClient>();
-            _onClientCreated(_services, client);
+            Invoke(_onClientCreated, client);
             return client;
         }
 
@@ -76,6 +77,13 @@ namespace Solid.Http.Factories
         /// <see cref="T:SolidHttp.SolidHttpClientFactory"/> was occupying.</remarks>
         public virtual void Dispose()
         {
+        }
+
+        private void Invoke<T>(Action<IServiceProvider, T> handler, T t)
+        {
+            var list = handler.GetInvocationList().Cast<Action<IServiceProvider, T>>();
+            foreach (var action in list)
+                handler(_services, t);
         }
     }
 }

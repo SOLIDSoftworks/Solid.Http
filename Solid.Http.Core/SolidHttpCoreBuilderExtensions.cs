@@ -199,6 +199,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>The builder</returns>
         public static ISolidHttpCoreBuilder OnResponse(this ISolidHttpCoreBuilder builder, Action<IServiceProvider, HttpResponseMessage> action)
             => builder.OnResponse(action.ToAsyncFunc());
+
         /// <summary>
         /// Add a globa
         /// <param name="builder">The extended ISolidHttpBuilder</param>l handler to be run the moment every response is received

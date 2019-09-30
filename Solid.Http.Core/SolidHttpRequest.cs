@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Solid.Http.Abstractions;
 using Solid.Http.Events;
+using System.Linq;
 
 namespace Solid.Http
 {
@@ -67,11 +68,11 @@ namespace Solid.Http
             {
                 if (BaseResponse == null)
                 {
-                    await _onRequest(_services, BaseRequest);
+                    await InvokeAsync(_onRequest, BaseRequest);
                     var provider = _services.GetService<IHttpClientProvider>();
                     var http = provider.Get(BaseRequest.RequestUri);
                     BaseResponse = await http.SendAsync(BaseRequest, CancellationToken);
-                    await _onResponse(_services, BaseResponse);
+                    await InvokeAsync(_onResponse, BaseResponse);
                 }
                 return BaseResponse;
             });
@@ -88,6 +89,17 @@ namespace Solid.Http
         {
             _onResponse += handler;
             return this;
+        }
+
+        private async Task InvokeAsync<T>(Func<IServiceProvider, T, Task> handler, T t)
+        {
+            var list = handler.GetInvocationList();
+            var tasks = list
+                .Cast<Func<IServiceProvider, T, Task>>()
+                .Select(h => h(_services, t))
+            ;
+
+            await Task.WhenAll(tasks);
         }
     }
 }
