@@ -12,4 +12,4 @@ Solid.Http is a library to simplify http calls in C# for .net standard 2.0. It's
 * [Solid.Http.Extensions.Logging](https://www.nuget.org/packages/Solid.Http.Extensions.Logging)
 
 ## Usage
-Read how to use this library in [the wiki](https://github.com/SOLIDSoftworks/Solid.Http/wiki) or on [our blog](https://solidsoft.works/tag/solid-http/).
+Read how to use this library in [the wiki](https://github.com/SOLIDSoftworks/Solid.Http/wiki) or on [our blog](https://solidsoftworks.io).
