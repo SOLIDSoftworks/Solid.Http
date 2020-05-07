@@ -1,0 +1,18 @@
+version: '2.0.{build}'
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  version_prefix: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+image: Visual Studio 2019
+build_script:
+  - ps: dotnet restore .
+  - ps: dotnet build . --no-restore --configuration Release
+  - ps: dotnet test . --no-restore --no-build --configuration Release
+after_build:
+  - ps: dotnet pack . --version-suffix "beta" --no-restore --no-build --configuration Release -o ./pack
+artifacts:
+  - path: '**\*.nupkg'
