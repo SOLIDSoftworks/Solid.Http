@@ -9,7 +9,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static SolidHttpBuilder AddNewtonsoftJson(this SolidHttpBuilder builder)
         {
-            builder.AddDeserializer<NewtonsoftJsonDeserializer>();
+            builder.AddJsonDeserializer<NewtonsoftJsonDeserializer>();
             return builder;
         }
 

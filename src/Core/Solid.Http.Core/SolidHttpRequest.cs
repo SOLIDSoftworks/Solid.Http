@@ -82,7 +82,7 @@ namespace Solid.Http
 
             try
             {
-                return await deserialize(_services, response.Content);
+                return await deserialize(Services, response.Content);
             }
             catch(Exception ex)
             {

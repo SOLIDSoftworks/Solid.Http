@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Solid.Http.Core\Solid.Http.Core.csproj" />
+    <ProjectReference Include="..\Solid.Http.Json.Core\Solid.Http.Json.Core.csproj" />
   </ItemGroup>
 
 </Project>
