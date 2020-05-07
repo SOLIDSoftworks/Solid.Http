@@ -3,6 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Solid.Http</RootNamespace>
+    <VersionPrefix></VersionPrefix>
+    <AssemblyVersion></AssemblyVersion>
+    <FileVersion></FileVersion>
+    <InformationalVersion></InformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>
