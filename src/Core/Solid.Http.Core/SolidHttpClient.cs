@@ -13,6 +13,7 @@ namespace Solid.Http
     {
         private IServiceProvider _services;
         private SolidHttpOptions _options;
+        private Action<IServiceProvider, SolidHttpRequest> _onRequestCreated;
 
         public SolidHttpClient(IServiceProvider services, IOptions<SolidHttpOptions> options)
         {
@@ -21,11 +22,10 @@ namespace Solid.Http
         }
         //public string Name { get; set; }
         public Uri BaseAddress { get; set; }
-        internal Func<IServiceProvider, SolidHttpRequest, ValueTask> OnRequestCreatedAsync { get; set; }
 
-        public ISolidHttpClient OnRequestCreated(Func<IServiceProvider, ISolidHttpRequest, ValueTask> handler)
+        public ISolidHttpClient OnRequestCreated(Action<IServiceProvider, ISolidHttpRequest> handler)
         {
-            OnRequestCreatedAsync = OnRequestCreatedAsync.Add(handler);
+            _onRequestCreated = _onRequestCreated.Add(handler);
             return this;
         }
 
@@ -34,8 +34,8 @@ namespace Solid.Http
             var request = _services.GetService<SolidHttpRequest>();
             request.BaseRequest = new HttpRequestMessage(method, url);
             request.BaseRequest.Properties.Add(Constants.BaseAddressKey, BaseAddress);
-            request.CancellationToken = cancellationToken;
-            request.DeferredRequestCreatedAsync = _options.OnRequestCreatedAsync.Add(OnRequestCreatedAsync);
+            request.CancellationToken = cancellationToken;            
+            _options.OnRequestCreated.Add(_onRequestCreated).InvokeAll(_services, request);
             return request;
         }
     }

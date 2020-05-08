@@ -16,7 +16,7 @@ namespace Solid.Http.Core.Tests
             services.AddSolidHttpCore();
             var provider = services.BuildServiceProvider();
             var factory = provider.GetService<ISolidHttpClientFactory>();
-            var client = await factory.CreateAsync();
+            var client = factory.Create();
             var request = client
                 .GetAsync("https://jsonplaceholder.typicode.com/posts/1");
             var post = await request.AsText();

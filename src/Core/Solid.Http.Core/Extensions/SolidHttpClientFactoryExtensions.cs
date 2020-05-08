@@ -7,10 +7,10 @@ namespace Solid.Http
 {
     public static class SolidHttpClientFactoryExtensions
     {
-        public static ValueTask<ISolidHttpClient> CreateWithBaseAddressAsync(this ISolidHttpClientFactory factory, string baseAddress)
+        public static ISolidHttpClient CreateWithBaseAddress(this ISolidHttpClientFactory factory, string baseAddress)
         {
             var url = new Uri(baseAddress, UriKind.Absolute);
-            return factory.CreateWithBaseAddressAsync(url);
+            return factory.CreateWithBaseAddress(url);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Solid.Http.Json.Tests
             {
                 var provider = scope.ServiceProvider;
                 var factory = provider.GetService<ISolidHttpClientFactory>();
-                var client = await factory.CreateAsync();
+                var client = factory.Create();
                 var post = await client
                     .GetAsync("https://jsonplaceholder.typicode.com/posts/1")
                     .As<Post>()
@@ -42,7 +42,7 @@ namespace Solid.Http.Json.Tests
             {
                 var provider = scope.ServiceProvider;
                 var factory = provider.GetService<ISolidHttpClientFactory>();
-                var client = await factory.CreateAsync();
+                var client = factory.Create();
                 var posts = await client
                     .GetAsync("https://jsonplaceholder.typicode.com/posts")
                     .AsMany<Post>()

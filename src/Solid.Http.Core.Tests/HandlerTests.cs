@@ -21,7 +21,7 @@ namespace Solid.Http.Core.Tests
             services.AddSolidHttpCore();
             var provider = services.BuildServiceProvider();
             var factory = provider.GetService<ISolidHttpClientFactory>();
-            var client = await factory.CreateAsync();
+            var client = factory.Create();
             await client
                 .GetAsync("https://jsonplaceholder.typicode.com/posts/1")
                 .On(HttpStatusCode.OK, response => assertion1(response))
@@ -38,7 +38,7 @@ namespace Solid.Http.Core.Tests
             services.AddSolidHttpCore();
             var provider = services.BuildServiceProvider();
             var factory = provider.GetService<ISolidHttpClientFactory>();
-            var client = await factory.CreateAsync();
+            var client = factory.Create();
             var exception = null as Exception;
             try
             {
@@ -64,7 +64,7 @@ namespace Solid.Http.Core.Tests
             services.AddSolidHttpCore();
             var provider = services.BuildServiceProvider();
             var factory = provider.GetService<ISolidHttpClientFactory>();
-            var client = await factory.CreateWithBaseAddressAsync("https://jsonplaceholder.typicode.com/");
+            var client = factory.CreateWithBaseAddress("https://jsonplaceholder.typicode.com/");
             await client
                 .GetAsync("posts/1")
             ;

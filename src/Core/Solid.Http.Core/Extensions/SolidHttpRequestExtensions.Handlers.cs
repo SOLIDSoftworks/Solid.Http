@@ -12,15 +12,16 @@ namespace Solid.Http
         public static ISolidHttpRequest OnHttpRequest(this ISolidHttpRequest request, Func<HttpRequestMessage, ValueTask> handler)
             => request.OnHttpRequest(handler.Convert());
         public static ISolidHttpRequest OnHttpRequest(this ISolidHttpRequest request, Action<HttpRequestMessage> handler)
-            => request.OnHttpRequest(handler.Convert());
+            => request.OnHttpRequest(handler.ConvertToAsync());
         public static ISolidHttpRequest OnHttpRequest(this ISolidHttpRequest request, Action<IServiceProvider, HttpRequestMessage> handler)
-            => request.OnHttpRequest(handler.Convert());
+            => request.OnHttpRequest(handler.ConvertToAsync());
+
         public static ISolidHttpRequest OnHttpResponse(this ISolidHttpRequest request, Func<HttpResponseMessage, ValueTask> handler)
             => request.OnHttpResponse(handler.Convert());
         public static ISolidHttpRequest OnHttpResponse(this ISolidHttpRequest request, Action<HttpResponseMessage> handler)
-            => request.OnHttpResponse(handler.Convert());
+            => request.OnHttpResponse(handler.ConvertToAsync());
         public static ISolidHttpRequest OnHttpResponse(this ISolidHttpRequest request, Action<IServiceProvider, HttpResponseMessage> handler)
-            => request.OnHttpResponse(handler.Convert());
+            => request.OnHttpResponse(handler.ConvertToAsync());
 
         /// <summary>
         /// Map a handler to a specific http status code
@@ -70,7 +71,7 @@ namespace Solid.Http
         /// <param name="handler">The handler</param>
         /// <returns>SolidHttpRequest</returns>
         public static ISolidHttpRequest On(this ISolidHttpRequest request, Func<HttpResponseMessage, bool> predicate, Action<HttpResponseMessage> handler) 
-            => request.On(predicate, (services, response) => handler(response));
+            => request.On(predicate, handler.ConvertToAsync());
 
         /// <summary>
         /// Map a handler to a specific http status code
@@ -80,14 +81,7 @@ namespace Solid.Http
         /// <param name="handler">The handler</param>
         /// <returns>SolidHttpRequest</returns>
         public static ISolidHttpRequest On(this ISolidHttpRequest request, Func<HttpResponseMessage, bool> predicate, Action<IServiceProvider, HttpResponseMessage> handler)
-        {
-            request.OnHttpResponse((services, response) =>
-            {
-                if (predicate(response))
-                    handler(services, response);
-            });
-            return request;
-        }
+            => request.On(predicate, handler.ConvertToAsync());
 
         /// <summary>
         /// Map an async handler to a specific http status code
@@ -97,7 +91,7 @@ namespace Solid.Http
         /// <param name="handler">The async handler</param>
         /// <returns>SolidHttpRequest</returns>
         public static ISolidHttpRequest On(this ISolidHttpRequest request, int code, Func<HttpResponseMessage, ValueTask> handler) 
-            => request.On(code, (provider, response) => handler(response));
+            => request.On(code, handler.Convert());
 
         /// <summary>
         /// Map an async handler to a specific http status code
@@ -117,7 +111,7 @@ namespace Solid.Http
         /// <param name="handler">The async handler</param>
         /// <returns>SolidHttpRequest</returns>
         public static ISolidHttpRequest On(this ISolidHttpRequest request, HttpStatusCode code, Func<HttpResponseMessage, ValueTask> handler) 
-            => request.On(code, (provider, response) => handler(response));
+            => request.On(code, handler.Convert());
 
         /// <summary>
         /// Map an async handler to a specific http status code
@@ -137,7 +131,7 @@ namespace Solid.Http
         /// <param name="handler">The async handler</param>
         /// <returns>SolidHttpRequest</returns>
         public static ISolidHttpRequest On(this ISolidHttpRequest request, Func<HttpResponseMessage, bool> predicate, Func<HttpResponseMessage, ValueTask> handler) 
-            => request.On(predicate, (provider, response) => handler(response));
+            => request.On(predicate, handler.Convert());
 
         /// <summary>
         /// Map an async handler to a specific http status code

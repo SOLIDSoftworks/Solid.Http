@@ -20,12 +20,12 @@ namespace Solid.Http.Core.Tests
         }
 
         [Fact]
-        public async Task ShouldThrowArgumentNullExceptionOnNullUri()
+        public void ShouldThrowArgumentNullExceptionOnNullUri()
         {
             var exception = null as ArgumentNullException;
             try
             {
-                await _factory.CreateWithBaseAddressAsync(null as Uri);
+                _factory.CreateWithBaseAddress(null as Uri);
             }
             catch (ArgumentNullException ex)
             {
@@ -42,12 +42,12 @@ namespace Solid.Http.Core.Tests
         [InlineData("http://some.url?")]
         [InlineData("http://some.url?query")]
         [InlineData("http://some.url?query=string")]
-        public async Task ShouldThrowArgumentExceptionOnQueryString(string url)
+        public void ShouldThrowArgumentExceptionOnQueryString(string url)
         {
             var exception = null as ArgumentException;
             try
             {
-                await _factory.CreateWithBaseAddressAsync(url);
+                _factory.CreateWithBaseAddress(url);
             }
             catch (ArgumentException ex)
             {
@@ -61,16 +61,16 @@ namespace Solid.Http.Core.Tests
         }
 
         [Fact]
-        public async Task ShouldSetBaseAddress()
+        public void ShouldSetBaseAddress()
         {
-            var client = await _factory.CreateWithBaseAddressAsync("http://some.url/path");
+            var client = _factory.CreateWithBaseAddress("http://some.url/path");
             Assert.NotNull(client.BaseAddress);
         }
 
         [Fact]
-        public async Task ShouldEnsureTrailingSlash()
+        public void ShouldEnsureTrailingSlash()
         {
-            var client = await _factory.CreateWithBaseAddressAsync("http://some.url/path");
+            var client = _factory.CreateWithBaseAddress("http://some.url/path");
             var url = client.BaseAddress?.ToString();
             Assert.Equal("http://some.url/path/", url);
         }

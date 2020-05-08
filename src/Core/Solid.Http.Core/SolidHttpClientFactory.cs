@@ -25,11 +25,11 @@ namespace Solid.Http
             _optionsChangeToken = monitor.OnChange((options, _) => Options = options);
         }
 
-        public async ValueTask<ISolidHttpClient> CreateAsync()
+        public ISolidHttpClient Create()
         {
             _logger.LogDebug($"Creating { nameof(SolidHttpClient) }");
             var client = _services.GetService<SolidHttpClient>();
-            await Options.OnClientCreatedAsync.InvokeAllAsync(_services, client);
+            Options.OnClientCreated.InvokeAll(_services, client);
             return client;
         }
 
@@ -38,9 +38,9 @@ namespace Solid.Http
         /// </summary>
         /// <param name="baseAddress">The base address to use</param>
         /// <returns>SolidHttpClient</returns>
-        public async ValueTask<ISolidHttpClient> CreateWithBaseAddressAsync(Uri baseAddress)
+        public ISolidHttpClient CreateWithBaseAddress(Uri baseAddress)
         {
-            var client = await CreateAsync();
+            var client = Create();
             if (baseAddress == null) throw new ArgumentNullException(nameof(baseAddress));
             if (!string.IsNullOrEmpty(baseAddress.Query)) throw new ArgumentException("BaseAddresses with query parameters not supported.", nameof(baseAddress));
             client.BaseAddress = baseAddress.WithTrailingSlash();

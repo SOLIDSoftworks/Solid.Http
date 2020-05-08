@@ -8,8 +8,8 @@ namespace Solid.Http
 {
     public class SolidHttpOptions
     {
-        internal Func<IServiceProvider, SolidHttpClient, ValueTask> OnClientCreatedAsync { get; set; }
-        internal Func<IServiceProvider, SolidHttpRequest, ValueTask> OnRequestCreatedAsync { get; set; }
+        internal Action<IServiceProvider, ISolidHttpClient> OnClientCreated { get; set; }
+        internal Action<IServiceProvider, ISolidHttpRequest> OnRequestCreated { get; set; }
         internal Func<IServiceProvider, HttpRequestMessage, ValueTask> OnHttpRequestAsync { get; set; }
         internal Func<IServiceProvider, HttpResponseMessage, ValueTask> OnHttpResponseAsync { get; set; }
     }

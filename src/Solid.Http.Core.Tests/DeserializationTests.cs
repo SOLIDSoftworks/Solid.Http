@@ -20,20 +20,23 @@ namespace Solid.Http.Core.Tests
         public DeserializationTests()
         {
             var services = new ServiceCollection();
-            services.ConfigureAll<HttpClientFactoryOptions>(options => options.HttpMessageHandlerBuilderActions.Add(builder => builder.PrimaryHandler = builder.Services.GetService<HttpMessageHandler>()));
-            services.AddTransient<HttpMessageHandler>(p => new StaticHttpMessageHandler(_response, _statusCode));            
+            services.AddStaticHttpMessageHandler(options =>
+            {
+                options.StatusCode = _statusCode;
+                options.SetStringContent(_response);
+            });         
             services.AddSolidHttpCore();
             _services = services.BuildServiceProvider();
         }
 
         [Fact]
-        public async Task ShouldDeserailizeResponseContent()
+        public async Task ShouldDeserializeResponseContent()
         {
             _statusCode = HttpStatusCode.OK;
             _response = "1";
 
             var factory = _services.GetService<ISolidHttpClientFactory>();
-            var consumer = await factory.CreateWithBaseAddressAsync($"http://{nameof(ShouldDeserailizeResponseContent)}");
+            var consumer = factory.CreateWithBaseAddress($"http://{nameof(ShouldDeserializeResponseContent)}");
             var response = await consumer
                 .GetAsync("")
                 .As(async content =>
@@ -51,7 +54,7 @@ namespace Solid.Http.Core.Tests
             _statusCode = HttpStatusCode.OK;
 
             var factory = _services.GetService<ISolidHttpClientFactory>();
-            var consumer = await factory.CreateWithBaseAddressAsync($"http://{nameof(ShouldNotThrowExceptionOnNullContent)}");
+            var consumer = factory.CreateWithBaseAddress($"http://{nameof(ShouldNotThrowExceptionOnNullContent)}");
             var response = await consumer
                 .GetAsync("")
                 .As(async content =>
@@ -71,7 +74,7 @@ namespace Solid.Http.Core.Tests
             _response = "foo";
 
             var factory = _services.GetService<ISolidHttpClientFactory>();
-            var consumer = await factory.CreateWithBaseAddressAsync($"http://{nameof(ShouldNotThrowExceptionOnIncorrectContent)}");
+            var consumer =  factory.CreateWithBaseAddress($"http://{nameof(ShouldNotThrowExceptionOnIncorrectContent)}");
             var response = await consumer
                 .GetAsync("")
                 .IgnoreSerializationError()
@@ -91,7 +94,7 @@ namespace Solid.Http.Core.Tests
             _response = "";
 
             var factory = _services.GetService<ISolidHttpClientFactory>();
-            var consumer = await factory.CreateWithBaseAddressAsync($"http://{nameof(ShouldNotThrowExceptionOnEmptyContent)}");
+            var consumer = factory.CreateWithBaseAddress($"http://{nameof(ShouldNotThrowExceptionOnEmptyContent)}");
             var response = await consumer
                 .GetAsync("")
                 .As(async content =>
@@ -101,26 +104,6 @@ namespace Solid.Http.Core.Tests
                 });
 
             Assert.Equal(0, response);
-        }
-
-        class StaticHttpMessageHandler : HttpMessageHandler
-        {
-            private HttpStatusCode _statusCode;
-            private string _response;
-
-            public StaticHttpMessageHandler(string response, HttpStatusCode statusCode)
-            {
-                _statusCode = statusCode;
-                _response = response;
-            }
-
-            protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
-            {
-                var response = new HttpResponseMessage(_statusCode);
-                if (!string.IsNullOrEmpty(_response))
-                    response.Content = new StringContent(_response, Encoding.UTF8, "text/plain");
-                return Task.FromResult(response);
-            }
-        }
+        }        
     }
 }

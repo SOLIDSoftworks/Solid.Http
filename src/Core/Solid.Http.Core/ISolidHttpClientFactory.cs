@@ -7,7 +7,7 @@ namespace Solid.Http
 {
     public interface ISolidHttpClientFactory
     {
-        ValueTask<ISolidHttpClient> CreateAsync();
-        ValueTask<ISolidHttpClient> CreateWithBaseAddressAsync(Uri baseAddress);
+        ISolidHttpClient Create();
+        ISolidHttpClient CreateWithBaseAddress(Uri baseAddress);
     }
 }
