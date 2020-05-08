@@ -10,9 +10,9 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddHttpClient();
             services.AddLogging();
-            services.TryAddSingleton<IHttpClientProvider, HttpClientProvider>();
             services.TryAddSingleton<DeserializerProvider>();
             services.TryAddSingleton<ISolidHttpClientFactory, SolidHttpClientFactory>();
+            services.TryAddTransient<IHttpClientProvider, HttpClientProvider>();
             services.TryAddTransient<SolidHttpClient>();
             services.TryAddTransient<SolidHttpRequest>();
             return services;

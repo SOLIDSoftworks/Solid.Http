@@ -10,7 +10,7 @@ namespace Solid.Http.Core.Tests.Stubs
         const string _defaultContentType = "application/json";
         const string _defaultCharType = "utf-8";
 
-        public HttpStatusCode StatusCode { get; set; }
+        public HttpStatusCode StatusCode { get; set; } = HttpStatusCode.OK;
         public string ContentType { get; set; } = _defaultContentType;
         public string CharSet { get; set; } = _defaultCharType;
         public byte[] Content { get; set; }

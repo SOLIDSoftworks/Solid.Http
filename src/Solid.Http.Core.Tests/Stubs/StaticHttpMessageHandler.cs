@@ -15,9 +15,9 @@ namespace Solid.Http.Core.Tests.Stubs
     {
         private StaticHttpMessageHandlerOptions _options;
 
-        public StaticHttpMessageHandler(IOptions<StaticHttpMessageHandlerOptions> options)
+        public StaticHttpMessageHandler(StaticHttpMessageHandlerOptions options)
         {
-            _options = options.Value;
+            _options = options;
         }
 
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
