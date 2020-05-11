@@ -1,6 +1,6 @@
 # Solid.Http XML extensions
 
-There is currently on XML extension for _Solid.Http.Core_. The extension uses the DataContractSerializer for serialization/deserialization.
+There is currently one XML extension for _Solid.Http.Core_. The extension uses the DataContractSerializer for serialization/deserialization.
 
 ## Solid.Http.Xml
 
