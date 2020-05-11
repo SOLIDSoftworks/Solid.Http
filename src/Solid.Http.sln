@@ -29,6 +29,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.NewtonsoftJson.Tests", "Extensions\Json\Solid.Http.NewtonsoftJson.Tests\Solid.Http.NewtonsoftJson.Tests.csproj", "{F0778F1F-72C2-4B1A-B402-F72314A70ECA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xml", "Xml", "{86E3D9D2-A918-47CA-90B1-02DEF03C24A8}"
+	ProjectSection(SolutionItems) = preProject
+		Extensions\Xml\README.md = Extensions\Xml\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zip", "Zip", "{E7899630-7C68-4B31-A656-4E9CC8157BAB}"
 EndProject
