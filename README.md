@@ -1,13 +1,13 @@
 # Solid.Http [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://en.wikipedia.org/wiki/MIT_License) [![Build status](https://ci.appveyor.com/api/projects/status/w3071ev5pc3r4bob/branch/master?svg=true)](https://www.appveyor.com/) ![Solid.Http on nuget](https://img.shields.io/nuget/vpre/Solid.Http)
 
-Solid.Http is a library to simplify http calls in C# for .net standard 2.0. It's designed to be async and fully extendable.
+_Solid.Http_ is a library to simplify http calls in C# for .net standard 2.0. It's designed to be async and fully extendable.
 
 ## Packages
 * [Solid.Http.Core](src/Core/README.md)
 * [Solid.Http.Json](src/Extensions/Json/README.md)
 * [Solid.Http](README.md)
   * This package is a shortcut for adding Solid.Http.Core and Solid.Http.Json.
-* [Solid.Http.NewtonsoftJson](src/Extensions/Json/README.md)
+* [Solid.Http.NewtonsoftJson](src/Extensions/Json/README.md#solid.http.newtonsoftjson)
 * [Solid.Http.Zip](src/Extensions/Zip/README.md)
 * [Solid.Http.Xml](src/Extensions/Xml/README.md)
 
@@ -19,7 +19,7 @@ The basic package is _Solid.Http_ which includes _Solid.Http.Core_ and _Solid.Ht
 ```
 
 ### Initialization
-Adding Solid.Http is quite simple when you just need the fluent interface and JSON.
+Adding _Solid.Http_ is quite simple when you just need the fluent interface and JSON.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
