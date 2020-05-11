@@ -24,7 +24,7 @@ namespace Solid.Http
         public static ISolidHttpRequest WithXmlContent<T>(this ISolidHttpRequest request, T body, string contentType = "application/xml", DataContractSerializerSettings settings = null)
         {
             if (settings == null)
-                settings = request.Services.GetService<IOptions<SolidHttpXmlOptions>>().Value.Settings;
+                settings = request.Services.GetService<IOptions<SolidHttpXmlOptions>>().Value.SerializerSettings;
 
             var stream = new MemoryStream();
             var serializer = new DataContractSerializer(typeof(T), settings);

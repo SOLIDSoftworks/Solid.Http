@@ -11,6 +11,5 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return services.Configure(configureOptions);
         }
-
     }
 }

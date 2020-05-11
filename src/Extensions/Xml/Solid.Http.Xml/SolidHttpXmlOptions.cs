@@ -9,6 +9,6 @@ namespace Solid.Http.Xml
     public class SolidHttpXmlOptions
     {
         public List<MediaTypeHeaderValue> SupportedMediaTypes = SolidHttpXmlOptionsDefaults.SupportedMediaTypes;
-        public DataContractSerializerSettings Settings { get; set; } = SolidHttpXmlOptionsDefaults.Settings;
+        public DataContractSerializerSettings SerializerSettings { get; set; } = SolidHttpXmlOptionsDefaults.SerializerSettings;
     }
 }

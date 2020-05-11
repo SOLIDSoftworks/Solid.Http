@@ -23,7 +23,7 @@ namespace Solid.Http.Xml
         public bool CanDeserialize(string mediaType, Type _) => _options.SupportedMediaTypes.Any(m => m.MediaType.Equals(mediaType, StringComparison.OrdinalIgnoreCase));
 
         public ValueTask<T> DeserializeAsync<T>(HttpContent content)
-            => DeserializeAsync<T>(content, _options.Settings);
+            => DeserializeAsync<T>(content, _options.SerializerSettings);
 
         public async ValueTask<T> DeserializeAsync<T>(HttpContent content, DataContractSerializerSettings settings)
         {

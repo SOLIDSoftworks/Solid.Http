@@ -8,7 +8,7 @@ namespace Solid.Http.Xml
 {
     public static class SolidHttpXmlOptionsDefaults
     {
-        public static DataContractSerializerSettings Settings => CreateDefaultSettings();
+        public static DataContractSerializerSettings SerializerSettings => CreateDefaultSettings();
 
         public static List<MediaTypeHeaderValue> SupportedMediaTypes => CreateDefaultSupportedMediaTypes();
 
