@@ -63,6 +63,8 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
+> More about event handlers in the [important interfaces section of the Solid.Http.Core README](src/Core/README.md#important-interfaces).
+
 ### Usage
 You can inject _ISolidHttpClientFactory_ using dependency injection and then use it to create an _ISolidHttpClient_. _ISolidHttpClient_ is used to create an _ISolidHttpRequest_ which then has a fully async fluent interface for performing an HTTP request.
 

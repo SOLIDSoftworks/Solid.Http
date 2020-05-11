@@ -19,6 +19,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Json.Tests", "Extensions\Json\Solid.Http.Json.Tests\Solid.Http.Json.Tests.csproj", "{D59DAFC0-9692-405E-AD79-BA6F478A352F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9DFEBFB0-8848-4B84-AA92-7B721D4BA790}"
+	ProjectSection(SolutionItems) = preProject
+		Core\README.md = Core\README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".tests", ".tests", "{D3CB0557-6B32-427B-9A72-451C7D6AAE15}"
 EndProject
