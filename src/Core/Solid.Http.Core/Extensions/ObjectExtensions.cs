@@ -13,7 +13,7 @@ namespace System
             if (value == null) throw new ArgumentNullException(nameof(value), "Value cannot be null.");
 
             if (value is string str) return str;
-            if (value is IConvertible convertable) return convertable.ToString(CultureInfo.InvariantCulture);
+            //if (value is IConvertible convertable) return convertable.ToString(CultureInfo.InvariantCulture);
 
             return value.ToString();
 
