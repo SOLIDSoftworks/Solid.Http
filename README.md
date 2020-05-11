@@ -7,7 +7,7 @@ _Solid.Http_ is a library to simplify http calls in C# for .net standard 2.0. It
 * [Solid.Http.Json](src/Extensions/Json/README.md)
 * [Solid.Http](README.md)
   * This package is a shortcut for adding Solid.Http.Core and Solid.Http.Json.
-* [Solid.Http.NewtonsoftJson](src/Extensions/Json/README.md#solid.http.newtonsoftjson)
+* [Solid.Http.NewtonsoftJson](src/Extensions/Json/README.md#solidhttpnewtonsoftjson)
 * [Solid.Http.Zip](src/Extensions/Zip/README.md)
 * [Solid.Http.Xml](src/Extensions/Xml/README.md)
 
