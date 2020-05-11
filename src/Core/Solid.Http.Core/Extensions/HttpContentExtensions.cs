@@ -18,7 +18,7 @@ namespace System.Net.Http
             if (type == typeof(byte[])) return (T)(object)await content.ReadAsByteArrayAsync();
             if (type == typeof(Stream)) return (T)(object)await content.ReadAsStreamAsync();
 
-            var deserializer = provider.GetDeserializer(content.Headers.ContentType);
+            var deserializer = provider.GetDeserializer(content.Headers.ContentType, typeof(T));
             if (deserializer == null) return default;
             return await deserializer.DeserializeAsync<T>(content);
         }

@@ -13,7 +13,7 @@ namespace Solid.Http
         /// </summary>
         /// <param name="mediaType">A mime type</param>
         /// <returns>true or false</returns>
-        bool CanDeserialize(string mediaType);
+        bool CanDeserialize(string mediaType, Type typeToReturn);
 
         /// <summary>
         /// Deserializes the HttpContext to an object

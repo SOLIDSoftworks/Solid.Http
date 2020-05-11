@@ -9,7 +9,7 @@ namespace Solid.Http
 {
     internal class DeserializerProvider
     {
-        private ConcurrentDictionary<string, IDeserializer> _cache = new ConcurrentDictionary<string, IDeserializer>();
+        private ConcurrentDictionary<(string MediaType, Type TypeToReturn), IDeserializer> _cache = new ConcurrentDictionary<(string MediaType, Type TypeToReturn), IDeserializer>();
         private IEnumerable<IDeserializer> _deserializers;
 
         public DeserializerProvider(IEnumerable<IDeserializer> deserializers)
@@ -17,7 +17,7 @@ namespace Solid.Http
             _deserializers = deserializers;
         }
 
-        public IDeserializer GetDeserializer(MediaTypeHeaderValue contentType)
-            => _cache.GetOrAdd(contentType.MediaType, key => _deserializers.FirstOrDefault(d => d.CanDeserialize(key)));
+        public IDeserializer GetDeserializer(MediaTypeHeaderValue contentType, Type typeToReturn)
+            => _cache.GetOrAdd((contentType.MediaType, typeToReturn), key => _deserializers.FirstOrDefault(d => d.CanDeserialize(key.MediaType, key.TypeToReturn)));
     }
 }

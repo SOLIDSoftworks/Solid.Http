@@ -20,7 +20,11 @@ namespace Solid.Http.Zip
             _optionsChangeToken = monitor.OnChange((options, _) => _options = options);
         }
 
-        public bool CanDeserialize(string mediaType) => _options.SupportedMediaTypes.Any(m => m.MediaType.Equals(mediaType, StringComparison.OrdinalIgnoreCase));
+        public bool CanDeserialize(string mediaType, Type typeToReturn)
+        {
+            if (typeToReturn != typeof(ZipArchive)) return false;
+            return _options.SupportedMediaTypes.Any(m => m.MediaType.Equals(mediaType, StringComparison.OrdinalIgnoreCase));
+        }
 
         public async ValueTask<T> DeserializeAsync<T>(HttpContent content)
         {

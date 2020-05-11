@@ -20,7 +20,7 @@ namespace Solid.Http.Xml
             _optionsChangeToken = monitor.OnChange((options, _) => _options = options);
         }
 
-        public bool CanDeserialize(string mediaType) => _options.SupportedMediaTypes.Any(m => m.MediaType.Equals(mediaType, StringComparison.OrdinalIgnoreCase));
+        public bool CanDeserialize(string mediaType, Type _) => _options.SupportedMediaTypes.Any(m => m.MediaType.Equals(mediaType, StringComparison.OrdinalIgnoreCase));
 
         public ValueTask<T> DeserializeAsync<T>(HttpContent content)
             => DeserializeAsync<T>(content, _options.Settings);

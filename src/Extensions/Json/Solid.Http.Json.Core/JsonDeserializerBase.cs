@@ -21,7 +21,7 @@ namespace Solid.Http.Json.Core
 
         public TOptions Options { get; private set; }
 
-        public bool CanDeserialize(string mediaType) => Options.SupportedMediaTypes.Any(m => m.MediaType.Equals(mediaType, StringComparison.OrdinalIgnoreCase));
+        public virtual bool CanDeserialize(string mediaType, Type typeToReturn) => Options.SupportedMediaTypes.Any(m => m.MediaType.Equals(mediaType, StringComparison.OrdinalIgnoreCase));
         public abstract ValueTask<T> DeserializeAsync<T>(HttpContent content);
 
         public virtual void Dispose()
