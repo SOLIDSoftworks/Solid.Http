@@ -21,21 +21,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".tests", ".tests", "{D3CB05
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Core", "Core\Solid.Http.Core\Solid.Http.Core.csproj", "{5105A69D-6CB6-4530-885E-CDEA3BF0DB79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Core.Tests", "Solid.Http.Core.Tests\Solid.Http.Core.Tests.csproj", "{60A70C77-6D2A-4D2C-B64B-CE6A68EF2BF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.NewtonsoftJson", "Extensions\Json\Solid.Http.NewtonsoftJson\Solid.Http.NewtonsoftJson.csproj", "{4C5FB87B-3B77-430D-A102-A7F32EF0185A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.NewtonsoftJson", "Extensions\Json\Solid.Http.NewtonsoftJson\Solid.Http.NewtonsoftJson.csproj", "{4C5FB87B-3B77-430D-A102-A7F32EF0185A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.NewtonsoftJson.Tests", "Extensions\Json\Solid.Http.NewtonsoftJson.Tests\Solid.Http.NewtonsoftJson.Tests.csproj", "{F0778F1F-72C2-4B1A-B402-F72314A70ECA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.NewtonsoftJson.Tests", "Extensions\Json\Solid.Http.NewtonsoftJson.Tests\Solid.Http.NewtonsoftJson.Tests.csproj", "{F0778F1F-72C2-4B1A-B402-F72314A70ECA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xml", "Xml", "{86E3D9D2-A918-47CA-90B1-02DEF03C24A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zip", "Zip", "{E7899630-7C68-4B31-A656-4E9CC8157BAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Xml", "Extensions\Xml\Solid.Http.Xml\Solid.Http.Xml.csproj", "{810CA245-B454-41B9-84FB-D86C8FD1A2C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Xml", "Extensions\Xml\Solid.Http.Xml\Solid.Http.Xml.csproj", "{810CA245-B454-41B9-84FB-D86C8FD1A2C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Zip", "Extensions\Zip\Solid.Http.Zip\Solid.Http.Zip.csproj", "{39A41ED2-C4BF-423D-8A49-28312A9298F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Zip", "Extensions\Zip\Solid.Http.Zip\Solid.Http.Zip.csproj", "{39A41ED2-C4BF-423D-8A49-28312A9298F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solid.Http.Json.Core", "Extensions\Json\Solid.Http.Json.Core\Solid.Http.Json.Core.csproj", "{65D81B4C-4A8C-4AED-8090-567BD714BA4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Json.Core", "Extensions\Json\Solid.Http.Json.Core\Solid.Http.Json.Core.csproj", "{65D81B4C-4A8C-4AED-8090-567BD714BA4A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".repo", ".repo", "{FCADF185-2095-4BA7-B736-D00E267DE9C9}"
 	ProjectSection(SolutionItems) = preProject
@@ -45,6 +43,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".repo", ".repo", "{FCADF185
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Core.Tests", "Core\Solid.Http.Core.Tests\Solid.Http.Core.Tests.csproj", "{E234B536-B573-41B2-85CF-790329B743A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,10 +68,6 @@ Global
 		{5105A69D-6CB6-4530-885E-CDEA3BF0DB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5105A69D-6CB6-4530-885E-CDEA3BF0DB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5105A69D-6CB6-4530-885E-CDEA3BF0DB79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{60A70C77-6D2A-4D2C-B64B-CE6A68EF2BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{60A70C77-6D2A-4D2C-B64B-CE6A68EF2BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{60A70C77-6D2A-4D2C-B64B-CE6A68EF2BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{60A70C77-6D2A-4D2C-B64B-CE6A68EF2BF7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C5FB87B-3B77-430D-A102-A7F32EF0185A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C5FB87B-3B77-430D-A102-A7F32EF0185A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C5FB87B-3B77-430D-A102-A7F32EF0185A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -92,6 +88,10 @@ Global
 		{65D81B4C-4A8C-4AED-8090-567BD714BA4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65D81B4C-4A8C-4AED-8090-567BD714BA4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65D81B4C-4A8C-4AED-8090-567BD714BA4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E234B536-B573-41B2-85CF-790329B743A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E234B536-B573-41B2-85CF-790329B743A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E234B536-B573-41B2-85CF-790329B743A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E234B536-B573-41B2-85CF-790329B743A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,7 +103,6 @@ Global
 		{D59DAFC0-9692-405E-AD79-BA6F478A352F} = {E3B0A70E-0865-4E86-B602-FE72829F6D84}
 		{D3CB0557-6B32-427B-9A72-451C7D6AAE15} = {9DFEBFB0-8848-4B84-AA92-7B721D4BA790}
 		{5105A69D-6CB6-4530-885E-CDEA3BF0DB79} = {9DFEBFB0-8848-4B84-AA92-7B721D4BA790}
-		{60A70C77-6D2A-4D2C-B64B-CE6A68EF2BF7} = {D3CB0557-6B32-427B-9A72-451C7D6AAE15}
 		{4C5FB87B-3B77-430D-A102-A7F32EF0185A} = {C2AD8831-C8E6-4B04-8CCA-B2A79455EEFD}
 		{F0778F1F-72C2-4B1A-B402-F72314A70ECA} = {E3B0A70E-0865-4E86-B602-FE72829F6D84}
 		{86E3D9D2-A918-47CA-90B1-02DEF03C24A8} = {3AD84D45-0E2F-4A08-95BC-95898C2D31A7}
@@ -111,6 +110,7 @@ Global
 		{810CA245-B454-41B9-84FB-D86C8FD1A2C7} = {86E3D9D2-A918-47CA-90B1-02DEF03C24A8}
 		{39A41ED2-C4BF-423D-8A49-28312A9298F6} = {E7899630-7C68-4B31-A656-4E9CC8157BAB}
 		{65D81B4C-4A8C-4AED-8090-567BD714BA4A} = {C2AD8831-C8E6-4B04-8CCA-B2A79455EEFD}
+		{E234B536-B573-41B2-85CF-790329B743A1} = {D3CB0557-6B32-427B-9A72-451C7D6AAE15}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC032E6B-A635-4843-85DD-46036647B35D}
