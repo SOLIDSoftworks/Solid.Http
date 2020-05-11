@@ -8,9 +8,11 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 image: Visual Studio 2019
-build_script:
+before_build:
   - ps: dotnet restore ./src
+build_script:
   - ps: dotnet build ./src --no-restore --configuration Release
+test_script:
   - ps: dotnet test ./src --no-restore --no-build --configuration Release
 after_build:
   - ps: dotnet pack ./src --version-suffix "beta" --no-restore --no-build --configuration Release -o ./pack
