@@ -22,7 +22,7 @@ namespace Solid.Http
         /// <param name="contentType">(Optional) The content type header value</param>
         /// <param name="settings">(Optional) JsonSerializerSettings to use to serialize the body object</param>
         /// <returns>SolidHttpRequest</returns>
-        public static ISolidHttpRequest WithJsonContent<T>(this ISolidHttpRequest request, T body, string contentType = "application/json", JsonSerializerSettings settings = null)
+        public static ISolidHttpRequest WithNewtonsoftJsonContent<T>(this ISolidHttpRequest request, T body, string contentType = "application/json", JsonSerializerSettings settings = null)
         {
             if (settings == null)
                 settings = request.Services.GetService<IOptions<SolidHttpNewtonsoftJsonOptions>>().Value.SerializerSettings;
