@@ -34,6 +34,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xml", "Xml", "{86E3D9D2-A91
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Zip", "Zip", "{E7899630-7C68-4B31-A656-4E9CC8157BAB}"
+	ProjectSection(SolutionItems) = preProject
+		Extensions\Zip\README.md = Extensions\Zip\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solid.Http.Xml", "Extensions\Xml\Solid.Http.Xml\Solid.Http.Xml.csproj", "{810CA245-B454-41B9-84FB-D86C8FD1A2C7}"
 EndProject
