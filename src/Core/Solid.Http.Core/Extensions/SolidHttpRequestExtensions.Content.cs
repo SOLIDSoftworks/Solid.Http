@@ -6,61 +6,64 @@ using System.Text;
 
 namespace Solid.Http
 {
+    /// <summary>
+    /// Extension methods for adding <see cref="HttpContent" /> to <seealso cref="HttpRequestMessage" />.
+    /// </summary>
     public static class Solid_Http_SolidHttpRequestExtensions_Content
     {        
         /// <summary>
-        /// Changes the boundary of the multipart form data content
+        /// Changes the boundary of multipart form data content.
         /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="boundary">The boundary of the multipart form data content</param>
-        /// <returns>ISolidHttpRequest</returns>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="boundary">The boundary of <see cref="MultipartFormDataContent" />.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithFormBoundary(this ISolidHttpRequest request, string boundary)
         {
             return request.WithMultipartContent(() => new MultipartFormDataContent(boundary));
         }
 
         /// <summary>
-        /// Changes the sub type of the multipart content
+        /// Changes the sub type of the multipart content.
         /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="subtype">The subtype of the multipart content</param>
-        /// <returns>ISolidHttpRequest</returns>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="subtype">The subtype of the multipart content.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithSubtype(this ISolidHttpRequest request, string subtype)
         {
             return request.WithMultipartContent(() => new MultipartContent(subtype));
         }
 
         /// <summary>
-        /// Changes the sub type and boundary of the multipart content
+        /// Changes the sub type and boundary of the multipart content.
         /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
         /// <param name="subtype">The subtype of the multipart content</param>
         /// <param name="boundary">The boundary of the multipart content</param>
-        /// <returns>ISolidHttpRequest</returns>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithSubTypeAndBoundary(this ISolidHttpRequest request, string subtype, string boundary)
         {
             return request.WithMultipartContent(() => new MultipartContent(subtype, boundary));
         }
 
         /// <summary>
-        /// Adds form data content to the request
+        /// Adds form data content to the inner <see cref="HttpRequestMessage" />.
         /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="name">The form name of the content</param>
-        /// <param name="content">The string value of the content</param>
-        /// <returns>ISolidHttpRequest</returns>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="name">The form name of the content.</param>
+        /// <param name="content">The string value of the content.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithFormDataContent(this ISolidHttpRequest request, string name, string content)
         {
             return request.WithFormDataContent(name, new StringContent(content));
         }
 
         /// <summary>
-        /// Adds form data content to the request
+        /// Adds form data content to the inner <see cref="HttpRequestMessage" />.
         /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="name">The form name of the content</param>
-        /// <param name="content">The HttpContent</param>
-        /// <returns>ISolidHttpRequest</returns>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="name">The form name of the <see cref="HttpContent" />.</param>
+        /// <param name="content">The <see cref="HttpContent" /> to add.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithFormDataContent(this ISolidHttpRequest request, string name, HttpContent content)
         {
             var form = request.GetMultipartFormDataContent();
@@ -69,13 +72,13 @@ namespace Solid.Http
         }
 
         /// <summary>
-        /// Adds form data file to request
+        /// Adds form data file to the inner <see cref="HttpRequestMessage" />.
         /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="name">The form name of the file</param>
-        /// <param name="content">The file StreamContent</param>
-        /// <param name="fileName">The file name</param>
-        /// <returns>ISolidHttpRequest</returns>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="name">The form name of the file.</param>
+        /// <param name="content">The file <see cref="StreamContent" />.</param>
+        /// <param name="fileName">The file name.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithFormDataFile(this ISolidHttpRequest request, string name, StreamContent content, string fileName)
         {
             var form = request.GetMultipartFormDataContent();
@@ -84,13 +87,13 @@ namespace Solid.Http
         }
 
         /// <summary>
-        /// Adds form data file to request
+        /// Adds form data file to the inner <see cref="HttpRequestMessage" />.
         /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="name">The form name of the file</param>
-        /// <param name="content">The file ByteArrayContent</param>
-        /// <param name="fileName">The file name</param>
-        /// <returns>ISolidHttpRequest</returns>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="name">The form name of the file.</param>
+        /// <param name="content">The file <see cref="ByteArrayContent" />.</param>
+        /// <param name="fileName">The file name.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithFormDataFile(this ISolidHttpRequest request, string name, ByteArrayContent content, string fileName)
         {
             var form = request.GetMultipartFormDataContent();
@@ -99,12 +102,12 @@ namespace Solid.Http
         }
 
         /// <summary>
-        /// Adds HttpContent to the request
-        /// <para>If there is already HttpContent on the request, it makes the request multipart</para>
+        /// Adds <see cref="HttpContent" /> to the inner <seealso cref="HttpRequestMessage" />.
+        /// <para>If there is already <see cref="HttpContent" /> on the <seealso cref="HttpRequestMessage" />, it makes the request multipart.</para>
         /// </summary>
-        /// <param name="request">The SolidHttpRequest</param>
-        /// <param name="content">The HttpContent</param>
-        /// <returns>ISolidHttpRequest</returns>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="content">The <see cref="HttpContent" /> to add to the <seealso cref="HttpRequestMessage" />.await</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithContent(this ISolidHttpRequest request, HttpContent content)
         {
             if (request.BaseRequest.Content == null)

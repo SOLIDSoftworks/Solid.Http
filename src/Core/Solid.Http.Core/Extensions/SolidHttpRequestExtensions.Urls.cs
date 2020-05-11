@@ -5,6 +5,9 @@ using System.Text.RegularExpressions;
 
 namespace Solid.Http
 {
+    /// <summary>
+    /// Extension methods for altering the <see cref="Uri" /> of the <seealso cref="ISolidHttpRequest" />.
+    /// </summary>
     public static class Solid_Http_SolidHttpRequestExtensions_Urls
     {
         /// <summary>
@@ -20,10 +23,10 @@ namespace Solid.Http
         /// <summary>
         /// Replaces a templated parameter in the url.
         /// </summary>
-        /// <param name="request">The <see cref="ISolidHttpRequest"/>.</param>
-        /// <param name="name">The name of the templated parameter</param>
-        /// <param name="value">The value to inject</param>
-        /// <param name="convert">A converter used to convert the <paramref name="value"/> to a <see cref="string"/>.</param>
+        /// <param name="request">The <see cref="ISolidHttpRequest"/> b eing extended.</param>
+        /// <param name="name">The name of the templated parameter.</param>
+        /// <param name="value">The value of the templated parameter.</param>
+        /// <param name="convert">A delegate used to convert the <paramref name="value"/> to a <see cref="string"/>.</param>
         /// <returns>The <see cref="ISolidHttpRequest"/> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithNamedParameter(this ISolidHttpRequest request, string name, object value, Func<object, string> convert)
         {
@@ -35,10 +38,11 @@ namespace Solid.Http
         }
 
         /// <summary>
-        /// Adds a query parameter to the url.
+        /// Adds a query parameter to the url og the <see cref="ISolidHttpRequest"/>.
         /// </summary>
-        /// <param name="request">The <see cref="ISolidHttpRequest"/>.</param>
-        /// <param name="name">The name of the query parameter</param>
+        /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
+        /// <param name="name">The name of the query parameter.</param>
+        /// <param name="value">The value of the query parameter.</param>
         /// <returns>The <see cref="ISolidHttpRequest"/> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithQueryParameter(this ISolidHttpRequest request, string name, object value)
             => request.WithQueryParameter(name, value, o => o.ConvertToStrings());
@@ -46,8 +50,9 @@ namespace Solid.Http
         /// <summary>
         /// Adds a query parameter to the url.
         /// </summary>
-        /// <param name="request">The <see cref="ISolidHttpRequest"/>.</param>
+        /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
         /// <param name="name">The name of the query parameter</param>
+        /// <param name="value">The value of the query parameter.</param>
         /// <param name="convert">A converter used to convert the <paramref name="value"/> to an <see cref="IEnumerable{T}"/> of <seealso cref="string"/>.</param>
         /// <returns>The <see cref="ISolidHttpRequest"/> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithQueryParameter(this ISolidHttpRequest request, string name, object value, Func<object, IEnumerable<string>> convert)

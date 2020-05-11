@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Solid.Http
 {
-    public class HttpClientProvider : IHttpClientProvider
+    internal class HttpClientProvider : IHttpClientProvider
     {
         private IHttpClientFactory _factory;
 

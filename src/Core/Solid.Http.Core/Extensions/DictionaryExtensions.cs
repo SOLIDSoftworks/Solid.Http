@@ -4,7 +4,7 @@ using System.Text;
 
 namespace System.Collections.Generic
 {
-    public static class DictionaryExtensions
+    internal static class DictionaryExtensions
     {
         public static bool TryGetValue<T>(this IDictionary<string, object> dictionary, string key, out T value)
         {
