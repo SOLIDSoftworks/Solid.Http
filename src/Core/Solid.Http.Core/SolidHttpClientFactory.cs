@@ -25,13 +25,7 @@ namespace Solid.Http
             _optionsChangeToken = monitor.OnChange((options, _) => Options = options);
         }
 
-        public ISolidHttpClient Create()
-        {
-            _logger.LogDebug($"Creating { nameof(SolidHttpClient) }");
-            var client = _services.GetService<SolidHttpClient>();
-            Options.OnClientCreated.InvokeAll(_services, client);
-            return client;
-        }
+        public ISolidHttpClient Create() => CreateClient();
 
         /// <summary>
         /// Creates a SolidHttpClient with a base address
@@ -40,7 +34,7 @@ namespace Solid.Http
         /// <returns>SolidHttpClient</returns>
         public ISolidHttpClient CreateWithBaseAddress(Uri baseAddress)
         {
-            var client = Create();
+            var client = CreateClient();
             if (baseAddress == null) throw new ArgumentNullException(nameof(baseAddress));
             if (!string.IsNullOrEmpty(baseAddress.Query)) throw new ArgumentException("BaseAddresses with query parameters not supported.", nameof(baseAddress));
             client.BaseAddress = baseAddress.WithTrailingSlash();
@@ -57,6 +51,14 @@ namespace Solid.Http
         public void Dispose()
         {
             _optionsChangeToken?.Dispose();
+        }
+
+        private SolidHttpClient CreateClient()
+        {
+            _logger.LogDebug($"Creating { nameof(SolidHttpClient) }");
+            var client = _services.GetService<SolidHttpClient>();
+            Options.OnClientCreated.InvokeAll(_services, client);
+            return client;
         }
     }
 }

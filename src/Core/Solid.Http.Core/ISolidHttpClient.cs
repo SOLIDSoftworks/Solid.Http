@@ -9,7 +9,7 @@ namespace Solid.Http
 {
     public interface ISolidHttpClient
     {
-        Uri BaseAddress { get; set; }
+        Uri BaseAddress { get; }
         ISolidHttpClient OnRequestCreated(Action<IServiceProvider, ISolidHttpRequest> handler);
         ISolidHttpRequest PerformRequestAsync(HttpMethod method, Uri url, CancellationToken cancellationToken = default);
     }
