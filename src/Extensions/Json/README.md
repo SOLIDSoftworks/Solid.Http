@@ -29,7 +29,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-> If you're using _Solid.Http_, then the AddJson() method on the builder is run internally.
+> If you're using _Solid.Http_, then the _AddJson()_ method on the builder is called internally. You can configure the JsonSerializerOptions in one of two ways. You can call _AddJson()_ on the builder with no adverse consequences, or you can call _ConfigureSolidHttpJson(o => {})_ on the IServiceCollection directly.
 
 ### Http request body serialization
 
@@ -100,6 +100,7 @@ You can add _Solid.Http.NewtonsoftJson_ using the builder.
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
+    // AddSolidHttpCore could be replaced with AddSolidHttp here
     services.AddSolidHttpCore(builder => 
     {
         builder.AddNewtonsoftJson(options => 
@@ -129,7 +130,7 @@ public async Task<Post> CreateAsync(Post post)
     await _client
         .PostAsync("posts")
         // contentType and settings are optional
-        // If settings are omitted, the settings that are specified in the SolidHttpJsonOptions are used.
+        // If settings are omitted, the settings that are specified in the SolidHttpNewtonsoftJsonOptions are used.
         .WithNewtonsoftJsonContent(post, contentType: "application/json", settings: settings)
     ;
     return post;
