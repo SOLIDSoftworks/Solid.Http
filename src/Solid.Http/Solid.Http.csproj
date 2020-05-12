@@ -13,4 +13,9 @@
     <ProjectReference Include="..\Extensions\Json\Solid.Http.Json\Solid.Http.Json.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>Solid.Http.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
