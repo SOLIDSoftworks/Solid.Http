@@ -6,10 +6,19 @@ using System.Text;
 
 namespace Solid.Http.NewtonsoftJson
 {
+    /// <summary>
+    /// Default values for <see cref="SolidHttpNewtonsoftJsonOptions" />.
+    /// </summary>
     public static class SolidHttpNewtonsoftJsonOptionsDefaults
     {
+        /// <summary>
+        /// Default <see cref="JsonSerializerSettings" />.
+        /// </summary>
         public static readonly JsonSerializerSettings SerializerOptions = CreateDefaultJsonSerializerSettings();
 
+        /// <summary>
+        /// Default supported JSON media types.
+        /// </summary>
         public static readonly List<MediaTypeHeaderValue> SupportedMediaTypes = CreateDefaultSupportedMediaTypes();
 
         private static List<MediaTypeHeaderValue> CreateDefaultSupportedMediaTypes()
