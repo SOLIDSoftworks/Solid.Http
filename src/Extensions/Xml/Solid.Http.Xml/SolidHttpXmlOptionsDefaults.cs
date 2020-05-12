@@ -6,10 +6,19 @@ using System.Text;
 
 namespace Solid.Http.Xml
 {
+    /// <summary>
+    /// Default values for <see cref="SolidHttpXmlOptions" />.
+    /// </summary>
     public static class SolidHttpXmlOptionsDefaults
     {
+        /// <summary>
+        /// Default <see cref="DataContractSerializerSettings" />.
+        /// </summary>
         public static DataContractSerializerSettings SerializerSettings => CreateDefaultSettings();
 
+        /// <summary>
+        /// Default supported XML media types.
+        /// </summary>
         public static List<MediaTypeHeaderValue> SupportedMediaTypes => CreateDefaultSupportedMediaTypes();
 
         private static DataContractSerializerSettings CreateDefaultSettings()
