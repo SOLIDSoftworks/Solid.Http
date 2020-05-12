@@ -32,8 +32,8 @@ namespace Solid.Http
         }
 
         /// <summary>
-        /// Deserializes a JSON <see cref="HttpContent" /> as and <seealso cref="IEnumerable{T}" /> 
-        /// of type <typeparamref name="T" /> using the specifiedserializer settings.
+        /// Deserializes a JSON <see cref="HttpContent" /> as an <seealso cref="IEnumerable{T}" /> 
+        /// of type <typeparamref name="T" /> using the specified serializer settings.
         /// </summary>
         /// <typeparam name="T">The type of response body.</typeparam>
         /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
