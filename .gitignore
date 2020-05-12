@@ -46,11 +46,11 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-bin
-obj
+**/bin
+**/obj
 packages
 
-**/Solid.Http.*.xml
+**/Solid.*.xml
 
 .vs
 

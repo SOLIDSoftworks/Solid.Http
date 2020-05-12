@@ -5,19 +5,13 @@ using System.Text;
 
 namespace Solid.Http
 {
+    /// <summary>
+    /// An exception thrown when a request is expected to be successful, but the status code is between 400 and 499.
+    /// </summary>
     public class ClientErrorException : HttpRequestException
     {
-        public ClientErrorException()
-        {
-        }
-
-        public ClientErrorException(string message) 
+        internal ClientErrorException(string message) 
             : base(message)
-        {
-        }
-
-        public ClientErrorException(string message, Exception inner) 
-            : base(message, inner)
         {
         }
     }

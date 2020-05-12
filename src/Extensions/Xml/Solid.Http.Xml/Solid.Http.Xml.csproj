@@ -12,4 +12,9 @@
     <ProjectReference Include="..\..\..\Core\Solid.Http.Core\Solid.Http.Core.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>Solid.Http.Xml.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>

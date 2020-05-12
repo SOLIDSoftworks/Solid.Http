@@ -80,7 +80,7 @@ namespace Solid.Http
             {
                 return await deserialize(Services, response.Content);
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 if (!Context.TryGetValue<bool>(Constants.IgnoreSerializationErrorKey, out var ignore) || !ignore) throw;
                 

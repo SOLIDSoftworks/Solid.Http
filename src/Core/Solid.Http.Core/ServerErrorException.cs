@@ -5,19 +5,13 @@ using System.Text;
 
 namespace Solid.Http
 {
+    /// <summary>
+    /// An exception thrown when a request is expected to be successful, but the status code is betwen 500 and above.
+    /// </summary>
     public class ServerErrorException : HttpRequestException
     {
-        public ServerErrorException()
-        {
-        }
-
-        public ServerErrorException(string message) 
+        internal ServerErrorException(string message) 
             : base(message)
-        {
-        }
-
-        public ServerErrorException(string message, Exception inner) 
-            : base(message, inner)
         {
         }
     }

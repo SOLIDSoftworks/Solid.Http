@@ -16,4 +16,9 @@
     <ProjectReference Include="..\Solid.Http.Json.Core\Solid.Http.Json.Core.csproj" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>Solid.Http.NewtonsoftJson.xml</DocumentationFile>
+  </PropertyGroup>
+
 </Project>
