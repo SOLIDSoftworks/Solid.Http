@@ -40,8 +40,6 @@ namespace Solid.Http
         /// <param name="settings">The specified <see cref="DataContractSerializerSettings" />.</param>
         /// <returns><see cref="ValueTask{T}" /> of type <seealso cref="IEnumerable{T}" /> of type <typeparamref name="T" />.</returns>
         public static ValueTask<IEnumerable<T>> AsMany<T>(this ISolidHttpRequest request, DataContractSerializerSettings settings)
-        {
-            return request.As<IEnumerable<T>>(settings);
-        }
+            => request.As<IEnumerable<T>>(settings);
     }
 }

@@ -6,10 +6,19 @@ using System.Text;
 
 namespace Solid.Http.Zip
 {
+    /// <summary>
+    /// Default values for <see cref="SolidHttpZipOptions" />.
+    /// </summary>
     public static class SolidHttpZipOptionsDefaults
     {
+        /// <summary>
+        /// Default <see cref="ZipArchiveMode" />.
+        /// </summary>
         public static readonly ZipArchiveMode Mode = ZipArchiveMode.Read;
 
+        /// <summary>
+        /// Default supported ZIP media types.
+        /// </summary>
         public static List<MediaTypeHeaderValue> SupportedMediaTypes => CreateDefaultSupportedMediaTypes();
 
         private static List<MediaTypeHeaderValue> CreateDefaultSupportedMediaTypes()
