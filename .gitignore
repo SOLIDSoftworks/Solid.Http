@@ -50,7 +50,7 @@ Temporary Items
 **/obj
 packages
 
-**/Solid.Http.*.xml
+**/Solid.*.xml
 
 .vs
 
