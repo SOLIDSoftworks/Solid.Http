@@ -8,7 +8,7 @@ using System.Text.Json;
 namespace Solid.Http.Json
 {
     /// <summary>
-    /// Options for configuring Solid.Http.Json
+    /// Options for configuring Solid.Http.Json.
     /// </summary>
     public class SolidHttpJsonOptions : ISolidHttpJsonOptions
     {
