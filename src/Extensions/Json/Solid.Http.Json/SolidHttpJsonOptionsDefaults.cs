@@ -6,10 +6,19 @@ using System.Text.Json;
 
 namespace Solid.Http.Json
 {
+    /// <summary>
+    /// Default values for <see cref="SolidHttpJsonOptions" />.
+    /// </summary>
     public static class SolidHttpJsonOptionsDefaults
     {
+        /// <summary>
+        /// Default <see cref="JsonSerializerOptions" />.
+        /// </summary>
         public static JsonSerializerOptions SerializerOptions => CreateDefaultJsonSerializerOptions();
 
+        /// <summary>
+        /// Default supported JSON media types.
+        /// </summary>
         public static List<MediaTypeHeaderValue> SupportedMediaTypes => CreateDefaultSupportedMediaTypes();
 
         private static List<MediaTypeHeaderValue> CreateDefaultSupportedMediaTypes()
