@@ -6,6 +6,14 @@
     <AssemblyVersion></AssemblyVersion>
     <FileVersion></FileVersion>
     <InformationalVersion></InformationalVersion>
+
+    <Authors>solidsoftworks;gislikonrad</Authors>
+    <PackageDescription>Solid.Http.Json.Core is a package containing shared classes for json deserialization in Solid.Http.Core.</PackageDescription>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>http;gluent;async;csharp;rest;rest-api;httpapi;http-api;fluent-api;fluentapi;restapi;restful-api;restfulapi;json;json-deserialization</PackageTags>
+    <RepositoryUrl>https://github.com/SOLIDSoftworks/Solid.Http</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>master</RepositoryBranch>
   </PropertyGroup>
 
   <ItemGroup>

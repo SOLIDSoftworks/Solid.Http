@@ -6,6 +6,14 @@
     <AssemblyVersion></AssemblyVersion>
     <FileVersion></FileVersion>
     <InformationalVersion></InformationalVersion>
+    
+    <Authors>solidsoftworks;gislikonrad</Authors>
+    <PackageDescription>Solid.Http is a library to simplify http calls in C#. It's designed to be async and fully extendable.</PackageDescription>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>http;gluent;async;csharp;rest;rest-api;httpapi;http-api;fluent-api;fluentapi;restapi;restful-api;restfulapi</PackageTags>
+    <RepositoryUrl>https://github.com/SOLIDSoftworks/Solid.Http</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>master</RepositoryBranch>
   </PropertyGroup>
 
   <ItemGroup>

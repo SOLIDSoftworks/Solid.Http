@@ -6,6 +6,14 @@
     <AssemblyVersion></AssemblyVersion>
     <FileVersion></FileVersion>
     <InformationalVersion></InformationalVersion>
+
+    <Authors>solidsoftworks;gislikonrad</Authors>
+    <PackageDescription>Solid.Http.Zip is an extension to Solid.Http.Core for working with zip archives.</PackageDescription>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>http;gluent;async;csharp;rest;rest-api;httpapi;http-api;fluent-api;fluentapi;restapi;restful-api;restfulapi;zip;ziparchive;zip-archive</PackageTags>
+    <RepositoryUrl>https://github.com/SOLIDSoftworks/Solid.Http</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>master</RepositoryBranch>
   </PropertyGroup>
 
   <ItemGroup>
