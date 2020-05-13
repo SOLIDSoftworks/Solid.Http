@@ -21,9 +21,17 @@ namespace Solid.Http
         /// <param name="values">The value(s) for the header.</param>
         /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
         public static ISolidHttpRequest WithHeader(this ISolidHttpRequest request, string name, StringValues values)
-        {
-            return request.WithHeaders(headers => headers.Add(name, values.ToArray()));
-        }
+            => request.WithHeaders(headers => headers.Add(name, values.ToArray()));
+
+        /// <summary>
+        /// Adds a header to the <see cref="ISolidHttpRequest" />.
+        /// </summary>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="name">The name of the header.</param>
+        /// <param name="value">The value of the header.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
+        public static ISolidHttpRequest WithHeader(this ISolidHttpRequest request, string name, object value)
+            => request.WithHeaders(headers => headers.Add(name, value.ConvertToStrings()));
 
         /// <summary>
         /// Adds a header to the <see cref="ISolidHttpRequest" />.
