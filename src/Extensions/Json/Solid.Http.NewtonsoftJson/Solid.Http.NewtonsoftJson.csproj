@@ -8,9 +8,9 @@
     <InformationalVersion></InformationalVersion>
 
     <Authors>solidsoftworks;gislikonrad</Authors>
-    <PackageDescription>Solid.Http.NewtonsoftJson is an extension to Solid.Http.Core for working with zip archives.</PackageDescription>
+    <PackageDescription>Solid.Http.Json is an extension to Solid.Http.Core for working with json http responses using Newtonsoft.Json.</PackageDescription>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>http;gluent;async;csharp;rest;rest-api;httpapi;http-api;fluent-api;fluentapi;restapi;restful-api;restfulapi;zip;ziparchive;zip-archive</PackageTags>
+    <PackageTags>http;gluent;async;csharp;rest;rest-api;httpapi;http-api;fluent-api;fluentapi;restapi;restful-api;restfulapi;json;json-deserialization</PackageTags>
     <RepositoryUrl>https://github.com/SOLIDSoftworks/Solid.Http</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryBranch>master</RepositoryBranch>
