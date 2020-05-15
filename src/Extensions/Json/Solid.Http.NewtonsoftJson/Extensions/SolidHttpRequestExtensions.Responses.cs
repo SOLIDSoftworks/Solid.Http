@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Solid.Http.NewtonsoftJson;
+using Microsoft.Extensions.Options;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Solid.Http
 {
@@ -22,6 +25,9 @@ namespace Solid.Http
         /// <returns><see cref="ValueTask{T}" /> of type <typeparamref name="T" /></returns>
         public static async ValueTask<T> As<T>(this ISolidHttpRequest request, JsonSerializerSettings settings)
         {
+            if (settings == null)
+                settings = request.Services.GetService<IOptions<SolidHttpNewtonsoftJsonOptions>>().Value.SerializerSettings;
+
             return await request.As<T>(async content =>
             {
                 var json = await content.ReadAsStringAsync();
@@ -38,7 +44,7 @@ namespace Solid.Http
         /// <param name="anonymous">An object of type <typeparamref name="T" /> that provides a schema for deserialization.</param>
         /// <param name="settings">The specified <see cref="JsonSerializerSettings" />.</param>
         /// <returns><see cref="ValueTask{T}" /> of type <typeparamref name="T" /></returns>
-        public static ValueTask<T> As<T>(this ISolidHttpRequest request, T anonymous, JsonSerializerSettings settings) 
+        public static ValueTask<T> As<T>(this ISolidHttpRequest request, T anonymous, JsonSerializerSettings settings = default) 
             => request.As<T>(settings);
 
         /// <summary>
@@ -61,7 +67,7 @@ namespace Solid.Http
         /// <param name="anonymous">An object of type <typeparamref name="T" /> that provides a schema for deserialization.</param>
         /// <param name="settings">The specified <see cref="JsonSerializerSettings" />.</param>
         /// <returns><see cref="ValueTask{T}" /> of type <seealso cref="IEnumerable{T}" /> of type <typeparamref name="T" />.</returns>
-        public static ValueTask<IEnumerable<T>> AsMany<T>(this ISolidHttpRequest request, T anonymous, JsonSerializerSettings settings) 
+        public static ValueTask<IEnumerable<T>> AsMany<T>(this ISolidHttpRequest request, T anonymous, JsonSerializerSettings settings = default) 
             => request.As<IEnumerable<T>>(settings);
     }
 }
