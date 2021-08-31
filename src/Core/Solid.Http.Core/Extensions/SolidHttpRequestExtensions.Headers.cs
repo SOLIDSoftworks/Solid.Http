@@ -59,5 +59,61 @@ namespace Solid.Http
             addHeaders(request.BaseRequest.Headers);
             return request;
         }
+
+
+        /// <summary>
+        /// Adds headers to the <see cref="ISolidHttpRequest"/>.
+        /// </summary>
+        /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
+        /// <param name="parameters">The headers to be added.</param>
+        /// <returns>The <see cref="ISolidHttpRequest"/> so that additional calls can be chained.</returns>
+        public static ISolidHttpRequest WithHeaders(this ISolidHttpRequest request, IDictionary<string, object> parameters)
+        {
+            foreach (var parameter in parameters)
+                request.WithHeader(parameter.Key, parameter.Value);
+            return request;
+        }
+
+        /// <summary>
+        /// Adds headers to the <see cref="ISolidHttpRequest"/>.
+        /// </summary>
+        /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
+        /// <param name="parameters">The headers to be added.</param>
+        /// <returns>The <see cref="ISolidHttpRequest"/> so that additional calls can be chained.</returns>
+        public static ISolidHttpRequest WithHeaders(this ISolidHttpRequest request, IDictionary<string, string> parameters)
+        {
+            foreach (var parameter in parameters)
+                request.WithHeader(parameter.Key, parameter.Value);
+            return request;
+        }
+
+        /// <summary>
+        /// Adds an authorization header to the <see cref="ISolidHttpRequest"/>.
+        /// </summary>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="scheme">The authorization scheme of the header value.</param>
+        /// <param name="value">The authorization value.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
+        public static ISolidHttpRequest WithAuthorizationHeader(this ISolidHttpRequest request, string scheme, string value)
+            => request.WithHeader("Authorization", $"{scheme} {value}");
+
+        /// <summary>
+        /// Adds an authorization header to the <see cref="ISolidHttpRequest"/>.
+        /// </summary>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="token">The token to use in the authorization header.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
+        public static ISolidHttpRequest WithBearerAuthorizationHeader(this ISolidHttpRequest request, string token)
+            => request.WithAuthorizationHeader("Bearer", token);
+
+        /// <summary>
+        /// Adds an authorization header to the <see cref="ISolidHttpRequest"/>.
+        /// </summary>
+        /// <param name="request">The <see cref="ISolidHttpRequest" /> that is being extended.</param>
+        /// <param name="userName">The user name to be used in Basic authentication.</param>
+        /// <param name="password">The password to be used in Basic authentication.</param>
+        /// <returns>The <see cref="ISolidHttpRequest" /> so that additional calls can be chained.</returns>
+        public static ISolidHttpRequest WithBasicAuthorizationHeader(this ISolidHttpRequest request, string userName, string password)
+            => request.WithAuthorizationHeader("Basic", Convert.ToBase64String(Encoding.ASCII.GetBytes($"{userName}:{password}")));
     }
 }
