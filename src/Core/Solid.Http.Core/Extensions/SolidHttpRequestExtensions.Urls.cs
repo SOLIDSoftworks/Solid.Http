@@ -41,6 +41,32 @@ namespace Solid.Http
         /// Adds a query parameter to the url og the <see cref="ISolidHttpRequest"/>.
         /// </summary>
         /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
+        /// <param name="parameters">The query parameters to be added.</param>
+        /// <returns>The <see cref="ISolidHttpRequest"/> so that additional calls can be chained.</returns>
+        public static ISolidHttpRequest WithQueryParameters(this ISolidHttpRequest request, IDictionary<string, object> parameters)
+        {
+            foreach (var parameter in parameters)
+                request.WithQueryParameter(parameter.Key, parameter.Value, o => o.ConvertToStrings());
+            return request;
+        }
+
+        /// <summary>
+        /// Adds a query parameter to the url og the <see cref="ISolidHttpRequest"/>.
+        /// </summary>
+        /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
+        /// <param name="parameters">The query parameters to be added.</param>
+        /// <returns>The <see cref="ISolidHttpRequest"/> so that additional calls can be chained.</returns>
+        public static ISolidHttpRequest WithQueryParameters(this ISolidHttpRequest request, IDictionary<string, string> parameters)
+        {
+            foreach (var parameter in parameters)
+                request.WithQueryParameter(parameter.Key, parameter.Value, o => o.ConvertToStrings());
+            return request;
+        }
+
+        /// <summary>
+        /// Adds a query parameter to the url og the <see cref="ISolidHttpRequest"/>.
+        /// </summary>
+        /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
         /// <param name="name">The name of the query parameter.</param>
         /// <param name="value">The value of the query parameter.</param>
         /// <returns>The <see cref="ISolidHttpRequest"/> so that additional calls can be chained.</returns>
