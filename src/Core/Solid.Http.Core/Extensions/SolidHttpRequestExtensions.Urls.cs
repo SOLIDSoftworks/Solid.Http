@@ -38,7 +38,7 @@ namespace Solid.Http
         }
 
         /// <summary>
-        /// Adds a query parameter to the url og the <see cref="ISolidHttpRequest"/>.
+        /// Adds a query parameter to the url of the <see cref="ISolidHttpRequest"/>.
         /// </summary>
         /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
         /// <param name="parameters">The query parameters to be added.</param>
@@ -51,7 +51,7 @@ namespace Solid.Http
         }
 
         /// <summary>
-        /// Adds a query parameter to the url og the <see cref="ISolidHttpRequest"/>.
+        /// Adds a query parameter to the url of the <see cref="ISolidHttpRequest"/>.
         /// </summary>
         /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
         /// <param name="parameters">The query parameters to be added.</param>
@@ -64,7 +64,7 @@ namespace Solid.Http
         }
 
         /// <summary>
-        /// Adds a query parameter to the url og the <see cref="ISolidHttpRequest"/>.
+        /// Adds a query parameter to the url of the <see cref="ISolidHttpRequest"/>.
         /// </summary>
         /// <param name="request">The <see cref="ISolidHttpRequest"/> that is being extended.</param>
         /// <param name="name">The name of the query parameter.</param>
