@@ -1,3 +1,6 @@
+# Archived
+This repository has been archived and all relevant code moved to the [Solid.Identity](https://github.com/SOLIDSoftworks/Solid.Http) repository.
+
 # Solid.Http [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://en.wikipedia.org/wiki/MIT_License) [![Build status](https://ci.appveyor.com/api/projects/status/w3071ev5pc3r4bob/branch/master?svg=true)](https://www.appveyor.com/) ![Solid.Http on nuget](https://img.shields.io/nuget/vpre/Solid.Http)
 
 _Solid.Http_ is a library to simplify http calls in C# for .net standard 2.0. It's designed to be async and fully extendable.
